@@ -79,7 +79,7 @@ en:
   conn_last_sync: "Last sync:"
 
 #login
-  sign_in: "Sign in to SmartDiab"
+  sign_in: "Sign in to SmheartRehab"
   login_button: "Login"
   username: "User name"
   forgotten_password: "Forgotten password"
@@ -87,12 +87,12 @@ en:
   create_account_part2: "Create yours now and start managing your diabetes-related data"
   password_restore_button: "Restore"
   password_restore_text: "Please enter your email address below and we will send you a link to restore your password."
-  welcome_message: "Controlling diabetes involves thinking about all the factors that impact on blood glucose, including the carbohydrate you eat, and the amount of insulin you need for it, the exercise you have recently done and the exercise you are planning to do, and learning how your body responds to different circumstances. SmartDiab offers you an easy-to-use interface to track and analyze all important factors that may impact the way you feel and your blood glucose level."
-  sign_up_text_part1: "Create your SmartDiab account"
+  welcome_message: "Controlling diabetes involves thinking about all the factors that impact on blood glucose, including the carbohydrate you eat, and the amount of insulin you need for it, the exercise you have recently done and the exercise you are planning to do, and learning how your body responds to different circumstances. SmheartRehab offers you an easy-to-use interface to track and analyze all important factors that may impact the way you feel and your blood glucose level."
+  sign_up_text_part1: "Create your SmheartRehab account"
   sign_up_text_part2: "Your Data. Your Problem. Solved!"
   join_button: "Join"
-  sign_up_info: "By joining SmartDiab, you agree to our Terms of Service and Privacy Policy."
-  have_account: "I already have a SmartDiab account"
+  sign_up_info: "By joining SmheartRehab, you agree to our Terms of Service and Privacy Policy."
+  have_account: "I already have a SmheartRehab account"
   email: "E-mail address"
   your_email: "Your email address"
   first_name: "First name"
@@ -107,9 +107,9 @@ en:
   name: "Name"
   firstname: "First name"
   lastname: "Last name"
-  skip: "Skip this step and go directly to SmartDiab"
+  skip: "Skip this step and go directly to SmheartRehab"
   save: "Save"
-  fill_personal_info: "Please provide additional information about yourself. We collect these information to provide better services to all of our users. You can skip this step to continue right to SmartDiab."
+  fill_personal_info: "Please provide additional information about yourself. We collect these information to provide better services to all of our users. You can skip this step to continue right to SmheartRehab."
   height: "Height, eg: 180"
   date_of_birth: "Year of birth"
   sex: "Sex"
@@ -365,19 +365,19 @@ en:
   notofications: "Notifications"
 
   user_created_email: |
-    Welcome to SmartDiab
+    Welcome to SmheartRehab
 
-    SmartDiab is a new service that helps you manage your diabetes smarter by providing actionable
+    SmheartRehab is a new service that helps you manage your diabetes smarter by providing actionable
     insights based on the objective data gathered from you, your wearable devices (fitness trackes,
     sleep tracker, etc) and mobile apps that are installed on your phone and always with you.
 
-    If you have not requested to create a SmartDiab account with your e-mail address,
+    If you have not requested to create a SmheartRehab account with your e-mail address,
     please accept our apologies and disregard this e-mail. You may also forward this message
     to info@smartdiab.com.
 
-    SmartDiab team
+    SmheartRehab team
 
-  user_created_email_subj: "SmartDiab user created"
+  user_created_email_subj: "SmheartRehab user created"
 
   reset_password_email: |
     Hello, %{email}
@@ -388,4 +388,4 @@ en:
 
     Have a great day!
 
-  reset_password_email_subj: "SmartDiab password reset"
+  reset_password_email_subj: "SmheartRehab password reset"
