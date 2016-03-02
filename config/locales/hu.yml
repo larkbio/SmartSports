@@ -71,20 +71,20 @@ hu:
   remove_item: "Elem törlése"
 
 #login
-  sign_in: "Jelentkezzen be a SmartDiab fiókjába"
+  sign_in: "Jelentkezzen be a SmheartRehab fiókjába"
   login_button: "Belépés"
   username: "Felhasználónév"
   forgotten_password: "Elfelejtettem a jelszavam"
-  create_account_part1: "Még nincs SmartDiab fiókja?"
+  create_account_part1: "Még nincs SmheartRehab fiókja?"
   create_account_part2: "Hozzon létre egyet, gyűjtse és elemezze a cukorbetegségéhez kapcsolódó adatait."
   password_restore_button: "Küldés"
   password_restore_text: "Kérjük adja meg e-mail címét és elküldjük az új jelszó megadásához és aktiválásához szükséges linket és tudnivalókat."
-  welcome_message: "A vércukorszint megfelelő szinten tartása során figyelembe kell venni mindazokat a tényezőket, amelyek befolyásolják azt, így az elfogyasztott szénhidrát mennyiségét és a feldolgozásához szükséges inzulint, a már elvégzett és a tervezett testmozgást, valamint meg kell tanulni a testünk milyen választ ad a különböző körülményekre. A SmartDiab egy könnyen kezelhető felületet biztosít minden olyan fontos tényező követésére és elemzésére, amely hatással van a vércukorszintre és a közérzetre."
-  sign_up_text_part1: "Hozza létre SmartDiab fiókját."
+  welcome_message: "A vércukorszint megfelelő szinten tartása során figyelembe kell venni mindazokat a tényezőket, amelyek befolyásolják azt, így az elfogyasztott szénhidrát mennyiségét és a feldolgozásához szükséges inzulint, a már elvégzett és a tervezett testmozgást, valamint meg kell tanulni a testünk milyen választ ad a különböző körülményekre. A SmheartRehab egy könnyen kezelhető felületet biztosít minden olyan fontos tényező követésére és elemzésére, amely hatással van a vércukorszintre és a közérzetre."
+  sign_up_text_part1: "Hozza létre SmheartRehab fiókját."
   sign_up_text_part2: ""
   join_button: "Fiók létrehozása"
-  sign_up_info: "A SmartDiab fiók létrehozásával elfogadja a Felhasználási feltételek és Adatvédelmi szabályokat."
-  have_account: "Már van SmartDiab fiókom."
+  sign_up_info: "A SmheartRehab fiók létrehozásával elfogadja a Felhasználási feltételek és Adatvédelmi szabályokat."
+  have_account: "Már van SmheartRehab fiókom."
   email: "E-mail cím"
   your_email: "Adja meg e-mail címét"
   first_name: "Keresztnév"
@@ -99,9 +99,9 @@ hu:
   name: "Név"
   firstname: "Keresztnév"
   lastname: "Vezetéknév"
-  skip: "Lépés kihagyása, tovább a SmartDiabra"
+  skip: "Lépés kihagyása, tovább a SmheartRehabra"
   save: "Mentés"
-  fill_personal_info: "Kérem adja meg az alábbi adatokat, melyek segítségével személyreszabott szolgáltatásokat tudunk nyújtani Önnek. Lehetősége van kihagyni ezt és azonnal elkezdheti használni a SmartDiab rendszert."
+  fill_personal_info: "Kérem adja meg az alábbi adatokat, melyek segítségével személyreszabott szolgáltatásokat tudunk nyújtani Önnek. Lehetősége van kihagyni ezt és azonnal elkezdheti használni a SmheartRehab rendszert."
   height: "Magasság, pl: 180"
   date_of_birth: "Születési év"
   date_of_birth_placeholder: "Születési év, pl:1970"
@@ -380,19 +380,19 @@ hu:
   notofications: "Értesítések"
 
   user_created_email: |
-    A SmartDiab üdvözli Önt!
+    A SmheartRehab üdvözli Önt!
 
-    A SmartDiab a cukorbetegség kezeléséhez nyújt fontos segítséget. Az Ön által bevitt,
+    A SmheartRehab a cukorbetegség kezeléséhez nyújt fontos segítséget. Az Ön által bevitt,
     illetve a különböző aktivitásmérők és/vagy mobiltelefonos alkalmazások segítségével
     gyűjtött adatok elemzésével segít Önnek egészségének megőrzésében.
 
-    Amennyiben Ön nem kezdeményezte egy SmartDiab fiók létrehozását az e-mail címe megadásával,
+    Amennyiben Ön nem kezdeményezte egy SmheartRehab fiók létrehozását az e-mail címe megadásával,
     tekintse levelünket tárgytalannak. Ha úgy gondolja, hogy visszaéltek az e-mail címével,
     továbbítsa ezt az üzenetet a info@smartdiab.com címre.
 
-    A SmartDiab csapata
+    A SmheartRehab csapata
 
-  user_created_email_subj: "SmartDiab felhasználó létrehozása"
+  user_created_email_subj: "SmheartRehab felhasználó létrehozása"
 
   reset_password_email: |
     Tisztelt %{email}
@@ -402,14 +402,14 @@ hu:
     Új jelszó megadásáshoz kattintson az alábbi linkre: %{url}.
 
     Szép napot kívánunk!
-    A SmartDiab csapata
+    A SmheartRehab csapata
 
-  reset_password_email_subj: "SmartDiab jelszó visszaállítás"
+  reset_password_email_subj: "SmheartRehab jelszó visszaállítás"
   doctor_invite_email_subj: "Orvos meghívó a SmartDiab-ra"
   doctor_invite_email: |
-      A SmartDiab üdvözli Önt!
+      A SmheartRehab üdvözli Önt!
 
-      Csatlakzzon orvosként a SmartDiab-hoz, a jelszó beállításához kövesse a linket: %{url}.
+      Csatlakzzon orvosként a SmheartRehab-hoz, a jelszó beállításához kövesse a linket: %{url}.
 
       Szép napot kívánunk!
-      A SmartDiab csapata
+      A SmheartRehab csapata
