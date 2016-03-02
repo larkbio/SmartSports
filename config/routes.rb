@@ -1,132 +1,130 @@
 Rails.application.routes.draw do
-  scope :heart do
-    get 'errors/general' => "errors#general"
-    get 'errors/unauthorized' => "errors#unauthorized"
+  get 'errors/general' => "errors#general"
+  get 'errors/unauthorized' => "errors#unauthorized"
 
-    use_doorkeeper
-    namespace :api do
-      namespace :v1 do
-        resources :users do
-          resources :measurements
-          resources :activities
-          resources :diets
-          resources :medications
-          resources :lifestyles
-          resources :family_histories
-          resources :labresults
-          resources :notifications
-          resources :sensor_measurements
-          resources :custom_forms do
-            resources :custom_form_elements
-          end
+  use_doorkeeper
+  namespace :api do
+    namespace :v1 do
+      resources :users do
+        resources :measurements
+        resources :activities
+        resources :diets
+        resources :medications
+        resources :lifestyles
+        resources :family_histories
+        resources :labresults
+        resources :notifications
+        resources :sensor_measurements
+        resources :custom_forms do
+          resources :custom_form_elements
         end
-        resources :medication_types
-        resources :food_types
-        resources :activity_types
-        resources :illness_types
-        get 'profile' => 'profile#show'
-        put 'profile' => 'profile#update'
-        post 'profile_image' => 'profile#profile_image'
-        post 'reset_password' => 'password_resets#create'
       end
+      resources :medication_types
+      resources :food_types
+      resources :activity_types
+      resources :illness_types
+      get 'profile' => 'profile#show'
+      put 'profile' => 'profile#update'
+      post 'profile_image' => 'profile#profile_image'
+      post 'reset_password' => 'password_resets#create'
     end
+  end
 
-    get 'form_element' => "form_element#show"
+  get 'form_element' => "form_element#show"
 
+  resources :notifications
+  resources :medication_types
+  resources :food_types
+  resources :activity_types
+  resources :illness_types
+  resources :click_records
+  resources :custom_forms do
+    resources :custom_form_elements
+  end
+  resources :users do
+    resources :summaries
+    resources :activities
+    resources :measurements
+    resources :medications
     resources :notifications
-    resources :medication_types
-    resources :food_types
-    resources :activity_types
-    resources :illness_types
-    resources :click_records
+    resources :friendships
+    resources :outline
+    resources :lifestyles
+    resources :diets
+    resources :medications
+    resources :family_histories
+    resources :labresults
+    resources :sensor_measurements
+    resources :profile
     resources :custom_forms do
       resources :custom_form_elements
     end
-    resources :users do
-      resources :summaries
-      resources :activities
-      resources :measurements
-      resources :medications
-      resources :notifications
-      resources :friendships
-      resources :outline
-      resources :lifestyles
-      resources :diets
-      resources :medications
-      resources :family_histories
-      resources :labresults
-      resources :sensor_measurements
-      resources :profile
-      resources :custom_forms do
-        resources :custom_form_elements
-      end
-      resources :connections
-      get 'analysis_data' => 'analysis_data#index'
-      post 'upload'
-      post 'uploadAv'
-    end
+    resources :connections
+    get 'analysis_data' => 'analysis_data#index'
+    post 'upload'
+    post 'uploadAv'
+  end
 
-    put 'password_resets/:id/edit' => 'password_resets#update'
+  put 'password_resets/:id/edit' => 'password_resets#update'
 
-    scope ':locale', locale: /#{I18n.available_locales.join("|")}/ do
-      get 'password_resets/create'
-      get 'password_resets/edit'
-      get 'password_resets/update'
-      resources :password_resets
+  scope ':locale', locale: /#{I18n.available_locales.join("|")}/ do
+    get 'password_resets/create'
+    get 'password_resets/edit'
+    get 'password_resets/update'
+    resources :password_resets
 
-      get 'pages/main'
-      get 'pages/dashboard'
-      get 'pages/diet'
-      get 'pages/exercise'
-      get 'pages/health'
-      get 'pages/medication'
-      get 'pages/lifestyle'
-      get 'pages/genetics'
-      get 'pages/customforms'
-      get 'pages/analytics'
-      get 'pages/profile'
-      get 'pages/admin'
-      get 'pages/md_patients'
-      get 'pages/md_customforms'
-      get 'pages/md_statistics'
-      get 'pages/labresult'
-      get 'pages/explore'
-      get 'pages/customforms'
-      get 'pages/traffic'
+    get 'pages/main'
+    get 'pages/dashboard'
+    get 'pages/diet'
+    get 'pages/exercise'
+    get 'pages/health'
+    get 'pages/medication'
+    get 'pages/lifestyle'
+    get 'pages/genetics'
+    get 'pages/customforms'
+    get 'pages/analytics'
+    get 'pages/profile'
+    get 'pages/admin'
+    get 'pages/md_patients'
+    get 'pages/md_customforms'
+    get 'pages/md_statistics'
+    get 'pages/labresult'
+    get 'pages/explore'
+    get 'pages/customforms'
+    get 'pages/traffic'
 
-      get 'pages/profile'
-      get 'pages/connections'
+    get 'pages/profile'
+    get 'pages/connections'
 
-      get 'pages/signin'
-      get 'pages/signup'
-      get 'pages/reset_password'
+    get 'pages/signin'
+    get 'pages/signup'
+    get 'pages/reset_password'
 
-      get 'profile/new'
-      post 'profile/set_default_lang'
+    get 'profile/new'
+    post 'profile/set_default_lang'
 
-    end
+  end
 
   # resources :summaries
   # resources :notifications
   # resources :measurements
   # resources :friendships
 
-    get 'auth/moves/callback' => 'connections#movescb'
-    get 'auth/withings/callback' => 'connections#withingscb'
-    get 'auth/fitbit/callback' => 'connections#fitbitcb'
-    get 'auth/shine/callback' => 'connections#misfitcb'
-    get 'auth/google_oauth2/callback' => 'connections#googlecb'
-    get 'auth/failure' => 'connections#failed'
+  get 'auth/moves/callback' => 'connections#movescb'
+  get 'auth/withings/callback' => 'connections#withingscb'
+  get 'auth/fitbit/callback' => 'connections#fitbitcb'
+  get 'auth/shine/callback' => 'connections#misfitcb'
+  get 'auth/google_oauth2/callback' => 'connections#googlecb'
+  get 'auth/failure' => 'connections#failed'
 
-    # get 'pages/reset_password'
-    # get 'pages/signin'
-    get 'login',  to: redirect("/heart/#{I18n.locale}/pages/signin")
-    get 'signup', to: redirect("/heart/#{I18n.locale}/pages/signup")
-    post 'logout' => 'sessions#signout', :as => :logout
+  # get 'pages/reset_password'
+  # get 'pages/signin'
+  get 'login',  to: redirect("/#{I18n.locale}/pages/signin")
+  get 'signup', to: redirect("/#{I18n.locale}/pages/signup")
+  post 'logout' => 'sessions#signout', :as => :logout
 
-    resources :sessions
+  resources :sessions
 
-  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -186,7 +184,7 @@ Rails.application.routes.draw do
   #handles invalid locale
   #get '/*locale/*path', to: redirect("/#{I18n.default_locale}/%{path}")
   # handles /pages/... without locale
-  get '/heart/pages/:path', to: redirect("/heart/#{I18n.default_locale}/pages/%{path}"), constraints: lambda { |req| !req.path.starts_with? "/heart/#{I18n.default_locale}/" }
+  get 'pages/:path', to: redirect("/#{I18n.default_locale}/pages/%{path}"), constraints: lambda { |req| !req.path.starts_with? "/#{I18n.default_locale}/" }
   # handles /
-  get '/heart', to: redirect("/heart/#{I18n.locale}/pages/dashboard")
+  get '', to: redirect("/#{I18n.locale}/pages/dashboard")
 end
