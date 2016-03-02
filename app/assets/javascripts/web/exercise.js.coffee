@@ -77,7 +77,7 @@
     console.log "datatable clicked"
     current_user = $("#current-user-id")[0].value
     url = '/users/' + current_user + '/activities.json'
-    $.ajax url,
+    $.ajax urlPrefix()+url,
       type: 'GET',
       error: (jqXHR, textStatus, errorThrown) ->
         console.log "datatable activity AJAX Error: #{textStatus}"
@@ -234,7 +234,7 @@
   if fav
     console.log "loading favorites"
     url = url+"&favourites=true"
-  $.ajax url,
+  $.ajax urlPrefix()+url,
     type: 'GET',
     error: (jqXHR, textStatus, errorThrown) ->
       console.log "load recent activities AJAX Error: #{textStatus}"
@@ -259,7 +259,7 @@
     activity_key = 'sd_activities_hu'
 
   if !getStored(activity_key) || testDbVer(db_version)
-    ret = $.ajax '/activity_types.json',
+    ret = $.ajax urlPrefix()+'/activity_types.json',
       type: 'GET',
       error: (jqXHR, textStatus, errorThrown) ->
         console.log "load activity_types AJAX Error: #{textStatus}"

@@ -66,7 +66,7 @@
     failure_message = "Sync failed <i class='fa fa-warning' style='color: red'></i>"
     $("#moves-sync-status").html("Syncing... <i class='fa fa-spinner fa-spin'></i>")
     $('body').addClass('wait');
-    $.ajax "/sync/sync_moves",
+    $.ajax urlPrefix()+"/sync/sync_moves",
       type: "GET"
       dataType: "json"
       error: (jqXHR, textStatus, errorThrown) ->
@@ -98,7 +98,7 @@
     $("#withings-sync-status").html("Syncing... <i class='fa fa-spinner fa-spin'></i>")
     failure_message = "Sync failed <i class='fa fa-warning' style='color: red'></i>"
     $('body').addClass('wait');
-    $.ajax "/sync/sync_withings",
+    $.ajax urlPrefix()+"/sync/sync_withings",
       type: "GET"
       dataType: "json"
       error: (jqXHR, textStatus, errorThrown) ->
@@ -131,7 +131,7 @@
     $("#fitbit-sync-status").html("Syncing... <i class='fa fa-spinner fa-spin'></i>")
     failure_message = "Sync failed <i class='fa fa-warning' style='color: red'></i>"
     $('body').addClass('wait');
-    $.ajax "/sync/sync_fitbit",
+    $.ajax urlPrefix()+"/sync/sync_fitbit",
       type: "GET"
       dataType: "json"
       error: (jqXHR, textStatus, errorThrown) ->
@@ -164,7 +164,7 @@
     $("#misfit-sync-status").html("Syncing... <i class='fa fa-spinner fa-spin'></i>")
     failure_message = "Sync failed <i class='fa fa-warning' style='color: red'></i>"
     $('body').addClass('wait');
-    $.ajax "/sync/sync_misfit",
+    $.ajax urlPrefix()+"/sync/sync_misfit",
       type: "GET"
       dataType: "json"
       error: (jqXHR, textStatus, errorThrown) ->
@@ -197,7 +197,7 @@
     $("#google-sync-status").html("Syncing... <i class='fa fa-spinner fa-spin'></i>")
     failure_message = "Sync failed <i class='fa fa-warning' style='color: red'></i>"
     $('body').addClass('wait');
-    $.ajax "/sync/sync_google",
+    $.ajax urlPrefix()+"/sync/sync_google",
       type: "GET"
       dataType: "json"
       error: (jqXHR, textStatus, errorThrown) ->

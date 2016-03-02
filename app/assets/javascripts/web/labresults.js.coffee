@@ -201,7 +201,7 @@
   lang = $("#data-lang-labresult")[0].value
   url = '/users/' + current_user + '/labresults.js?source='+window.default_source+'&order=desc&limit=10&lang='+lang
   console.log url
-  $.ajax url,
+  $.ajax urlPrefix()+url,
     type: 'GET',
     error: (jqXHR, textStatus, errorThrown) ->
       console.log "load recent lab_results AJAX Error: #{textStatus}"
@@ -216,7 +216,7 @@
   lang = $("#data-lang-labresult")[0].value
   url = '/users/' + current_user + '/notifications.js?upcoming=true&order=desc&limit=10&ntype=visits&lang='+lang
   console.log url
-  $.ajax url,
+  $.ajax urlPrefix()+url,
     type: 'GET',
     error: (jqXHR, textStatus, errorThrown) ->
       console.log "load recent lab_results AJAX Error: #{textStatus}"

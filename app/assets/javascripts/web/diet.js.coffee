@@ -244,7 +244,8 @@
   current_user = $("#current-user-id")[0].value
   lang = $("#data-lang-diet")[0].value
   console.log "calling load recent diets"
-  $.ajax '/users/' + current_user + '/diets.js?source='+window.default_source+'&order=desc&limit=10&lang='+lang,
+  url = '/users/' + current_user + '/diets.js?source='+window.default_source+'&order=desc&limit=10&lang='+lang
+  $.ajax urlPrefix()+url,
     type: 'GET',
     error: (jqXHR, textStatus, errorThrown) ->
       console.log "load recent diets AJAX Error: #{textStatus}"
@@ -257,7 +258,8 @@
   self = this
   current_user = $("#current-user-id")[0].value
   console.log "calling load recent diets"
-  $.ajax '/users/' + current_user + '/diets.js?source='+window.default_source+'&favourites=true&order=desc&limit=10',
+  url = '/users/' + current_user + '/diets.js?source='+window.default_source+'&favourites=true&order=desc&limit=10'
+  $.ajax urlPrefix()+url,
     type: 'GET',
     error: (jqXHR, textStatus, errorThrown) ->
       console.log "load recent diets AJAX Error: #{textStatus}"
@@ -281,7 +283,7 @@
 
   if !getStored(foodkey) || testDbVer(db_version)
     console.log "loading food types"
-    ret = $.ajax '/food_types.json',
+    ret = $.ajax urlPrefix()+'/food_types.json',
       type: 'GET',
       error: (jqXHR, textStatus, errorThrown) ->
         console.log "load recent food_types AJAX Error: #{textStatus}"

@@ -65,7 +65,8 @@
   self = this
   current_user = $("#current-user-id")[0].value
   console.log "calling load recent family histories"
-  $.ajax '/users/' + current_user + '/family_histories.js?source='+window.default_source+'&order=desc&limit=10',
+  url = '/users/' + current_user + '/family_histories.js?source='+window.default_source+'&order=desc&limit=10'
+  $.ajax urlPrefix()+url,
     type: 'GET',
     error: (jqXHR, textStatus, errorThrown) ->
       console.log "load recent family hist AJAX Error: #{textStatus}"

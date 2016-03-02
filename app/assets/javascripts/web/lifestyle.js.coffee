@@ -264,7 +264,8 @@
   current_user = $("#current-user-id")[0].value
   console.log "calling load recent lifestyles"
   lang = $("#data-lang-wellbeing")[0].value
-  $.ajax '/users/' + current_user + '/lifestyles.js?source='+window.default_source+'&order=desc&limit=10&lang='+lang,
+  url = '/users/' + current_user + '/lifestyles.js?source='+window.default_source+'&order=desc&limit=10&lang='+lang
+  $.ajax urlPrefix()+url,
     type: 'GET',
     error: (jqXHR, textStatus, errorThrown) ->
       console.log "load recent lifestyles AJAX Error: #{textStatus}"
@@ -276,7 +277,7 @@
   current_user = $("#current-user-id")[0].value
   console.log "calling load illness types"
   if !getStored("sd_illnesses")
-    ret = $.ajax '/illness_types.json',
+    ret = $.ajax urlPrefix()+'/illness_types.json',
       type: 'GET',
       error: (jqXHR, textStatus, errorThrown) ->
         console.log "load illness_types AJAX Error: #{textStatus}"

@@ -23,6 +23,9 @@
 //= require_tree ./common
 //= require_tree ./web
 
+function urlPrefix() {
+    return window.url_prefix||"";
+}
 
 function b64ToUint6 (nChr) {
     return nChr > 64 && nChr < 91 ? nChr - 65

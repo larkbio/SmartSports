@@ -127,7 +127,7 @@
   if fav
     console.log "loading favorites"
     url = url+"&favourites=true"
-  $.ajax url,
+  $.ajax urlPrefix()+url,
     type: 'GET',
     error: (jqXHR, textStatus, errorThrown) ->
       console.log "load recent medications AJAX Error: #{textStatus}"
@@ -146,7 +146,7 @@
 
   if !getStored("sd_pills")
     console.log "calling load medication types"
-    ret = $.ajax '/medication_types.json',
+    ret = $.ajax urlPrefix()+'/medication_types.json',
       type: 'GET',
       error: (jqXHR, textStatus, errorThrown) ->
         console.log "load recent medication_types AJAX Error: #{textStatus}"

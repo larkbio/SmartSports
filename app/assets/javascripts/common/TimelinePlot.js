@@ -44,7 +44,7 @@ TimelinePlot.prototype.draw = function(chartElementSelector) {
         }
     };
     console.log("making request: "+url);
-    d3.json(url, dataReceived);
+    d3.json(urlPrefix()+url, dataReceived);
 };
 
 TimelinePlot.prototype.getTooltip = function(d) {

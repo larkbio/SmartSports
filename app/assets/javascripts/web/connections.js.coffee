@@ -20,7 +20,8 @@
 
   if $("#sectionConnections").size() > 0
     # if still on the connections page
-    $.ajax '/users/' + current_user + '/connections.js',
+    url = '/users/' + current_user + '/connections.js'
+    $.ajax urlPrefix()+url,
       type: 'GET',
       error: (jqXHR, textStatus, errorThrown) ->
         console.log "load connections AJAX Error: #{textStatus}"

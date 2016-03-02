@@ -88,7 +88,7 @@
 
     current_user = $("#current-user-id")[0].value
     url = '/users/' + current_user + '/measurements.json'
-    $.ajax url,
+    $.ajax urlPrefix()+url,
       type: 'GET',
       error: (jqXHR, textStatus, errorThrown) ->
         console.log "datatable measurements AJAX Error: #{textStatus}"
@@ -205,7 +205,7 @@
   if fav
     console.log "loading favorites"
     url = url+"&favourites=true"
-  $.ajax url,
+  $.ajax urlPrefix()+url,
     type: 'GET',
     error: (jqXHR, textStatus, errorThrown) ->
       console.log "load recent measurements AJAX Error: #{textStatus}"

@@ -1,6 +1,7 @@
 @admin_loaded = () ->
   console.log "admin loaded"
-  $.ajax "/pages/traffic",
+  url = "/pages/traffic"
+  $.ajax urlPrefix()+url,
     type: "GET"
     dataType: "json"
     error: (jqXHR, textStatus, errorThrown) ->

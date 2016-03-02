@@ -35,8 +35,7 @@
   $("div.sensorTable tr#sensor-meas-"+sid).addClass("selectedRow")
 
   url = '/users/' + uid + '/sensor_measurements/'+sid+'.json'
-
-  $.ajax url,
+  $.ajax urlPrefix()+url,
     type: 'GET',
     error: (jqXHR, textStatus, errorThrown) ->
       console.log "load recent activities AJAX Error: #{textStatus}"
