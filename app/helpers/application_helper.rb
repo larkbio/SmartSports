@@ -1,5 +1,9 @@
 module ApplicationHelper
 
+  def get_prefix
+    return ""
+  end
+
   def get_duration(secs)
     if secs.nil?
       return "-"
