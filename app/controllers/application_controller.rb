@@ -25,7 +25,7 @@ class ApplicationController < ActionController::Base
   end
 
   def not_authenticated
-     redirect_to "/#{I18n.locale}/pages/signin", alert: "Please login first"
+     redirect_to pages_signin_path(I18n.locale), alert: "Please login first"
   end
 
   def set_default_variables

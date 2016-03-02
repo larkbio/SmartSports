@@ -373,13 +373,13 @@ ActiveRecord::Schema.define(version: 20160226100731) do
     t.float    "distance"
     t.integer  "steps"
     t.float    "calories"
+    t.float    "elevation"
     t.datetime "synced_at"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.float    "soft_duration"
     t.float    "moderate_duration"
     t.float    "hard_duration"
-    t.float    "elevation"
     t.boolean  "sync_final"
   end
 
@@ -417,7 +417,6 @@ ActiveRecord::Schema.define(version: 20160226100731) do
     t.string   "salt",                                            null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "connection_id"
     t.string   "reset_password_token"
     t.datetime "reset_password_token_expires_at"
     t.datetime "reset_password_email_sent_at"

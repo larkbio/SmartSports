@@ -137,17 +137,12 @@
   $(document).on("ajax:success.login", "#loginForm", (e, data, status, xhr) ->
     form_id = e.currentTarget.id
     console.log "success "+form_id
-#    redir to main page
-    if data.profile
-      document.location = "/"
-    else
-      document.location = "/"+data.locale+"/profile/new"
+
+    document.location = data.redir_url
   ).on("ajax:error", (e, xhr, status, error) ->
     console.log error
     popup_error(xhr.responseJSON["msg"])
-#    popup_error(popup_messages.login_failed)
   )
-
 
 @resetpw_loaded = () ->
   console.log "resetpw loaded"

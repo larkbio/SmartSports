@@ -31,7 +31,7 @@
 </div>
 
 <% have_account = t 'have_account' %>
-<%= render partial: 'shared/features', locals: {  msg: "<a class=\"signupLink\" href=\"/#{I18n.locale}/pages/signin\">" + have_account +"</a>"} %>
+<%= render partial: 'shared/features', locals: {  msg: "<a class=\"signupLink\" href=\""+@signin_url+"\">" + have_account +"</a>"} %>
 
 <script>
     signup_loaded()
