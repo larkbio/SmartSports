@@ -20,6 +20,7 @@ class PagesController < ApplicationController
   end
 
   def signup
+    @signin_url = pages_signin_path(I18n.locale)
   end
 
   def signin
@@ -32,6 +33,7 @@ class PagesController < ApplicationController
     if I18n.locale.to_s=='hu'
       @lang_label = 'en'
     end
+    @signup_url = pages_signup_path(I18n.locale)
   end
 
   def main

@@ -4,13 +4,16 @@ class SessionsController < ApplicationController
 
   def create
     @user = login(params[:email], params[:password])
-
     if @user
-        save_click_record(:success, nil, "login", request.remote_ip)
+      save_click_record(:success, nil, "login", request.remote_ip)
         if @user.has_profile && @user.profile.default_lang
           I18n.locale = @user.profile.default_lang
+          redir_url = redir_url = root_path
+        else
+          redir_url = pages_profile_path(I18n.locale)
         end
-        render json: { :ok => true, :msg => 'login_succ', :locale => I18n.locale, :profile => @user.has_profile}
+
+        render json: { :ok => true, :msg => 'login_succ', :locale => I18n.locale, :profile => @user.has_profile, :redir_url => redir_url}
     else
       u = User.find_by_email(params[:email])
       if u

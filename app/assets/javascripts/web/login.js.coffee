@@ -132,7 +132,6 @@
     #popup_error(popup_messages.login_failed)
   )
 
-
 @resetpw_loaded = () ->
   console.log "resetpw loaded"
   popup_messages = JSON.parse($("#popup-messages").val())

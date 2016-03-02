@@ -40,13 +40,13 @@ Rails.application.configure do
   APP_CONFIG = {}
   APP_CONFIG['PAPERCLIP_PATH'] = ":rails_root/public/system/:class/:attachment/:id/:style/:basename.:extension"
 
-  connection_config_fname = File.join(ENV["HOME"],".smartsport_connection_data.yml")
+  connection_config_fname = File.join(ENV["HOME"],".smheartrehab_connection_data.yml")
   if not File.exists?(connection_config_fname)
     raise "Connections configuration file "+connection_config_fname+" does not exist."
   end
   CONNECTION_CONFIG = YAML.load_file(connection_config_fname)[::Rails.env]
 
-  mail_config_fname =  File.join(ENV['HOME'], '.mail.conf')
+  mail_config_fname =  File.join(ENV['HOME'], '.smheartrehab_mail.conf')
   if not File.exists?(mail_config_fname)
     raise "Configuration file "+mail_config_fname+" does not exist."
   end
@@ -81,7 +81,7 @@ Rails.application.configure do
 
   Paperclip.options[:command_path] = ENV['IMAGEMAGICK_DIR']
 
-  DATA_DIR =  File.join(ENV['HOME'], 'Downloads/hr_data')
+  DATA_DIR =  File.join(ENV['HOME'], 'Downloads/smheartrehab_hr_data')
   if not File.exists?(DATA_DIR)
     raise "Data dir '#{DATA_DIR}' missing"
   end

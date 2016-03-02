@@ -8,7 +8,7 @@ class UserMailerTest < ActionMailer::TestCase
   test "reset_password_email_en" do
     mail = UserMailer.reset_password_email(
         InfoMailJob.new(nil, @user.email, "en", {reset_password_token: "abcd"}))
-    assert_equal "SmartDiab password reset", mail.subject
+    assert_equal "SmheartRehab password reset", mail.subject
     assert_equal [@user.email], mail.to
     assert_equal ["info@smartdiab.com"], mail.from
     assert_match "Hello, "+@user.email, mail.body.encoded
@@ -17,7 +17,7 @@ class UserMailerTest < ActionMailer::TestCase
   test "reset_password_email_hu" do
     mail = UserMailer.reset_password_email(
         InfoMailJob.new(nil, @user.email, "hu", {reset_password_token: "abcd"}))
-    assert_equal "SmartDiab jelszó visszaállítás", mail.subject
+    assert_equal "SmheartRehab jelszó visszaállítás", mail.subject
     assert_equal [@user.email], mail.to
     assert_equal ["info@smartdiab.com"], mail.from
     assert_match "Tisztelt "+@user.email, mail.body.encoded

@@ -5,7 +5,7 @@ class LoginTest < ActionDispatch::IntegrationTest
 
   test 'show login page if not logged in' do
     visit '/'
-    page.must_have_content('Sign in to SmartDiab')
+    page.must_have_content('Sign in to SmheartRehab')
   end
 
   test 'successful login should take to dashboard page' do
@@ -16,7 +16,7 @@ class LoginTest < ActionDispatch::IntegrationTest
     end
 
     click_button 'Login'
-    page.must_have_content('SmartDiab - intelligent diabetes management')
+    page.must_have_content('SmheartRehab - intelligent')
   end
 
   test 'failed login should show error popup' do
@@ -47,7 +47,7 @@ class LoginTest < ActionDispatch::IntegrationTest
     end
 
     click_button 'Login'
-    page.must_have_content('SmartDiab - intelligent diabetes management')
+    page.must_have_content('SmheartRehab - intelligent')
 
     click_link 'health-link'
     within('#health_2') do

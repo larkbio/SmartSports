@@ -1088,17 +1088,17 @@ div.egfr {
 
 @media screen and (max-width: 2000px) {
   .dashboardbody {
-    background: image-url("smartdiab_bg1_s.jpg") -100px -150px no-repeat !important;
+    background: url("/assets/heartbg_s.jpg") -100px -150px no-repeat !important;
   }
 }
 @media screen and (min-width: 2000px) {
   .dashboardbody {
-    background: image-url("smartdiab_bg1_m.jpg") 100px -150px no-repeat !important;
+    background: url("/assets/heartbg_m.jpg") 100px -150px no-repeat !important;
   }
 }
 @media screen and (min-width: 3000px) {
   .dashboardbody {
-    background: image-url("smartdiab_bg1_l.jpg") 100px -300px no-repeat !important;
+    background: url("/assets/heartbg_l.jpg") 100px -300px no-repeat !important;
   }
 }
 

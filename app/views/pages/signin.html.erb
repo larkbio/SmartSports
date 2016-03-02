@@ -23,7 +23,7 @@
     </div>
 </div>
 
-<% msg = "<a class=\"signupLink\" href=\"/#{I18n.locale}/pages/signup\">"+ translate('create_account_part1')+ "</a> "+ translate('create_account_part2') %>
+<% msg = "<a class=\"signupLink\" href=\""+@signup_url+"\">"+ translate('create_account_part1')+ "</a> "+ translate('create_account_part2') %>
 
 <%= render partial: 'shared/features', locals: { msg: msg} %>
 
