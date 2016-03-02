@@ -20,8 +20,8 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  project_name: "SmartDiab"
-  top_title: "SmartDiab - intelligent diabetes management"
+  project_name: "SmheartRehab"
+  top_title: "SmheartRehab - intelligent heart rehabilitation"
 
   menu_dashboard: "Dashboard"
   menu_diet:      "Diet"
