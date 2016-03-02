@@ -20,6 +20,9 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  project_name: "SmartDiab"
+  top_title: "SmartDiab - intelligent diabetes management"
+
   menu_dashboard: "Dashboard"
   menu_diet:      "Diet"
   menu_exercise:  "Exercise"
@@ -277,7 +280,7 @@ en:
 
 # wellbeing
   lifestyle:                "Lifestyle"
-  wellbeing:                "Well-Being"
+  wellbeing:                "Well-being"
   sleep:                    "Sleep"
   stress:                   "Stress"
   illness:                  "Illness"

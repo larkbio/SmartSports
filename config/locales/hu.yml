@@ -1,4 +1,7 @@
 hu:
+  project_name: "SmartDiab"
+  top_title: "SmartDiab - intelligent diabetes management"
+
   menu_dashboard: "Asztal"
   menu_diet:      "Étrend"
   menu_exercise:  "Testmozgás"
