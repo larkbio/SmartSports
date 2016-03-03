@@ -91,7 +91,7 @@
 
   <td class="iconColumn">
     <% if diet_item.diet_type != "Calory" %>
-        <%= form_tag("/users/#{current_user.id}/diets/#{diet_item.id}", id: "mod_diet_#{diet_item.id}", remote: true, method: "put", class: "resource-update-form") do %>
+        <%= form_tag(root_path+"users/#{current_user.id}/diets/#{diet_item.id}", id: "mod_diet_#{diet_item.id}", remote: true, method: "put", class: "resource-update-form") do %>
             <button id="fav-icon" class="tableControl">
               <% if diet_item.favourite %>
                   <i class="fa fa-star fa-2x is-favorite"></i>
@@ -105,7 +105,7 @@
     <% end %>
   </td>
   <td class="iconColumn deleteDiet">
-    <%= form_tag("/users/#{current_user.id}/diets/#{diet_item.id}", id: "delete_diet_#{diet_item.id}", remote: true, method: "delete", class: "resource-delete-form") do %>
+    <%= form_tag(root_path+"users/#{current_user.id}/diets/#{diet_item.id}", id: "delete_diet_#{diet_item.id}", remote: true, method: "delete", class: "resource-delete-form") do %>
         <button class="tableControl">
           <i class="fa fa-trash-o fa-2x"></i>
         </button>

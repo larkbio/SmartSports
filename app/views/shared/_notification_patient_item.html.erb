@@ -42,7 +42,7 @@
   </td>
 
   <td class="iconColumn">
-    <%= form_tag( "/users/#{notification_patient_item.user_id}/notifications/#{notification_patient_item.id}",
+    <%= form_tag(root_path+"users/#{notification_patient_item.user_id}/notifications/#{notification_patient_item.id}",
                   id: "dismiss_notif_#{notification_patient_item.id}", remote: true, method: "patch", class: "notification-dismiss-form") do %>
         <input type="hidden" name="dismiss" value="true" />
         <button class="tableControl left dismissNotif">

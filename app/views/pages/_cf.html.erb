@@ -43,7 +43,7 @@
             }
             <% end %>
         </style>
-        <%= form_tag( "/users/#{current_user.id}/custom_forms", remote: true, id: "custom-create-form") do %>
+        <%= form_tag( root_path+"users/#{current_user.id}/custom_forms", remote: true, id: "custom-create-form") do %>
             <div id="dataform" class="dataForm">
               <p class="dataFormRemark"><%=t 'add_custom_form_info' %></p>
               <p class="titleSub"><%=t 'add_custom_form_title' %></p>

@@ -41,7 +41,7 @@
   </td>
 
   <td class="iconColumn">
-    <%= form_tag( "/users/#{current_user.id}/lifestyles/#{lifestyle_item.id}", id: "delete_ls_#{lifestyle_item.id}", remote: true, method: "delete", class: "resource-delete-form") do %>
+    <%= form_tag(root_path+"users/#{current_user.id}/lifestyles/#{lifestyle_item.id}", id: "delete_ls_#{lifestyle_item.id}", remote: true, method: "delete", class: "resource-delete-form") do %>
         <button class="tableControl">
           <i class="fa fa-trash-o fa-2x"></i>
         </button>

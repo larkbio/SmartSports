@@ -33,7 +33,7 @@
     </td>
 
   <td class="iconColumn">
-    <%= form_tag( "/users/#{current_user.id}/measurements/#{meas_item.id}", id: "mod_meas_#{meas_item.id}", remote: true, method: "put", class: "resource-update-form") do %>
+    <%= form_tag(root_path+"users/#{current_user.id}/measurements/#{meas_item.id}", id: "mod_meas_#{meas_item.id}", remote: true, method: "put", class: "resource-update-form") do %>
         <button id="fav-icon" class="tableControl">
           <% if meas_item.favourite %>
               <i class="fa fa-star fa-2x is-favorite"></i>
@@ -46,7 +46,7 @@
     <% end %>
   </td>
   <td class="iconColumn deleteMeas">
-    <%= form_tag( "/users/#{current_user.id}/measurements/#{meas_item.id}", id: "delete_meas_#{meas_item.id}", remote: true, method: "delete", class: "resource-delete-form") do %>
+    <%= form_tag(root_path+"users/#{current_user.id}/measurements/#{meas_item.id}", id: "delete_meas_#{meas_item.id}", remote: true, method: "delete", class: "resource-delete-form") do %>
         <button class="tableControl">
           <i class="fa fa-trash-o fa-2x"></i>
         </button>

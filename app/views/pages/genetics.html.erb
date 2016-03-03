@@ -13,7 +13,7 @@
                     <%= image_tag "family40.png" %><br/>
                   <%=t 'family_hist'%>
                 </div>
-                <%= form_tag( "/users/#{current_user.id}/family_histories", remote: true, id: "familyhist-create-form", class: "resource-create-form family-history-form") do %>
+                <%= form_tag(root_path+"users/#{current_user.id}/family_histories", remote: true, id: "familyhist-create-form", class: "resource-create-form family-history-form") do %>
                     <div class="dataForm">
                         <input type="hidden" name="family_history[source]" value="<%= @default_source %>">
 

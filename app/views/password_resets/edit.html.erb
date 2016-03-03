@@ -8,7 +8,7 @@
 
 <div id="loginDiv" class="loginDiv">
     <div>
-        <%= form_tag("/password_resets/"+@token+"/edit" , :method => :put, :remote => true, :id => 'pwChangeForm') do %>
+        <%= form_tag(root_path+"password_resets/"+@token+"/edit" , :method => :put, :remote => true, :id => 'pwChangeForm') do %>
             <input name="lang" type="hidden" value="<%=I18n.locale%>" />
             <input id="password_field" name="user[password]" type="password" class="loginField animField"
                    placeholder="<%= t 'password'%>"/><br>

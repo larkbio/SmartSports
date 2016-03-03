@@ -5,7 +5,7 @@
 
 <div class="contentBg" style="margin-top: 20px;border-radius: 20px;">
     <div style="padding: 10px;">
-      <%= form_tag("/users/#{current_user.id}", remote: true, id: "update-user-form", method: "PUT", class: "resource-update-form user-form") do %>
+      <%= form_tag(root_path+"users/#{current_user.id}", remote: true, id: "update-user-form", method: "PUT", class: "resource-update-form user-form") do %>
       <table style="width: 100%;color: #3d3d3d;">
         <tbody>
 
@@ -67,7 +67,7 @@
 
 <div class="contentBg" style="margin-top: 20px;border-radius: 20px;">
   <div style="padding: 10px;">
-    <%= form_tag( "/users/#{current_user.id}/uploadAv", :multipart => true, :'data-ajax' => false, :method => "POST") do %>
+    <%= form_tag(root_path+"users/#{current_user.id}/uploadAv", :multipart => true, :'data-ajax' => false, :method => "POST") do %>
     <table style="width: 100%;color: #3d3d3d;">
       <tbody>
 
@@ -97,7 +97,7 @@
 <%if @profile %>
     <div class="contentBg" style="margin-top: 20px;border-radius: 20px;">
       <div style="padding: 10px;">
-        <%= form_tag("/users/#{current_user.id}/profile/#{@profile.id}", remote: true, id: "update-profile-form", method: "PUT", class: "resource-update-form profile-form") do %>
+        <%= form_tag(root_path+"users/#{current_user.id}/profile/#{@profile.id}", remote: true, id: "update-profile-form", method: "PUT", class: "resource-update-form profile-form") do %>
         <table style="width: 100%;color: #3d3d3d;">
           <tbody>
               <input name="lang" value="<%=I18n.locale%>" type="hidden" />

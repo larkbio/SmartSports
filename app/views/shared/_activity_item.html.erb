@@ -38,7 +38,7 @@
 
 
   <td class="iconColumn">
-    <%= form_tag( "/users/#{current_user.id}/activities/#{activity_item.id}", id: "mod_act_#{activity_item.id}", remote: true, method: "put", class: "resource-update-form") do %>
+    <%= form_tag(root_path+"users/#{current_user.id}/activities/#{activity_item.id}", id: "mod_act_#{activity_item.id}", remote: true, method: "put", class: "resource-update-form") do %>
         <button id="fav-icon" class="tableControl">
           <% if activity_item.favourite %>
               <i class="fa fa-star fa-2x is-favorite"></i>
@@ -52,7 +52,7 @@
   </td>
 
   <td class="iconColumn deleteExercise">
-    <%= form_tag( "/users/#{current_user.id}/activities/#{activity_item.id}", id: "delete_act_#{activity_item.id}", remote: true, method: "delete", class: "resource-delete-form") do %>
+    <%= form_tag(root_path+"users/#{current_user.id}/activities/#{activity_item.id}", id: "delete_act_#{activity_item.id}", remote: true, method: "delete", class: "resource-delete-form") do %>
         <button class="tableControl">
           <i class="fa fa-trash-o fa-2x"></i>
         </button>

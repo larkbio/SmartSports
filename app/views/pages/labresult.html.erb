@@ -21,7 +21,7 @@
                     <%= image_tag "test_tube40.png" %><br/>
                     HbA1c
                 </div>
-                <%= form_tag( "/users/#{current_user.id}/labresults", remote: true, id: "hba1c-create-form", class: "resource-create-form lab_results-form") do %>
+                <%= form_tag(root_path+"users/#{current_user.id}/labresults", remote: true, id: "hba1c-create-form", class: "resource-create-form lab_results-form") do %>
                     <%= render "forms/labresult_hba1c" %>
                     <button id="addLabResultButton" class="dataFormField"><%=t 'button_add'%></button>
                 <% end %>
@@ -33,7 +33,7 @@
                     <%= image_tag "water40.png" %><br/>
                     LDL-chol
                 </div>
-                <%= form_tag( "/users/#{current_user.id}/labresults", remote: true, id: "ldlchol-create-form", class: "resource-create-form lab_results-form") do %>
+                <%= form_tag(root_path+"users/#{current_user.id}/labresults", remote: true, id: "ldlchol-create-form", class: "resource-create-form lab_results-form") do %>
                     <%= render "forms/labresult_ldlchol" %>
                     <button class="dataFormField"><%=t 'button_add'%></button>
                 <% end %>
@@ -45,7 +45,7 @@
                     <%= image_tag "kidney40.png" %><br/>
                     eGFR-EPI
                 </div>
-                <%= form_tag( "/users/#{current_user.id}/labresults", remote: true, id: "egfrepi-create-form", class: "resource-create-form lab_results-form") do %>
+                <%= form_tag(root_path+"users/#{current_user.id}/labresults", remote: true, id: "egfrepi-create-form", class: "resource-create-form lab_results-form") do %>
                   <%= render "forms/labresult_egfrepi" %>
                   <button class="dataFormField"><%=t 'button_add'%></button>
 
@@ -58,7 +58,7 @@
                     <%= image_tag "ketone40.png" %><br/>
                     Ketone
                 </div>
-                <%= form_tag( "/users/#{current_user.id}/labresults", remote: true, id: "ketone-create-form", class: "resource-create-form lab_results-form") do %>
+                <%= form_tag(root_path+"users/#{current_user.id}/labresults", remote: true, id: "ketone-create-form", class: "resource-create-form lab_results-form") do %>
                     <%= render "forms/labresult_ketone" %>
                     <button class="dataFormField"><%=t 'button_add'%></button>
                 <% end %>

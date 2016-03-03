@@ -45,7 +45,7 @@
   </td>
 
   <td class="iconColumn">
-    <%= form_tag( "/users/#{notification_item.user_id}/notifications/#{notification_item.id}",
+    <%= form_tag(root_path+"users/#{notification_item.user_id}/notifications/#{notification_item.id}",
                   id: "delete_visit_#{notification_item.id}", remote: true, method: "delete", class: "resource-delete-form") do %>
         <button class="tableControl left">
           <i class="fa fa-trash-o fa-2x"></i>

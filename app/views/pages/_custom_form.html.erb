@@ -10,7 +10,7 @@
   </div>
   <div class="left" style="padding-left: 10px;">
 
-    <%= form_tag("/users/#{current_user.id}/custom_forms/#{custom_form.id}", remote: true, method: "delete", class: "delete-form-form") do %>
+    <%= form_tag(root_path+"users/#{current_user.id}/custom_forms/#{custom_form.id}", remote: true, method: "delete", class: "delete-form-form") do %>
         <button class="tableControl healthColor headerButton">
             <i class="fa fa-trash-o delete-form" data-formid="<%=custom_form.id %>"></i>
         </button>

@@ -21,7 +21,7 @@
   </td>
 
   <td class="iconColumn syncConn">
-    <%= form_tag("/users/#{current_user.id}/connections/#{connection_item.id}",
+    <%= form_tag(root_path+"users/#{current_user.id}/connections/#{connection_item.id}",
                  id: "delete_connection_#{connection_item.id}",
                  remote: true,
                  method: "patch",
@@ -34,7 +34,7 @@
   </td>
 
   <td class="iconColumn deleteConn">
-    <%= form_tag("/users/#{current_user.id}/connections/#{connection_item.id}",
+    <%= form_tag(root_path+"users/#{current_user.id}/connections/#{connection_item.id}",
                  id: "delete_connection_#{connection_item.id}",
                  remote: true,
                  method: "delete",

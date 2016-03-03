@@ -15,7 +15,7 @@
 
 <div id="registerDiv" class="registerDiv">
   <div>
-    <%= form_tag("/users/#{current_user.id}/profile", :method => :post, :remote => true, :id=> 'profileForm', class: "resource-update-form profileForm") do %>
+    <%= form_tag(root_path+"users/#{current_user.id}/profile", :method => :post, :remote => true, :id=> 'profileForm', class: "resource-update-form profileForm") do %>
         <input name="lang" value="<%=I18n.locale%>" type="hidden" />
         <input type="hidden" id="user_id" name="profile[user_id]" value="<%= @current_user.id %>">
         <% if I18n.locale.to_s == "hu" %>
@@ -39,7 +39,7 @@
 
         <input type="submit" class="loginButton animButton" value="<%=t 'save' %>"/>
     <% end %>
-    <%= form_tag("/users/#{current_user.id}/profile", :method => :post, :remote => true, :id=> 'emptyProfileForm') do %>
+    <%= form_tag(root_path+"users/#{current_user.id}/profile", :method => :post, :remote => true, :id=> 'emptyProfileForm') do %>
         <input name="lang" value="<%=I18n.locale%>" type="hidden" />
         <input type="hidden" id="user_id" name="profile[user_id]" value="<%= @current_user.id %>">
         <input type="hidden" id="default_lang" name="profile[default_lang]" value="hu">
