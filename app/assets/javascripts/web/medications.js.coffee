@@ -123,7 +123,7 @@
   current_user = $("#current-user-id")[0].value
   console.log "calling load recent medications"
   lang = $("#data-lang-medication")[0].value
-  url = '/users/' + current_user + '/medications.js?source='+window.default_source+'&order=desc&limit=10&lang='+lang
+  url = 'users/' + current_user + '/medications.js?source='+window.default_source+'&order=desc&limit=10&lang='+lang
   if fav
     console.log "loading favorites"
     url = url+"&favourites=true"
@@ -146,7 +146,7 @@
 
   if !getStored("sd_pills")
     console.log "calling load medication types"
-    ret = $.ajax urlPrefix()+'/medication_types.json',
+    ret = $.ajax urlPrefix()+'medication_types.json',
       type: 'GET',
       error: (jqXHR, textStatus, errorThrown) ->
         console.log "load recent medication_types AJAX Error: #{textStatus}"

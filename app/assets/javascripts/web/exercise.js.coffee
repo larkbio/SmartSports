@@ -76,7 +76,7 @@
   $(document).on("click.exerciseShow", "#exercise-show-table", (evt) ->
     console.log "datatable clicked"
     current_user = $("#current-user-id")[0].value
-    url = '/users/' + current_user + '/activities.json'
+    url = 'users/' + current_user + '/activities.json'
     $.ajax urlPrefix()+url,
       type: 'GET',
       error: (jqXHR, textStatus, errorThrown) ->
@@ -230,7 +230,7 @@
   current_user = $("#current-user-id")[0].value
   console.log "calling load recent exercises"
   lang = $("#data-lang-training")[0].value
-  url = '/users/' + current_user + '/activities.js?source='+window.default_source+'&order=desc&limit=10&lang='+lang
+  url = 'users/' + current_user + '/activities.js?source='+window.default_source+'&order=desc&limit=10&lang='+lang
   if fav
     console.log "loading favorites"
     url = url+"&favourites=true"
@@ -259,7 +259,7 @@
     activity_key = 'sd_activities_hu'
 
   if !getStored(activity_key) || testDbVer(db_version)
-    ret = $.ajax urlPrefix()+'/activity_types.json',
+    ret = $.ajax urlPrefix()+'activity_types.json',
       type: 'GET',
       error: (jqXHR, textStatus, errorThrown) ->
         console.log "load activity_types AJAX Error: #{textStatus}"

@@ -39,7 +39,7 @@
   $(document).on( "click.lang", "#langswitcher", (evt) ->
     console.log "langswitcher clicked"
     lang = this.textContent
-    url = '/'+lang+'/profile/set_default_lang'
+    url = lang+'/profile/set_default_lang'
     $.ajax urlPrefix()+url,
       type: 'POST',
       error: (jqXHR, textStatus, errorThrown) ->
@@ -313,7 +313,7 @@
 #  load_friends()
 
 load_friends = () ->
-  url = '/users/'+$("#current-user-id")[0].value+'/friendships'
+  url = 'users/'+$("#current-user-id")[0].value+'/friendships'
   $.ajax urlPrefix()+url,
     type: 'GET'
     dataType: 'json'
@@ -360,7 +360,7 @@ load_friends = () ->
             $("#friend_act_"+f.id).click (evt) ->
               arr = evt.target.id.split("_")
               fid = arr[arr.length-1]
-              url = '/users/'+f.my_id+'/friendships/'+fid+"?cmd=activate"
+              url = 'users/'+f.my_id+'/friendships/'+fid+"?cmd=activate"
               $.ajax urlPrefix()+url,
                 type: 'GET'
                 dataType: 'json'

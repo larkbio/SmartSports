@@ -128,7 +128,7 @@
     for j in dayTags
       notifs.push({id: j.id, selected: j.classList.contains("selected")})
     nid = notifid[13..]
-    url = '/notifications/'+nid
+    url = 'notifications/'+nid
     $.ajax urlPrefix()+url,
       type: 'PUT',
       data: {'notification[recurrence_data]': JSON.stringify(notifs)}
@@ -162,7 +162,7 @@
 
 @loadPatients = () ->
   self = this
-  $.ajax urlPrefix()+'/users.json',
+  $.ajax urlPrefix()+'users.json',
     type: 'GET',
     error: (jqXHR, textStatus, errorThrown) ->
       console.log "load patients AJAX Error: #{textStatus}"
@@ -232,14 +232,14 @@
           }).focus ->
             $(this).autocomplete("search")
 
-          d3.json(urlPrefix()+"/users/"+uid+"/measurements.json?meas_type=blood_sugar", draw_bg_data)
+          d3.json(urlPrefix()+"users/"+uid+"/measurements.json?meas_type=blood_sugar", draw_bg_data)
 
           measStartDate = moment().subtract(6, 'months').format(moment_datefmt)
-          meas_summary_url = "/users/" + uid + "/measurements.json?summary=true&start="+measStartDate
+          meas_summary_url = "users/" + uid + "/measurements.json?summary=true&start="+measStartDate
           d3.json(urlPrefix()+meas_summary_url, draw_health_trend)
 
           startDate = moment().subtract(12, 'months').format(moment_datefmt)
-          d3.json(urlPrefix()+"/users/"+uid+"/summaries.json?bysource=true&start="+startDate, draw_patient_activity_data)
+          d3.json(urlPrefix()+"users/"+uid+"/summaries.json?bysource=true&start="+startDate, draw_patient_activity_data)
 
         create: (event, ui) ->
 #          document.body.style.cursor = 'auto'
@@ -253,7 +253,7 @@
 
 @loadNotifications = (userId) ->
   console.log "calling load notifications for: "+userId
-  url = '/users/' + userId + '/notifications.js?order=desc&limit=10'
+  url = 'users/' + userId + '/notifications.js?order=desc&limit=10'
   $.ajax urlPrefix()+url,
     type: 'GET',
     error: (jqXHR, textStatus, errorThrown) ->
@@ -272,7 +272,7 @@
 
       return ([moment(item.start).format(moment_fmt), e, item.evt_type, item.group, item.value1, item.value2 ])
 
-    url = '/users/' + uid + '/analysis_data.json?tabular=true'
+    url = 'users/' + uid + '/analysis_data.json?tabular=true'
     $.ajax urlPrefix()+url,
       type: 'GET',
       error: (jqXHR, textStatus, errorThrown) ->

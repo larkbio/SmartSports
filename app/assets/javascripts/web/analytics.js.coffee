@@ -25,14 +25,14 @@
     todayButton: true
   })
 
-  d3.json(urlPrefix()+"/users/"+uid+"/measurements.json?meas_type=blood_sugar", draw_bg_data)
+  d3.json(urlPrefix()+"users/"+uid+"/measurements.json?meas_type=blood_sugar", draw_bg_data)
 
   measStartDate = moment().subtract(6, 'months').format(moment_datefmt)
-  meas_summary_url = "/users/" + uid + "/measurements.json?summary=true&start="+measStartDate
+  meas_summary_url = "users/" + uid + "/measurements.json?summary=true&start="+measStartDate
   d3.json(urlPrefix()+meas_summary_url, draw_health_trend)
 
   startDate = moment().subtract(12, 'months').format(moment_datefmt)
-  d3.json(urlPrefix()+"/users/"+uid+"/summaries.json?bysource=true&start="+startDate, draw_patient_activity_data)
+  d3.json(urlPrefix()+"users/"+uid+"/summaries.json?bysource=true&start="+startDate, draw_patient_activity_data)
 
 
 @draw_bg_data = (jsondata) ->

@@ -96,7 +96,7 @@
   })
 
 @loadStatisticsPatients = () ->
-  $.ajax urlPrefix()+'/users.json',
+  $.ajax urlPrefix()+'users.json',
     type: 'GET',
     error: (jqXHR, textStatus, errorThrown) ->
       console.log "load patients AJAX Error: #{textStatus}"
@@ -164,7 +164,7 @@
   loadBgData(uid, meas)
 
 @loadBgData = (uid, measure) ->
-  d3.json(urlPrefix()+"/users/"+uid+"/measurements.json?meas_type="+measure, statBgDdataReceived)
+  d3.json(urlPrefix()+"users/"+uid+"/measurements.json?meas_type="+measure, statBgDdataReceived)
 
 @getMeasGroup = (d) ->
   ret = "unspecified"

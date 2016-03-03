@@ -34,7 +34,7 @@
   $("div.sensorTable tr").removeClass("selectedRow")
   $("div.sensorTable tr#sensor-meas-"+sid).addClass("selectedRow")
 
-  url = '/users/' + uid + '/sensor_measurements/'+sid+'.json'
+  url = 'users/' + uid + '/sensor_measurements/'+sid+'.json'
   $.ajax urlPrefix()+url,
     type: 'GET',
     error: (jqXHR, textStatus, errorThrown) ->

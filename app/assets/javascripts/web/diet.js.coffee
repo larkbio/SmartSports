@@ -52,8 +52,6 @@
   )
 
   $("form.resource-create-form.diet-form").on("ajax:success", (e, data, status, xhr) ->
-    console.log "success diet-form"
-    console.log data
     resetDiet()
     loadDietHistory()
     popup_success(data['diet_name']+popup_messages.saved_successfully)
@@ -69,8 +67,6 @@
   )
 
   $("#recentResourcesTable").on("ajax:success", (e, data, status, xhr) ->
-    form_id = e.currentTarget.id
-    console.log "update/delete success "+form_id
     loadDietHistory()
   ).on("ajax:error", (e, xhr, status, error) ->
     console.log xhr.responseText
@@ -110,7 +106,6 @@
 @initDiet = () ->
   self = this
   amount_values = $("#amount_values").val().split(",")
-  console.log "initdiet called"
   $(".diet_food_datepicker").datetimepicker(timepicker_defaults)
   $(".diet_food_amount").val(1)
   $(".diet_drink_datepicker").datetimepicker(timepicker_defaults)
@@ -229,7 +224,6 @@
     minLength: 0,
     source: smokeList,
     change: (event, ui) ->
-      console.log "change "+ui['item']
       smokeSelected = ui['item']
   }).focus ->
     $(this).autocomplete("search")
@@ -243,31 +237,25 @@
   self = this
   current_user = $("#current-user-id")[0].value
   lang = $("#data-lang-diet")[0].value
-  console.log "calling load recent diets"
-  url = '/users/' + current_user + '/diets.js?source='+window.default_source+'&order=desc&limit=10&lang='+lang
+  url = 'users/' + current_user + '/diets.js?source='+window.default_source+'&order=desc&limit=10&lang='+lang
+
   $.ajax urlPrefix()+url,
     type: 'GET',
     error: (jqXHR, textStatus, errorThrown) ->
       console.log "load recent diets AJAX Error: #{textStatus}"
     success: (data, textStatus, jqXHR) ->
       $(".deleteDiet").removeClass("hidden")
-      console.log "load recent diets  Successful AJAX call"
-      console.log textStatus
 
 @load_favs = () ->
   self = this
   current_user = $("#current-user-id")[0].value
-  console.log "calling load recent diets"
-  url = '/users/' + current_user + '/diets.js?source='+window.default_source+'&favourites=true&order=desc&limit=10'
+  url = 'users/' + current_user + '/diets.js?source='+window.default_source+'&favourites=true&order=desc&limit=10'
   $.ajax urlPrefix()+url,
     type: 'GET',
     error: (jqXHR, textStatus, errorThrown) ->
       console.log "load recent diets AJAX Error: #{textStatus}"
     success: (data, textStatus, jqXHR) ->
       $(".deleteDiet").addClass("hidden")
-      console.log "load recent diets  Successful AJAX call"
-      console.log textStatus
-
 
 @loadFoodTypes = (cb) ->
   self = this
@@ -281,15 +269,12 @@
   else
     foodkey = 'sd_foods_hu'
 
-  if !getStored(foodkey) || testDbVer(db_version)
-    console.log "loading food types"
-    ret = $.ajax urlPrefix()+'/food_types.json',
+  if getStored(foodkey)==undefined || getStored(foodkey).length==0 || testDbVer(db_version)
+    ret = $.ajax urlPrefix()+'food_types.json',
       type: 'GET',
       error: (jqXHR, textStatus, errorThrown) ->
         console.log "load recent food_types AJAX Error: #{textStatus}"
       success: (data, textStatus, jqXHR) ->
-        console.log "load food_types  Successful AJAX call"
-
         setStored('sd_foods_hu', data.filter( (d) ->
           d['category'] == "Food" && d['lang'] == 'hu'
         ).map( window.food_map_fn ))

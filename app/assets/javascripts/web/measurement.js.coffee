@@ -87,7 +87,7 @@
       return ([item.id, moment(item.date).format("YYYY-MM-DD HH:MM"), item.meas_type, value])
 
     current_user = $("#current-user-id")[0].value
-    url = '/users/' + current_user + '/measurements.json'
+    url = 'users/' + current_user + '/measurements.json'
     $.ajax urlPrefix()+url,
       type: 'GET',
       error: (jqXHR, textStatus, errorThrown) ->
@@ -201,7 +201,7 @@
   current_user = $("#current-user-id")[0].value
   console.log "calling load recent meas"
   lang = $("#data-lang-health")[0].value
-  url = '/users/' + current_user + '/measurements.js?source='+window.default_source+'&order=desc&limit=20&lang='+lang
+  url = 'users/' + current_user + '/measurements.js?source='+window.default_source+'&order=desc&limit=20&lang='+lang
   if fav
     console.log "loading favorites"
     url = url+"&favourites=true"

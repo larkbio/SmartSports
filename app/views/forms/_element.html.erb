@@ -29,7 +29,7 @@
     <%=t title %>
   </div>
   <div class="clearBoth"></div>
-  <%= form_tag( get_prefix+"/users/#{current_user.id}/#{elementName.split('_')[0].pluralize}", remote: true, class: "resource-create-form #{elementName.split('_')[0]}-form "+elementName+"-create-form "+cfe, id: elementId) do %>
+  <%= form_tag( root_path+"users/#{current_user.id}/#{elementName.split('_')[0].pluralize}", remote: true, class: "resource-create-form #{elementName.split('_')[0]}-form "+elementName+"-create-form "+cfe, id: elementId) do %>
       <%= token_tag %>
       <%= render "forms/#{elementName}" %>
       <input type="hidden" name="elementName" value="<%= elementName %>">

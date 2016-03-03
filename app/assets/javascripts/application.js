@@ -23,10 +23,8 @@
 //= require_tree ./common
 //= require_tree ./web
 
-window.url_prefix = "/heart";
-
 function urlPrefix() {
-    return window.url_prefix||"";
+    return window.url_prefix;
 }
 
 function b64ToUint6 (nChr) {

@@ -16,7 +16,7 @@ TimelinePlot.prototype.draw = function(chartElementSelector) {
     this.chartElementSelector = chartElementSelector;
     this.initUI();
 
-    url = "/users/"+this.uid+"/"+this.resource+".json?date="+this.date;
+    url = "users/"+this.uid+"/"+this.resource+".json?date="+this.date;
     if(this.params["period"]=="weekly") {
         url = url+"&weekly=true";
     }

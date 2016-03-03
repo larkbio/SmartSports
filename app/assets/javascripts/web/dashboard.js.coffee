@@ -31,7 +31,7 @@
     $("#currentForm").addClass("hidden")
     $("#currentForm").html("")
     notifId = $("#currentForm")[0].dataset.notifid
-    url = "/notifications/"+notifId
+    url = "notifications/"+notifId
     $.ajax urlPrefix()+url,
       type: 'PUT',
       data: {dismiss: true}
@@ -48,7 +48,7 @@
     popup_error(popup_messages.failed_to_add_data)
   )
 
-  url = '/users/' + uid + '/analysis_data.json?date='+moment().format(moment_datefmt)+'&weekly=true&dashboard=true'
+  url = 'users/' + uid + '/analysis_data.json?date='+moment().format(moment_datefmt)+'&weekly=true&dashboard=true'
   $.ajax urlPrefix()+url,
     type: 'GET',
     error: (jqXHR, textStatus, errorThrown) ->
@@ -59,7 +59,7 @@
       addPoints("#canv", histData)
 
 @loadPatientNotifications = (userId) ->
-  url = '/users/' + userId + '/notifications.js?order=desc&limit=5&patient=true&active=true'
+  url = 'users/' + userId + '/notifications.js?order=desc&limit=5&patient=true&active=true'
   console.log "calling load notifications for: "+userId+" "+url
   $.ajax urlPrefix()+url,
     type: 'GET',
@@ -81,7 +81,7 @@
   console.log "loadform called: id="+formName
   if formName
     $.ajax({
-      url: urlPrefix()+"/form_element.js",
+      url: urlPrefix()+"form_element.js",
       type: 'GET',
       data: {form_name: formName, target_element_selector: "#currentForm"},
       dataType: "script",

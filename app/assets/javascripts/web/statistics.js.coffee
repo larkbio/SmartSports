@@ -4,7 +4,7 @@
 
   initStatistics()
 
-  d3.json(urlPrefix()+"/users/"+uid+"/measurements.json?meas_type=blood_sugar", bg_data_received)
+  d3.json(urlPrefix()+"users/"+uid+"/measurements.json?meas_type=blood_sugar", bg_data_received)
 
   $(document).unbind("click.closeStat")
   $(document).on("click.closeStat", "#closeModalStat", (evt) ->
