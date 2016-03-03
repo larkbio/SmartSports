@@ -168,10 +168,29 @@
   $(selector+'.pain_end_datepicker').datetimepicker(timepicker_defaults)
   $("input[name='lifestyle[pain_type_name]']").autocomplete({
     minLength: 0,
-    source: painTypeList,
+    source: (request, response) ->
+      matcher = new RegExp($.ui.autocomplete.escapeRegex(remove_accents(request.term), ""), "i")
+      result = []
+      cnt = 0
+      user_lang = $("#user-lang")[0].value
+      if user_lang
+        painkey = 'sd_pains_'+user_lang
+      else
+        painkey = 'sd_pains_hu'
+      for element in getStored(painkey)
+        if matcher.test(remove_accents(element.label))
+          result.push(element)
+          cnt += 1
+      response(result)
+    select: (event, ui) ->
+      event.target.parentElement.parentElement.querySelector("input[name='lifestyle[illness_type_id]']").value = ui.item.id
+    create: (event, ui) ->
+      event.target.parentElement.parentElement.querySelector("input[name='lifestyle[pain_type_name]']").removeAttribute("disabled")
     change: (event, ui) ->
-      console.log ui
-      $(selector+"input[name='lifestyle[pain_type_name]']").val(ui['item'].value)
+      if ui.item
+        event.target.parentElement.parentElement.querySelector("input[name='lifestyle[illness_type_id]']").value = ui.item.id
+      else
+        event.target.parentElement.parentElement.querySelector("input[name='lifestyle[illness_type_id]']").value = ""
   }).focus ->
     $(this).autocomplete("search")
 
@@ -276,7 +295,13 @@
   self = this
   current_user = $("#current-user-id")[0].value
   console.log "calling load illness types"
-  if !getStored("sd_illnesses")
+  user_lang = $("#user-lang")[0].value
+  db_version = $("#db-version")[0].value
+  if user_lang
+    painkey = 'sd_pains_'+user_lang
+  else
+    painkey = 'sd_pains_hu'
+  if getStored("sd_illnesses")==undefined || getStored("sd_illnesses").length==0 || getStored(painkey)==undefined || getStored(painkey).length==0|| testDbVer(db_version)
     ret = $.ajax urlPrefix()+'illness_types.json',
       type: 'GET',
       error: (jqXHR, textStatus, errorThrown) ->
@@ -284,7 +309,24 @@
       success: (data, textStatus, jqXHR) ->
         console.log "load illness_types  Successful AJAX call"
 
-        setStored("sd_illnesses", data.map( window.illness_map_fn ))
+        setStored("sd_illnesses", data[0].map( window.illness_map_fn ))
+
+        setStored('sd_pains_hu', data[1].filter( (d) ->
+          d['lang'] == 'hu'
+        ).map( (d) ->
+          {
+          label: d['name'],
+          id: d['id']
+          }))
+
+        setStored('sd_pains_en', data[1].filter( (d) ->
+            d['lang'] == 'en'
+        ).map( (d) ->
+          {
+            label: d['name'],
+            id: d['id']
+          }))
+
         cb()
   else
     ret = new Promise( (resolve, reject) ->

@@ -258,6 +258,20 @@
     lang: d['lang']
     }
 
+  window.pain_map_fn = (d) ->
+    {
+    label: d['name'],
+    id: d['id'],
+    lang: d['lang']
+    }
+
+  window.genetics_map_fn = (d) ->
+    {
+    label: d['name'],
+    id: d['id'],
+    lang: d['lang']
+    }
+
   window.illness_map_fn = (d) ->
     {
     label: d['name'],

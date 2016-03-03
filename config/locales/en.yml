@@ -264,6 +264,8 @@ en:
   bgTimeList: "Independent to meal,Before meal,After meal"
 
   pulse: "Pulse"
+  sysdias: "Systolic/Diastolic"
+  sysdiaspulse: "Systolic/Diastolic/Pulse"
 
 # medication
   medication:           "Medication"

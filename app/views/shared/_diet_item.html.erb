@@ -19,7 +19,14 @@
     %>">
 
   <% if diet_item.diet_type== "Smoke" %>
-      <span class="itemTitle"><%= diet_item.name %></span>
+      <span class="itemTitle">
+        <%if I18n.locale == :hu%>
+            <%=DB_HU_CONFIG['diets']['Smoke'][diet_item.food_type.name]%>
+        <%else%>
+            <%= DB_EN_CONFIG['diets']['Smoke'][diet_item.food_type.name]%>
+        <%end%>
+      </span>
+
   <% elsif diet_item.diet_type== "Food" %>
       <% if diet_item.food_type %>
           <% vals = (t :amount_values).split(",")
@@ -28,7 +35,14 @@
                 amount = 1
              end
           %>
-          <span class="itemTitle"><%= diet_item.food_type.name %></span><span> <%= vals[amount] %></span>
+          <span class="itemTitle">
+            <%if I18n.locale == :hu%>
+                <%= DB_HU_CONFIG['diets']['Food'][diet_item.food_type.name] %>
+            <%else%>
+                <%= DB_EN_CONFIG['diets']['Food'][diet_item.food_type.name] %>
+            <%end%>
+          </span>
+            <span> <%= vals[amount] %></span>
       <% else %>
           Food <%= diet_item.name %>
       <% end %>
@@ -42,7 +56,14 @@
         <% end %>
   <% elsif diet_item.diet_type== "Drink" %>
       <% if diet_item.food_type %>
-          <span class="itemTitle"><%= diet_item.food_type.name %></span><span> <%= diet_item.amount %>dl</span>
+          <span class="itemTitle">
+            <%if I18n.locale == :hu%>
+                <%= DB_HU_CONFIG['diets']['Drink'][diet_item.food_type.name] %>
+            <%else%>
+                <%= DB_EN_CONFIG['diets']['Drink'][diet_item.food_type.name] %>
+            <%end%>
+          </span>
+          <span> <%= diet_item.amount %>dl</span>
       <% else %>
           Drink <%= diet_item.name %>
       <% end %>

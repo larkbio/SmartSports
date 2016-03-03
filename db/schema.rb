@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160226100731) do
+ActiveRecord::Schema.define(version: 20160301153958) do
 
   create_table "activities", force: true do |t|
     t.integer  "user_id"
@@ -131,6 +131,7 @@ ActiveRecord::Schema.define(version: 20160226100731) do
     t.text     "note"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "genetics_type_id"
   end
 
   add_index "family_histories", ["user_id", "created_at"], name: "index_family_histories_on_user_id_and_created_at"
@@ -161,6 +162,7 @@ ActiveRecord::Schema.define(version: 20160226100731) do
   create_table "genetics_types", force: true do |t|
     t.string "name"
     t.string "category"
+    t.string "lang"
   end
 
   create_table "illness_types", force: true do |t|
@@ -183,6 +185,7 @@ ActiveRecord::Schema.define(version: 20160226100731) do
   create_table "lifestyle_types", force: true do |t|
     t.string "name"
     t.string "category"
+    t.string "lang"
   end
 
   create_table "lifestyles", force: true do |t|

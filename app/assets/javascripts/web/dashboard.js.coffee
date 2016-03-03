@@ -48,7 +48,8 @@
     popup_error(popup_messages.failed_to_add_data)
   )
 
-  url = 'users/' + uid + '/analysis_data.json?date='+moment().format(moment_datefmt)+'&weekly=true&dashboard=true'
+  lang = $("#user-lang")[0].value
+  url = 'users/' + uid + '/analysis_data.json?date='+moment().format(moment_datefmt)+'&weekly=true&dashboard=true&lang='+lang
   $.ajax urlPrefix()+url,
     type: 'GET',
     error: (jqXHR, textStatus, errorThrown) ->
@@ -59,7 +60,8 @@
       addPoints("#canv", histData)
 
 @loadPatientNotifications = (userId) ->
-  url = 'users/' + userId + '/notifications.js?order=desc&limit=5&patient=true&active=true'
+  lang = $("#user-lang")[0].value
+  url = 'users/' + userId + '/notifications.js?order=desc&limit=5&patient=true&active=true&lang='+lang
   console.log "calling load notifications for: "+userId+" "+url
   $.ajax urlPrefix()+url,
     type: 'GET',

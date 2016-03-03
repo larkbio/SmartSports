@@ -18,7 +18,14 @@
         d.to_json
     %>">
 
-    <span class="itemTitle"><%= activity_item.title %></span><span> <%=t :intensity %>: <%=(t :intensities).split(" ")[activity_item.intensity.to_i]%>,  <%=t :duration %>: <% if activity_item.duration < 60 %> <%=activity_item.duration%><%=t :minute_abbr %> <%else%> <%=activity_item.duration/60%> <%=t :hours %> <%=activity_item.duration%60%><%=t :minute_abbr %><%end%>  </span>
+    <span class="itemTitle">
+        <%if I18n.locale == :hu%>
+            <%= DB_HU_CONFIG['activities'][activity_item.title] %>
+        <%else%>
+            <%= DB_EN_CONFIG['activities'][activity_item.title] %>
+        <%end%>
+    </span>
+    <span> <%=t :intensity %>: <%=(t :intensities).split(" ")[activity_item.intensity.to_i]%>,  <%=t :duration %>: <% if activity_item.duration < 60 %> <%=activity_item.duration%><%=t :minute_abbr %> <%else%> <%=activity_item.duration/60%> <%=t :hours %> <%=activity_item.duration%60%><%=t :minute_abbr %><%end%>  </span>
     <div class="right">
       <% if activity_item.calories %>
           <span class="tag kcal"><%= activity_item.calories.round(2) %> kcal</span>

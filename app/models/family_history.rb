@@ -1,8 +1,9 @@
 class FamilyHistory < ActiveRecord::Base
   belongs_to :user
+  belongs_to :genetics_type
   validates :user_id, presence: true
   validates :relative, presence: true
-  validates :disease, presence: true
+  # validates :disease, presence: true
 
   @@relativeList = [ { label: "szülő", value: "szülő" },
                    { label: "nagyszülő", value: "nagyszülő" },

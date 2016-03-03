@@ -20,18 +20,19 @@ module ActivitiesCommon
       end
     end
 
-    if @activity.duration
-      @activity.calories = @activity.duration * actType.kcal / 10
-      if @activity.intensity == 1.0
-        @activity.calories = @activity.calories * 0.8
-      elsif @activity.intensity == 3.0
-        @activity.calories = @activity.calories * 1.2
+    if user.profile.dateofbirth && user.profile.weight && user.profile.height && actType.kcal && @activity.duration
+      ages = age(user.profile.dateofbirth)
+      durationInHour = @activity.duration/60.0
+      if user.profile.sex == "female"
+        @activity.calories = (actType.kcal * 3.5/((655.0955+(1.8496 * user.profile.height)+(9.5634 * user.profile.weight)-(4.6756 * ages))/1440/5/user.profile.weight * 1000))*user.profile.weight*durationInHour
+      elsif user.profile.sex == "male"
+        @activity.calories = (actType.kcal * 3.5/((66.4730+(5.0033 * user.profile.height)+(13.7516 * user.profile.weight)-(6.7550 * ages))/1440/5/user.profile.weight * 1000))*user.profile.weight*durationInHour
       end
     end
 
     # respond_to do |format|
     if @activity.save
-      send_success_json(@activity.id, {activity_name: @activity.activity_type.name})
+      send_success_json(@activity.id, {activity_name: @activity.activity})
     else
       send_error_json(nil, @activity.errors.full_messages.to_sentence, 400)
     end
@@ -98,6 +99,11 @@ module ActivitiesCommon
   end
 
   private
+
+  def age(dob)
+    now = Time.now.utc.to_date
+    now.year - dob.year - ((now.month > dob.month || (now.month == dob.month && now.day >= dob.day)) ? 0 : 1)
+  end
 
   # Use callbacks to share common setup or constraints between actions.
   def set_activity

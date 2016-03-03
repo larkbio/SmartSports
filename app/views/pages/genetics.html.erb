@@ -17,11 +17,12 @@
                     <div class="dataForm">
                         <input type="hidden" name="family_history[source]" value="<%= @default_source %>">
 
-                        <input id="gen_hist_relative" type="search" name="family_history[relative]" class="dataFormField" placeholder="<%=t 'relative'%>"/>
+                        <input id="gen_hist_relative" type="search" name="family_history[relative]" class="dataFormField gen_type_name" placeholder="<%=t 'relative'%>"/>
+                        <input class="gen_type_id" name="family_history[genetics_type_id]" type="hidden">
                         <br/>
 
-                        <input id="gen_hist_disease" type="search" name="family_history[disease]" class="dataFormField" placeholder="<%=t 'diabetes'%>"/>
-                        <br/>
+                        <!--<input id="gen_hist_disease" type="search" name="family_history[disease]" class="dataFormField" placeholder="<!%=t 'diabetes'%>"/>-->
+                        <!--<br/>-->
 
                         <textarea id="gen_hist_note" type="text" name="family_history[note]" rows="5" class="dataFormArea" placeholder="<%=t 'genetics_history'%>"></textarea>
                         <br>

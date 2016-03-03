@@ -36,9 +36,7 @@ namespace :smartdiab do
 
   task init_activity: :environment do
     if ActivityType.all.size != 0
-      ActivityType.all.each {|at|
-        at.destroy!
-      }
+      ActivityType.all.delete_all
     end
 
     dirName = File.dirname(__FILE__)
@@ -49,45 +47,46 @@ namespace :smartdiab do
     end
   end
 
-  task init_foods: :environment do
+  task init_food: :environment do
     if FoodType.all.size != 0
-      FoodType.all.each {|mt|
-        mt.destroy!
-      }
+      FoodType.all.delete_all
     end
 
-    foodlist = nil
-    File.open("#{ENV['HOME']}/Downloads/foods_exported.json") do |f|
-      foodlist = JSON.load(f)
+    foodList = nil
+    dirName = File.dirname(__FILE__)
+    f = dirName + "/init_food.csv"
+    foodList = CSV.read(f, headers: true, col_sep: ";")
 
-      #print foodlist.first.as_json.pretty_inspect
-      foodlist.each do |m|
-        # ["id", "name", "category", "amount", "kcal", "prot", "carb", "fat"]
-        ft = FoodType.new(:id => m['id'], :name =>  m['name'], :category => m['category'], :amount => m['amount'], :kcal => m['kcal'], :prot => m['prot'], :carb => m['carb'], :fat => m['fat'])
-        ft.save!
-      end
+    foodList.each do |m|
+      FoodType.create!(m.to_hash)
+    end
+
+  end
+
+  task init_genetics: :environment do
+    if GeneticsType.all.size != 0
+      GeneticsType.all.delete_all
+    end
+
+    dirName = File.dirname(__FILE__)
+    csv_text = dirName + "/init_genetics.csv"
+    csv = CSV.read(csv_text, headers: true, col_sep: ";")
+    csv.each do |row|
+      GeneticsType.create!(row.to_hash)
     end
   end
 
-  task init_foods_simple: :environment do
-    if FoodType.all.size != 0
-      FoodType.all.each {|mt|
-        mt.destroy!
-      }
+  task init_lifestyle: :environment do
+    if LifestyleType.all.size != 0
+      LifestyleType.all.delete_all
     end
 
-    foodlist = nil
     dirName = File.dirname(__FILE__)
-    f = dirName + "/init_food.csv"
-    foodlist = CSV.read(f, headers: true, col_sep: ";")
-
-    #print foodlist.first.as_json.pretty_inspect
-    foodlist.each do |m|
-      # ["name", "category", "lang"]
-      ft = FoodType.new(:name => m['name'], :category =>  m['category'], :lang => m['lang'])
-      ft.save!
+    csv_text = dirName + "/init_lifestyle.csv"
+    csv = CSV.read(csv_text, headers: true, col_sep: ";")
+    csv.each do |row|
+      LifestyleType.create!(row.to_hash)
     end
-
   end
 
   task load_foods_csv: :environment do
@@ -110,26 +109,20 @@ namespace :smartdiab do
 
   end
 
-  task load_illness_csv: :environment do
+  task init_illness: :environment do
     if IllnessType.all.size != 0
-      IllnessType.all.each {|mt|
-        mt.destroy!
-      }
+      IllnessType.all.delete_all
     end
 
-    illnesslist = nil
-    f = "#{ENV['HOME']}/Downloads/illnesses.csv"
-    illnesslist = CSV.read(f, headers: true)
-
-    #print foodlist.first.as_json.pretty_inspect
+    dirName = File.dirname(__FILE__)
+    csv_text = dirName + "/init_illness.csv"
+    csv = CSV.read(csv_text, headers: true, col_sep: ";")
     i = 0
-    illnesslist.each do |m|
-      # ["id", "name", "category", "amount", "kcal", "prot", "carb", "fat"]
-      ft = IllnessType.new(:id => i, :name =>  m['Name'])
+    csv.each do |row|
+      ft = IllnessType.new(:id => i, :name =>  row['Name'])
       ft.save!
       i += 1
     end
-
   end
 
   task export_foods: :environment do

@@ -3,6 +3,7 @@
   <input type="hidden" name="diet[diet_type]" value="Smoke">
 
   <input type="search" name="diet[name]" class="dataFormField diet_smoke_type" placeholder="<%=t 'smoking_placeholder' %>">
+  <input class="diet_smoke_type_id" name="diet[food_type_id]" type="hidden">
 
   <input type='text' class="dataFormField diet_smoking_datepicker" name="diet[date]" value="<%= DateTime.current.strftime("%F %R") %>"/>
   <br/>

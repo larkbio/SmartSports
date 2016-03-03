@@ -18,16 +18,19 @@ class AnalysisDataController < ApplicationController
         t = Time.zone.parse(date).at_end_of_day
         end
     end
-
+    lang = params[:lang]
+    if !lang
+      lang = 'hu'
+    end
     result = nil
     if params[:tabular]
       result = get_tabular_data(user, f, t)
     elsif params[:dashboard]
-      result = get_timeline_data(user, f, t, true)
+      result = get_timeline_data(user, f, t, true,lang)
       sorted = result.sort_by{|e| e[:dates][0]}
       result = sorted.last(15)
     else
-      result = get_timeline_data(user, f, t, false)
+      result = get_timeline_data(user, f, t, false,lang)
     end
 
     respond_to do |format|
@@ -51,9 +54,17 @@ class AnalysisDataController < ApplicationController
     end
   end
 
-  def get_timeline_data(user, f, t, dashboard)
+  def get_timeline_data(user, f, t, dashboard, lang)
     result = []
-
+    activities_key_list = ActivityType.all
+    food_key_list = FoodType.all
+    if lang == 'hu'
+      activities_val_list = DB_HU_CONFIG['activities']
+      food_val_list = DB_HU_CONFIG['diets']
+    else
+      activities_val_list = DB_EN_CONFIG['activities']
+      food_val_list = DB_EN_CONFIG['diets']
+    end
     activities = user.activities
 
     if f
@@ -63,7 +74,7 @@ class AnalysisDataController < ApplicationController
     result.concat(activities.collect{|act|
                     item = {
                       id: act.id,
-                      tooltip: act.try(:activity_type).try(:name),
+                      tooltip: activities_val_list[activities_key_list.find(act.activity_type_id).name],
                       title: 'Exercise',
                       depth: 0,
                       dates: [act.start_time, act.end_time],
@@ -97,13 +108,13 @@ class AnalysisDataController < ApplicationController
                       source: 'SmartDiab'
                     }
                     if diet.diet_type== 'Calory'
-                      item['tooltip'] = 'quick calories'
-                    end
-                    if diet.diet_type== 'Smoke'
-                      item['tooltip'] = 'smoke'
-                    end
-                    if diet.diet_type== 'Drink'
-                      item['evt_type'] = 'drink'
+                      item['tooltip'] = (I18n.t :quick_calories)
+                    else
+                      category = food_key_list.find_by_id(diet.food_type_id).try(:category)
+                      name = food_key_list.find_by_id(diet.food_type_id).try(:name)
+                      unless category.nil? || name.nil?
+                        item['tooltip'] = food_val_list[category][name]
+                      end
                     end
 
                     item

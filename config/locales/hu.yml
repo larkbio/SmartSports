@@ -243,6 +243,8 @@ hu:
   bgTimeList: "Étkezéstől függetlenül,Étkezés előtt,Étkezés után"
 
   pulse: "Pulzus"
+  sysdias: "Szisztolés/Diasztolés"
+  sysdiaspulse: "Szisztolés/Diasztolés/Pulzus"
 
 # medication
   medication:           "Gyógyszer"

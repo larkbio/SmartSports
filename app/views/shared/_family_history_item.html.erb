@@ -5,7 +5,15 @@
     </td>
 
     <td class="historyTitle padded familyhistoryItem">
-      <span class="itemTitle"><%= family_history_item.disease %></span><span> <%= family_history_item.relative %></span><br/>
+      <span class="itemTitle"><%= family_history_item.disease %></span>
+      <span>
+        <%gen_type = GeneticsType.find(family_history_item.genetics_type_id) %>
+        <%if I18n.locale == :hu%>
+            <%= DB_HU_CONFIG['genetics']['relatives'][gen_type.name] %>
+        <%else%>
+            <%= DB_EN_CONFIG['genetics']['relatives'][gen_type.name] %>
+        <%end%>
+      </span><br/>
       <span><%= family_history_item.note %></span>
     </td>
 

@@ -59,6 +59,9 @@ Rails.application.configure do
 
   DB_CONFIG={}
 
+  DB_EN_CONFIG=YAML.load_file(File.join(Rails.root, 'config', 'locales', 'databases.en.yml'))['en']
+  DB_HU_CONFIG=YAML.load_file(File.join(Rails.root, 'config', 'locales', 'databases.hu.yml'))['hu']
+
   # config.action_mailer.perform_deliveries = true
   config.action_mailer.delivery_method = :smtp
   # config.action_mailer.logger = nil

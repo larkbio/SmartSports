@@ -106,6 +106,9 @@ Rails.application.configure do
   end
   DB_CONFIG = YAML.load_file(db_config_fname)[::Rails.env]
 
+  DB_EN_CONFIG=YAML.load_file(File.join(Rails.root, 'config', 'locales', 'databases.en.yml'))['en']
+  DB_HU_CONFIG=YAML.load_file(File.join(Rails.root, 'config', 'locales', 'databases.hu.yml'))['hu']
+
   config.action_mailer.default_url_options = {
       :host => 'app.smartdiab.com'
   }

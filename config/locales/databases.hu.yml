@@ -11,12 +11,12 @@ hu:
     anysport: "Egyéb sport"
 
   diets:
-    food:
+    Food:
       breakfast: "Reggeli"
       lunch: "Ebéd"
       dinner: "Vacsora"
       snack: "Snack (tízórai, uzsonna, éjszakai)"
-    drink:
+    Drink:
       water: "Víz"
       milk: "Tej"
       tea: "Tea"
@@ -26,7 +26,7 @@ hu:
       beer: "Sör"
       wine: "Bor"
       spirit: "Rövidital"
-    smoke:
+    Smoke:
       cigarette: "1 Cigaretta"
       cigar: "1 Szivar"
       cigarillo: "1 Szivarka"
@@ -49,8 +49,23 @@ hu:
 
   genetics:
     relatives:
-      reltype1: "szülő"
-      reltype2: "nagyszülő"
-      reltype3: "dédszülő"
-      reltype4: "testvér"
-      reltype5: "unokaöcs/unokahúg"
+      reltype1: "Anya"
+      reltype2: "Apa"
+      reltype3: "Testvér"
+      reltype4: "Egypetéjű iker"
+      reltype5: "Kétpetéjű iker"
+    diabetes:
+      diabtype1: "Type 1 Diabetes"
+      diabtype2: "Type 2 Diabetes"
+      diabtype3: "Gestational Diabetes"
+      diabtype4: "Prediabetes"
+      diabtype5: "Insulin resistance"
+      diabtype6: "Other(MODY)"
+      diabtype7: "Other(LADA)"
+    autoantibody:
+      antibodytype1: "C-Peptide"
+      antibodytype2: "GADA or Anti-GAD"
+      antibodytype3: "Insulin Autoantibodies (IAA)"
+      antibodytype4: "Insulinoma-Associated-2 Autoantibodies (IA-2A)"
+      antibodytype5: "Islet Cell Cytoplasmic Autoantibodies (ICA)"
+      antibodytype6: "Zinc Transporter 8 (ZnT8Ab)"

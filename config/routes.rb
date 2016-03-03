@@ -23,6 +23,7 @@ Rails.application.routes.draw do
       resources :food_types
       resources :activity_types
       resources :illness_types
+      resources :genetics_types
       get 'profile' => 'profile#show'
       put 'profile' => 'profile#update'
       post 'profile_image' => 'profile#profile_image'
@@ -37,6 +38,7 @@ Rails.application.routes.draw do
   resources :food_types
   resources :activity_types
   resources :illness_types
+  resources :genetics_types
   resources :click_records
   resources :custom_forms do
     resources :custom_form_elements

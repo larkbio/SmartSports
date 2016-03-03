@@ -32,18 +32,18 @@ class Measurement < ActiveRecord::Base
     result = self.meas_type
     if self.meas_type == 'blood_pressure'
       if self.systolicbp.nil? && !self.pulse.nil?
-        result = "Heart rate: #{self.pulse}"
+        result = (I18n.t :pulse) +": #{self.pulse}"
       elsif !self.systolicbp.nil? && self.pulse.nil?
-        result = "Systolic/Diastolic: #{self.systolicbp}/#{self.diastolicbp}"
+        result = (I18n.t :sysdias) +": #{self.systolicbp}/#{self.diastolicbp}"
       else
-        result = "Systolic/Diastolic/HR: #{self.systolicbp}/#{self.diastolicbp}/#{self.pulse}"
+        result = (I18n.t :sysdiaspulse) +": #{self.systolicbp}/#{self.diastolicbp}/#{self.pulse}"
       end
     elsif self.meas_type == 'blood_sugar'
-      result = "Blood Glucose: #{self.blood_sugar} mmol/L"
+      result = (I18n.t :blood_glucose) +": #{self.blood_sugar} mmol/L"
     elsif self.meas_type == 'weight'
-      result = "Weight: #{self.weight}kg"
+      result = (I18n.t :body_weight) +": #{self.weight}kg"
     elsif self.meas_type == 'waist'
-      result = "Waist circumfence: #{self.waist}cm"
+      result = (I18n.t :waist_circumfence) +": #{self.waist}cm"
     end
 
     return result

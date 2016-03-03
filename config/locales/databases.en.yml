@@ -11,12 +11,12 @@ en:
     anysport: "Any sports"
 
   diets:
-    food:
+    Food:
       breakfast: "Breakfast"
       lunch: "Lunch"
       dinner: "Dinner"
       snack: "Snack"
-    drink:
+    Drink:
       water: "Water"
       milk: "Milk"
       tea: "Tea"
@@ -26,32 +26,50 @@ en:
       beer: "Beer"
       wine: "Wine"
       spirit: "Spirit"
-    smoke:
+    Smoke:
       cigarette: "1 Cigarette"
       cigar: "1 Cigar"
       cigarillo: "1 Cigarillo"
       pipe: "1 Pipe"
       electric_cigarette: "1 Electric cigarette"
-      nicotine_nose_spray: "1 Nikotine nose-spray"
+      nicotine_nose_spray: "1 Nicotine nose-spray"
       nicotine_chewing_gum: "1 Nicotine chewing gum"
       nicotine_patch: "1 Nicotine patch"
 
-  pains:
-    paintype1: "Szövetsérüléssel járó fájdalom"
-    paintype2: "Zsigeri fájdalom"
-    paintype3: "Idegi eredetű fájdalom"
-    paintype4: "Lelki eredetű fájdalom"
-    paintype5: "Mellkasi szorító fájdalom"
-    paintype6: "Migrén"
-    paintype7: "Ízületi fájdalom"
-    paintype8: "Hát-derékfájdalom"
+  lifestyle:
+    pains:
+      paintype1: "Szövetsérüléssel járó fájdalom"
+      paintype2: "Zsigeri fájdalom"
+      paintype3: "Idegi eredetű fájdalom"
+      paintype4: "Lelki eredetű fájdalom"
+      paintype5: "Mellkasi szorító fájdalom"
+      paintype6: "Migrén"
+      paintype7: "Ízületi fájdalom"
+      paintype8: "Hát-derékfájdalom"
 
-  relatives:
-    reltype1: "szülő"
-    reltype2: "nagyszülő"
-    reltype3: "dédszülő"
-    reltype4: "testvér"
-    reltype5: "unokaöcs/unokahúg"
+  genetics:
+    relatives:
+      reltype1: "Mother"
+      reltype2: "Father"
+      reltype3: "Sibling"
+      reltype4: "Identical twin"
+      reltype5: "Dizygotic twin"
+    diabetes:
+      diabtype1: "Type 1 Diabetes"
+      diabtype2: "Type 2 Diabetes"
+      diabtype3: "Gestational Diabetes"
+      diabtype4: "Prediabetes"
+      diabtype5: "Insulin resistance"
+      diabtype6: "Other(MODY)"
+      diabtype7: "Other(LADA)"
+    autoantibody:
+      antibodytype1: "C-Peptide"
+      antibodytype2: "GADA or Anti-GAD"
+      antibodytype3: "Insulin Autoantibodies (IAA)"
+      antibodytype4: "Insulinoma-Associated-2 Autoantibodies (IA-2A)"
+      antibodytype5: "Islet Cell Cytoplasmic Autoantibodies (ICA)"
+      antibodytype6: "Zinc Transporter 8 (ZnT8Ab)"
+
 
 
 
