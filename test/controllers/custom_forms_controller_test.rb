@@ -1,5 +1,5 @@
 require 'test_helper'
-require 'JSON'
+# require 'JSON'
 
 class CustomFormsControllerTest < ActionController::TestCase
   setup do

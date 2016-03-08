@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    if !current_user.admin && !current_user.doctor
+    if !current_user.admin? && !current_user.doctor?
       respond_to do |format|
         format.html { redirect_to errors_unauthorized_path }
         format.json { render json: { :status => 'NOK', :msg => 'error_unauthorized' }, status: 403  }
@@ -13,18 +13,46 @@ class UsersController < ApplicationController
       return
     end
     @users = User.all
+    if(params[:doctor])
+      @users = @users.where(doctor: true)
+    end
   end
 
   # POST /users
   # POST /users.json
   def create
+    if params.fetch("user", {}).fetch("doctor", false)
+      if current_user.nil? || !current_user.admin?
+        send_error_json("", "Unauthorized", 403)
+        return
+      else
+        # admin user creates a doctor.. create new user; generate random password; send email to new doctor to set pw
+
+        par = user_params
+        if User.find_by_email(par['email'])
+          send_error_json(par['email'], "doctor_create_fail_email_exists", 401)
+          return
+        end
+        par['password'] = (0...8).map { ('a'..'z').to_a[rand(26)] }.join
+        par['password_confirmation'] = par['password']
+        @user = User.new(par)
+        @user.username = @user.email.split("@")[0]
+        @user.name = @user.username
+
+        @user.save!
+        @user.generate_reset_password_token!
+        url = edit_password_reset_url(id: @user.reset_password_token, locale: I18n.locale)
+        Delayed::Job.enqueue InfoMailJob.new(:doctor_invite_email, @user.email, I18n.locale, {reset_url: url})
+        send_success_json(@user.id, {email: @user.email, msg: "doctor_invited_msg"})
+        return
+      end
+    end
     @user = User.new(user_params)
 
     @user.username = @user.email.split("@")[0]
     @user.name = @user.username
     respond_to do |format|
       if @user.save
-
         mail_lang = params[:lang] || "en"
         Delayed::Job.enqueue InfoMailJob.new(:user_created_email, @user.email, mail_lang, {})
 
@@ -130,6 +158,7 @@ class UsersController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def user_params
-    params.require(:user).permit(:email, :password, :password_confirmation, :name, :avatar)
+    permitted = params.require(:user).permit(:email, :password, :password_confirmation, :name, :avatar, :doctor)
+    permitted
   end
 end

@@ -6,6 +6,7 @@
   customPreload()
 
   registerLogoutHandler()
+  registerPopupHandler()
   registerLangHandler()
 
   resetMdUI()

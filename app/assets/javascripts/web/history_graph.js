@@ -26,7 +26,8 @@ function determineImage(point) {
         drug: "drugType",
         sleep: "sleepType",
         drink: "drinkType",
-        food: "foodType"
+        food: "foodType",
+        smoke: "smokeType"
     };
     ret = "";
     if(point['kind']=="exercise") {

@@ -18,7 +18,6 @@ class ProfileController < ApplicationController
   end
 
   def create
-    profile_params['dateofbirth'] = profile_params['dateofbirth'].to_s.concat("-01-01").to_date
     @profile = Profile.new(profile_params)
     if !profile_params['sex']
       @profile.sex = "female"
@@ -51,10 +50,7 @@ class ProfileController < ApplicationController
     lang = params[:lang]
 
     respond_to do |format|
-      par = params.require(:profile).permit(:id, :user_id, :firstname, :lastname, :height, :weight, :sex, :dateofbirth, :smoke, :insulin, :default_lang)
-      if par['dateofbirth'] &&  par['dateofbirth'].to_i != 0
-        par['dateofbirth'] = par['dateofbirth'].to_s.concat("-01-01").to_date
-      end
+      par = params.require(:profile).permit(:id, :user_id, :firstname, :lastname, :height, :weight, :sex, :year_of_birth, :smoke, :insulin, :default_lang)
       if par['default_lang']
         I18n.locale = par['default_lang']
       end
@@ -88,7 +84,7 @@ class ProfileController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def profile_params
-      params.require(:profile).permit(:user_id, :firstname, :lastname, :weight, :height, :sex, :smoke, :insulin, :dateofbirth, :default_lang)
+      params.require(:profile).permit(:user_id, :firstname, :lastname, :weight, :height, :sex, :smoke, :insulin, :year_of_birth, :default_lang)
     end
 
     def which_layout

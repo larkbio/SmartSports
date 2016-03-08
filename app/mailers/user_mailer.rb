@@ -8,13 +8,26 @@ class UserMailer < ActionMailer::Base
   #
   def reset_password_email(mail_job)
     logger.info(mail_job.as_json)
-    loc = mail_job.lang || "en"
+    loc = mail_job.try(:lang) || "en"
     @email = mail_job.email
     logger.info("UserMailer.reset_password_email to: #{@email}, loc:#{loc}")
 
-    @url  = edit_password_reset_url(id: mail_job.mail_params[:reset_password_token], locale: loc)
+    @url  = mail_job.mail_params[:reset_url]
     I18n.with_locale(loc.to_sym) do
       subj = I18n.t :reset_password_email_subj
+      mail(:to => @email, :subject => subj)
+    end
+  end
+
+  def doctor_invite_email(mail_job)
+    logger.info(mail_job.as_json)
+    loc = mail_job.try(:lang) || "en"
+    @email = mail_job.email
+    logger.info("UserMailer.doctor_invite_email to: #{@email}, loc:#{loc}")
+
+    @url  = mail_job.mail_params[:reset_url]
+    I18n.with_locale(loc.to_sym) do
+      subj = I18n.t :doctor_invite_email_subj
       mail(:to => @email, :subject => subj)
     end
   end

@@ -1,0 +1,19 @@
+<div class="dataForm genetics_personal_history <% if local_assigns.fetch(:locals, {})[:defaultHidden] %>hidden<% end %>">
+  <input type="hidden" name="genetics[source]" value="<%= @default_source %>">
+  <input type="hidden" name="genetics[group]" value="personal_history">
+
+  <input id="gen_hist_diabetes" type="search" name="genetics[diabetes]" class="dataFormField diab_type_name" placeholder="<%= t 'diabetes' %>" disabled/>
+  <input class="diab_type_id" name="genetics[diabetes_type_id]" type="hidden">
+
+  <input id="gen_hist_antibody" type="search" name="genetics[antibody]" class="dataFormField antibody_type_name" placeholder="<%= t 'autoantibody_test' %>" disabled/>
+  <input class="antibody_type_id" name="genetics[antibody_type_id]" type="hidden">
+
+  <div style="padding-left: 15px; padding-bottom: 10px;">
+      <input type="radio" name="genetics[antibody_kind]" value="true"/><span><%= t 'positive' %></span>
+      <input type="radio" name="genetics[antibody_kind]" value="false"/><span><%= t 'negative' %></span>
+  </div>
+
+  <input id="antibody_value" type="text" name="genetics[antibody_value]" class="dataFormField" placeholder="<%=t 'autoantibody_value' %>"/>
+
+  <textarea id="personal_hist_note" type="text" name="genetics[note]" rows="5" class="dataFormArea" placeholder="<%= t 'genetics_history' %>"></textarea>
+</div>

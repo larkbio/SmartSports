@@ -3,13 +3,18 @@
   console.log "labresults loaded"
   uid = $("#current-user-id")[0].value
 
-  initLabresult()
-  loadLabresult()
-  loadVisits()
-
   $("div.app2Menu a.menulink").removeClass("selected")
   $("#labresults-link").css
     background: "rgba(237, 170, 171, 0.3)"
+
+  document.body.style.cursor = 'wait'
+  load_labresult_types( () ->
+    console.log("labresulttypes loaded")
+    document.body.style.cursor = 'auto'
+    initLabresult()
+    loadLabresult()
+    loadVisits()
+  )
 
   $("#control-create-form button").click ->
     if(!controlSelected)
@@ -63,6 +68,10 @@
 
   $("form.resource-create-form.lab_results-form").on("ajax:success", (e, data, status, xhr) ->
     category = data['category']
+    user_lang = $("#user-lang")[0].value
+    if user_lang == "hu" && category && category == "ketone"
+      category = "keton"
+
     console.log "labresult form ajax success with data:"
     console.log data
     if category
@@ -72,7 +81,7 @@
     $(".hba1c").val(null)
     $(".ldl_chol").val(null)
     $(".egfr_epi").val(null)
-    $(".ketone").val(null)
+    $(".ketone_name").val(null)
     $(".notification_details").val(null)
 
     if !category
@@ -121,45 +130,31 @@
   }).focus ->
     $(this).autocomplete("search")
 
-  ketoneList = [ { label: "Negative", value: "Negative" },
-    { label: "+", value: "1" },
-    { label: "++", value: "2" },
-    { label: "+++", value: "3" },
-    { label: "++++", value: "4" },
-    { label: "+++++", value: "5" }
-  ]
-  @ketoneHash = {
-    "Negative": "Negative",
-    "1": "+",
-    "2": "++",
-    "3": "+++",
-    "4": "++++",
-    "5": "+++++"
-  }
-
-  setKetone = (event, ui) ->
-    labelItem = event.target
-    labelItem.value = ui['item']['label']
-    valueItem = labelItem.parentNode.querySelector("input[name='labresult[ketone]']")
-    valueItem.value = ui['item']['value']
-
-  $(".ketone").autocomplete({
+  ketoneSelected = null
+  $(".ketone_name").autocomplete({
     minLength: 0,
-    source: ketoneList,
-    change: (event, ui) ->
-      console.log "change: "
-      console.log ui['item']
-      console.log event.target
-      setKetone(event, ui)
+    source: (request, response) ->
+      matcher = new RegExp($.ui.autocomplete.escapeRegex(remove_accents(request.term), ""), "i")
+      result = []
+      cnt = 0
+      user_lang = $("#user-lang")[0].value
+      if user_lang
+        labkey = 'sd_labresult_'+user_lang
+      else
+        labkey = 'sd_labresult_hu'
+      for element in getStored(labkey)
+        if matcher.test(remove_accents(element.label))
+          result.push(element)
+          cnt += 1
+      response(result)
     select: (event, ui) ->
-      console.log "select: "
-      console.log ui['item']
-      console.log event.target
-      setKetone(event, ui)
-      return false
+      $(".ketone_type_id").val(ui.item.id)
+    create: (event, ui) ->
+      $(".ketone_name").removeAttr("disabled")
+    change: (event, ui) ->
+      ketoneSelected = ui['item']
   }).focus ->
     $(this).autocomplete("search")
-
 
   $('.hba1c_datepicker').datetimepicker({
     format: 'Y-m-d',
@@ -194,6 +189,41 @@
 
   @popup_messages = JSON.parse($("#popup-messages").val())
 
+@load_labresult_types = (cb) ->
+  self = this
+  current_user = $("#current-user-id")[0].value
+  console.log "calling load labresult types"
+  user_lang = $("#user-lang")[0].value
+  db_version = $("#db-version")[0].value
+  if user_lang
+    labresultkey = 'sd_labresult_'+user_lang
+  else
+    labresultkey = 'sd_labresult_hu'
+  if !getStored(labresultkey) || testDbVer(db_version)
+    ret = $.ajax '/labresult_types.json',
+      type: 'GET',
+      error: (jqXHR, textStatus, errorThrown) ->
+        console.log "load labresult_types AJAX Error: #{textStatus}"
+      success: (data, textStatus, jqXHR) ->
+        console.log "load labresult_types  Successful AJAX call"
+
+        setStored('sd_labresult_hu', data.filter( (d) ->
+          d['category'] == "ketone" && d['lang'] == 'hu'
+        ).map( window.labresults_map_fn))
+
+        setStored('sd_labresult_en', data.filter( (d) ->
+          d['category'] == "ketone" && d['lang'] == 'en'
+        ).map( window.labresults_map_fn))
+
+        cb()
+  else
+    ret = new Promise( (resolve, reject) ->
+      console.log "labresults already downloaded"
+      cb()
+      resolve("labresults cbs called")
+    )
+  return ret
+
 @loadLabresult = () ->
   self = this
   current_user = $("#current-user-id")[0].value
@@ -212,16 +242,16 @@
 @loadVisits = () ->
   self = this
   current_user = $("#current-user-id")[0].value
-  console.log "calling load recent lab_results"
+  console.log "calling load recent visits"
   lang = $("#data-lang-labresult")[0].value
   url = 'users/' + current_user + '/notifications.js?upcoming=true&order=desc&limit=10&ntype=visits&lang='+lang
   console.log url
   $.ajax urlPrefix()+url,
     type: 'GET',
     error: (jqXHR, textStatus, errorThrown) ->
-      console.log "load recent lab_results AJAX Error: #{textStatus}"
+      console.log "load recent visits AJAX Error: #{textStatus}"
     success: (data, textStatus, jqXHR) ->
-      console.log "load recent lab_results  Successful AJAX call"
+      console.log "load recent visits  Successful AJAX call"
       console.log textStatus
 
 @load_labresult_ketone = (sel, data) ->
@@ -231,5 +261,5 @@
   console.log(labres.ketone)
 
   $(sel+" input[name='labresult[ketone]']").val(labres['ketone'])
-  $(sel+" .ketone").val(@ketoneHash[labres['ketone']])
+  $(sel+" input[name='labresult[labresult_type_id]']").val(labres['labresult_type_id'])
   $(sel+" input[name='labresult[date]']").val(labres['date'])

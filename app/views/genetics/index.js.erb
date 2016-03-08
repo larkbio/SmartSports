@@ -1,0 +1,3 @@
+console.log("load genetics_histories js called");
+$("#recentResourcesTable").html("");
+$("#recentResourcesTable").html("<%= escape_javascript(render :partial=> 'shared/genetics_item', :collection=> @genetics ) %>");

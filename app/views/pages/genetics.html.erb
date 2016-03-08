@@ -1,60 +1,56 @@
-<input id="relativeList" type="hidden" value="<%= @relativeList %>">
-<input id="diseaseList" type="hidden" value="<%= @diseaseList %>">
-<input id="popup-messages" value="<%=@values%>" type="hidden" />
+<input id="popup-messages" value="<%= @values %>" type="hidden"/>
 
 <div class="genetics-block mainContent" id="genetics-container">
-    <div class="sectionTitle geneticsBodyLogo geneticsColor">
-        <%=t 'genetics' %>
+  <div class="sectionTitle geneticsBodyLogo geneticsColor">
+    <%= t 'genetics' %>
+  </div>
+  <div class="contentBg">
+    <div class="p10">
+      <%= render "forms/element", locals: {:showButton => true,
+                                           :elementName => 'genetics_personal_history',
+                                           :style => 'geneticsStyle',
+                                           :title => 'personal_history',
+                                           :img => 'doctor_40.png',
+                                           :elementId => 'personal-history-create-form'
+      } %>
+
+      <%= render "forms/element", locals: {:showButton => true,
+                                           :elementName => 'genetics_family_history',
+                                           :style => 'geneticsStyle',
+                                           :title => 'family_history',
+                                           :img => 'family40.png',
+                                           :elementId => 'family-history-create-form'
+      } %>
+
+      <div class="clearBoth"></div>
     </div>
-    <div class="contentBg geneticsStyle">
-        <div style="padding: 10px;">
-            <div class="dataFormContainer">
-                <div class="dataFormTitle">
-                    <%= image_tag "family40.png" %><br/>
-                  <%=t 'family_hist'%>
-                </div>
-                <%= form_tag(root_path+"users/#{current_user.id}/family_histories", remote: true, id: "familyhist-create-form", class: "resource-create-form family-history-form") do %>
-                    <div class="dataForm">
-                        <input type="hidden" name="family_history[source]" value="<%= @default_source %>">
+  </div>
 
-                        <input id="gen_hist_relative" type="search" name="family_history[relative]" class="dataFormField gen_type_name" placeholder="<%=t 'relative'%>"/>
-                        <input class="gen_type_id" name="family_history[genetics_type_id]" type="hidden">
-                        <br/>
+  <div class="sectionTitle geneticsBodyLogo geneticsColor" style="margin-top: 40px;">
+    <span><%= t 'history_link' %></span>
+  </div>
 
-                        <!--<input id="gen_hist_disease" type="search" name="family_history[disease]" class="dataFormField" placeholder="<!%=t 'diabetes'%>"/>-->
-                        <!--<br/>-->
-
-                        <textarea id="gen_hist_note" type="text" name="family_history[note]" rows="5" class="dataFormArea" placeholder="<%=t 'genetics_history'%>"></textarea>
-                        <br>
-                    </div>
-                    <button id="addFamilyHistButton" class="dataFormField"><%=t 'button_add'%></button>
-                <% end %>
-            </div>
-        </div>
-            <div class="dataFormSeparator"></div>
-            <div class="clearBoth"></div>
-        </div>
-    </div>
-
-    <div class="sectionTitle geneticsBodyLogo geneticsColor" style="margin-top: 40px;">
-      <span><%=t 'history_link'%></span>
-    </div>
-
-    <table class="historyTable"  cellpadding="0" cellspacing="0">
-        <tbody id="recentResourcesTable">
-        </tbody>
-    </table>
-
+  <table class="historyTable" cellpadding="0" cellspacing="0">
+    <tbody id="recentResourcesTable">
+    </tbody>
+  </table>
 
 </div>
+
+
 <script>
     pages_menu();
     genetics_loaded();
 </script>
-
 <% content_for :menu do %>
     <%= render "menu" %>
 <% end %>
 <% content_for :title_text do %>
-    <%=t :genetics %> | <%= t :project_name %>
+    <%= t :genetics %> | <%= t :project_name %>
 <% end %>
+
+
+
+
+
+

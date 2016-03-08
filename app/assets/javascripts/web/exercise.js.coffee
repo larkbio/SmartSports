@@ -26,7 +26,7 @@
 
     loadExerciseHistory()
     console.log data
-    popup_success(data['activity_name']+popup_messages.saved_successfully, "exerciseStyle")
+    popup_success(data['activity_name']+popup_messages.saved_successfully+' '+data['cal_message'], "exerciseStyle")
   ).on("ajax:error", (e, xhr, status, error) ->
     popup_error(popup_messages.failed_to_add+$("#activityname").val(), "exerciseStyle")
   )
@@ -42,7 +42,7 @@
 
     loadExerciseHistory()
     console.log data
-    popup_success(data['activity_name']+popup_messages.saved_successfully, "exerciseStyle")
+    popup_success(data['activity_name']+popup_messages.saved_successfully+' '+data['cal_message'], "exerciseStyle")
   ).on("ajax:error", (e, xhr, status, error) ->
     popup_error(popup_messages.failed_to_add+$("#otheractivityname").val(), "exerciseStyle")
   )

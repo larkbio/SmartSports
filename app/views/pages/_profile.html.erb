@@ -1,79 +1,81 @@
-<input id="popup-messages" value="<%=@values%>" type="hidden" />
+<input id="popup-messages" value="<%= @values %>" type="hidden"/>
 <div class="sectionTitle c0">
   <%= t :title_profile %>
 </div>
 
 <div class="contentBg" style="margin-top: 20px;border-radius: 20px;">
-    <div style="padding: 10px;">
-      <%= form_tag(root_path+"users/#{current_user.id}", remote: true, id: "update-user-form", method: "PUT", class: "resource-update-form user-form") do %>
-      <table style="width: 100%;color: #3d3d3d;">
-        <tbody>
+  <div style="padding: 10px;">
+    <%= form_tag(root_path+"users/#{current_user.id}", remote: true, id: "update-user-form", method: "PUT", class: "resource-update-form user-form") do %>
+        <table style="width: 100%;color: #3d3d3d;">
+          <tbody>
 
-            <input name="lang" value="<%=I18n.locale%>" type="hidden" />
+          <input name="lang" value="<%= I18n.locale %>" type="hidden"/>
 
 
-            <tr>
-              <td style="width: 180px;height: 50px;">
-                ID
-              </td>
-              <td>
-                <%= @user.id %>
-              </td>
-              <td>
-              </td>
-            </tr>
+          <tr>
+            <td style="width: 180px;height: 50px;">
+              ID
+            </td>
+            <td>
+              <%= @user.id %>
+            </td>
+            <td>
+            </td>
+          </tr>
 
-            <tr>
-              <td style="width: 180px;height: 50px;">
-                <%= t :name %>
-              </td>
-              <td>
-                <%= @user.get_name %>
-              </td>
-              <td>
-              </td>
-            </tr>
+          <tr>
+            <td style="width: 180px;height: 50px;">
+              <%= t :name %>
+            </td>
+            <td>
+              <%= @user.get_name %>
+            </td>
+            <td>
+            </td>
+          </tr>
 
-            <tr>
-              <td style="width: 180px;height: 50px;">
-                <%= t :email %>
-              </td>
-              <td>
-                <%= @user.email %>
-              </td>
-              <td>
-              </td>
-            </tr>
+          <tr>
+            <td style="width: 180px;height: 50px;">
+              <%= t :email %>
+            </td>
+            <td>
+              <%= @user.email %>
+            </td>
+            <td>
+            </td>
+          </tr>
 
-            <tr>
-              <td style="width: 180px;height: 50px;">
-                <%= t :password %>
-              </td>
-              <td>
-                <input id="password_field" name="user[password]" type="password" class="loginField" placeholder="<%= t 'password' %>"/>
-                <input id="password_retry_field" name="user[password_confirmation]" type="password" class="loginField" placeholder="<%= t 'password_confirm' %>"/>
-              </td>
-              <td>
-                <button id="update-user-button" class="settingsButton">
-                  <%= t :update %>
-                </button>
-              </td>
-            </tr>
-        </tbody>
-      </table>
-      <% end %>
-   </div>
+          <tr>
+            <td style="width: 180px;height: 50px;">
+              <%= t :password %>
+            </td>
+            <td>
+              <input id="password_field" name="user[password]" type="password" class="loginField" placeholder="<%= t 'password' %>"/>
+              <input id="password_retry_field" name="user[password_confirmation]" type="password" class="loginField" placeholder="<%= t 'password_confirm' %>"/>
+            </td>
+            <td>
+              <button id="update-user-button" class="settingsButton">
+                <%= t :update %>
+              </button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+    <% end %>
+  </div>
 </div>
 
 <div class="contentBg" style="margin-top: 20px;border-radius: 20px;">
   <div style="padding: 10px;">
     <%= form_tag(root_path+"users/#{current_user.id}/uploadAv", :multipart => true, :'data-ajax' => false, :method => "POST") do %>
-    <table style="width: 100%;color: #3d3d3d;">
-      <tbody>
+        <table style="width: 100%;color: #3d3d3d;">
+          <tbody>
 
           <tr>
             <td style="width: 180px;height: 50px;">
-              <%= t :upload_photo %> <br> <div style="font-size: 11px;"><%= t :recommended_size %></div>
+              <%= t :upload_photo %> <br>
+
+              <div style="font-size: 11px;"><%= t :recommended_size %></div>
 
             </td>
             <td>
@@ -88,19 +90,19 @@
               </button>
             </td>
           </tr>
-      </tbody>
-    </table>
+          </tbody>
+        </table>
     <% end %>
   </div>
 </div>
 
-<%if @profile %>
+<% if @profile %>
     <div class="contentBg" style="margin-top: 20px;border-radius: 20px;">
       <div style="padding: 10px;">
         <%= form_tag(root_path+"users/#{current_user.id}/profile/#{@profile.id}", remote: true, id: "update-profile-form", method: "PUT", class: "resource-update-form profile-form") do %>
-        <table style="width: 100%;color: #3d3d3d;">
-          <tbody>
-              <input name="lang" value="<%=I18n.locale%>" type="hidden" />
+            <table style="width: 100%;color: #3d3d3d;">
+              <tbody>
+              <input name="lang" value="<%= I18n.locale %>" type="hidden"/>
               <tr>
                 <td style="width: 180px;height: 50px;">
                   <%= t :default_lang %>
@@ -108,59 +110,36 @@
                 <td>
                   <!--TODO ez valamiert veletlenszeru lesz ha nyomkodon a nyelv valaszto gombot es ez befolyasolja a hibauzenet nyelvet-->
                   <% if I18n.locale.to_s == "hu" %>
-                      <input type="radio"  name="profile[default_lang]" value="hu" <%= @profile.default_lang && @profile.default_lang == "hu" ? "checked" : "" %>/><span>Magyar</span>
-                      <input type="radio"  name="profile[default_lang]" value="en" <%= @profile.default_lang && @profile.default_lang == "en" ? "checked" : "" %>/><span>English</span>
-                  <%else%>
-                      <input type="radio"  name="profile[default_lang]" value="en" <%= @profile.default_lang && @profile.default_lang == "en" ? "checked" : "" %>/><span>English</span>
-                      <input type="radio"  name="profile[default_lang]" value="hu" <%= @profile.default_lang && @profile.default_lang == "hu" ? "checked" : "" %>/><span>Magyar</span>
-                  <%end%>
+                      <input type="radio" name="profile[default_lang]" value="hu" <%= @profile.default_lang && @profile.default_lang == "hu" ? "checked" : "" %>/><span>Magyar</span>
+                      <input type="radio" name="profile[default_lang]" value="en" <%= @profile.default_lang && @profile.default_lang == "en" ? "checked" : "" %>/><span>English</span>
+                  <% else %>
+                      <input type="radio" name="profile[default_lang]" value="en" <%= @profile.default_lang && @profile.default_lang == "en" ? "checked" : "" %>/><span>English</span>
+                      <input type="radio" name="profile[default_lang]" value="hu" <%= @profile.default_lang && @profile.default_lang == "hu" ? "checked" : "" %>/><span>Magyar</span>
+                  <% end %>
                 </td>
                 <td>
                 </td>
               </tr>
-              <% if I18n.locale.to_s == "hu" %>
-                  <tr>
-                    <td style="width: 180px;height: 50px;">
-                      <%= t :lastname %>
-                    </td>
-                    <td>
-                      <input id="lastname_field" name="profile[lastname]" type="text" class="loginField" value="<%= @profile.lastname %>"/>
-                    </td>
-                    <td>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td style="width: 180px;height: 50px;">
-                      <%= t :firstname %>
-                    </td>
-                    <td>
-                      <input id="firstname_field" name="profile[firstname]" type="text" class="loginField" value="<%= @profile.firstname %>"/>
-                    </td>
-                    <td>
-                    </td>
-                  </tr>
-              <%else%>
-                  <tr>
-                    <td style="width: 180px;height: 50px;">
-                      <%= t :firstname %>
-                    </td>
-                    <td>
-                      <input id="firstname_field" name="profile[firstname]" type="text" class="loginField" value="<%= @profile.firstname %>"/>
-                    </td>
-                    <td>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td style="width: 180px;height: 50px;">
-                      <%= t :lastname %>
-                    </td>
-                    <td>
-                      <input id="lastname_field" name="profile[lastname]" type="text" class="loginField" value="<%= @profile.lastname %>"/>
-                    </td>
-                    <td>
-                    </td>
-                  </tr>
-              <%end%>
+              <tr>
+                <td style="width: 180px;height: 50px;">
+                  <%= t :lastname %>
+                </td>
+                <td>
+                  <input id="lastname_field" name="profile[lastname]" type="text" class="loginField" value="<%= @profile.lastname %>"/>
+                </td>
+                <td>
+                </td>
+              </tr>
+              <tr>
+                <td style="width: 180px;height: 50px;">
+                  <%= t :firstname %>
+                </td>
+                <td>
+                  <input id="firstname_field" name="profile[firstname]" type="text" class="loginField" value="<%= @profile.firstname %>"/>
+                </td>
+                <td>
+                </td>
+              </tr>
               <tr>
                 <td style="width: 180px;height: 50px;">
                   <%= t :sex %>
@@ -178,7 +157,8 @@
                   <%= t :height %>
                 </td>
                 <td>
-                  <input id="height_field" name="profile[height]" type="text" class="loginField" value="<%= @profile.height %>"/> (cm)
+                  <input id="height_field" name="profile[height]" type="text" class="loginField" value="<%= @profile.height %>"/>
+                  (cm)
                 </td>
                 <td>
                 </td>
@@ -188,7 +168,8 @@
                   <%= t :body_weight %>
                 </td>
                 <td>
-                  <input id="weight_field" name="profile[weight]" type="text" class="loginField" value="<%= @profile.weight %>"/> (kg)
+                  <input id="weight_field" name="profile[weight]" type="text" class="loginField" value="<%= @profile.weight %>"/>
+                  (kg)
                 </td>
                 <td>
                 </td>
@@ -198,7 +179,7 @@
                   <%= t :smoke_question %>
                 </td>
                 <td>
-                  <%=check_box("profile", "smoke")%>
+                  <%= check_box("profile", "smoke") %>
                 </td>
                 <td>
                 </td>
@@ -208,7 +189,7 @@
                   <%= t :insulin_question %>
                 </td>
                 <td>
-                  <%=check_box("profile", "insulin")%>
+                  <%= check_box("profile", "insulin") %>
                 </td>
                 <td>
                 </td>
@@ -218,8 +199,7 @@
                   <%= t :date_of_birth %>
                 </td>
                 <td>
-                  <!--<input id='profile_birth_datepicker' type='text' class="loginField" name="profile[dateofbirth]" value="<!%= @profile.try(:dateofbirth).try(:strftime, "%F") %>"/>-->
-                  <%=select("profile", "dateofbirth", options_for_select((1900..2015).step(1), (@profile.dateofbirth && (@profile.dateofbirth.year >= 1900 && @profile.dateofbirth.year <= 2015)) ? @profile.dateofbirth.year : 0), :include_blank => true)%>
+                  <input id="weight_field" name="profile[year_of_birth]" type="text" class="loginField" value="<%= @profile.year_of_birth %>"/>
                 </td>
                 <td>
                   <button id="update-profile-button" class="settingsButton">
@@ -227,12 +207,12 @@
                   </button>
                 </td>
               </tr>
-          </tbody>
-        </table>
+              </tbody>
+            </table>
         <% end %>
       </div>
     </div>
-<%end%>
+<% end %>
 
 <%= render partial: 'shared/popups' %>
 <script>

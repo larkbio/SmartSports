@@ -13,7 +13,8 @@ module Api::V1
         if @user.save
           @user.profile = Profile.create()
           @user.save!
-          UserMailer.delay.user_created_email(@user)
+          mail_lang = params[:lang] || "en"
+          Delayed::Job.enqueue InfoMailJob.new(:user_created_email, @user.email, mail_lang, {})
 
           save_click_record(:success, nil, "login", request.remote_ip)
           format.json { render json: {:ok => true, :msg => 'reg_succ', :id => @user.id, :locale => I18n.locale, :profile => @user.has_profile} }

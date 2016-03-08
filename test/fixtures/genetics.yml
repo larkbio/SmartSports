@@ -1,11 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  relative: MyString
-  disease: MyString
+  source: MyString
+  diabetes: MyString
+  group:  MyString
   note: MyText
 
 two:
-  relative: MyString
-  disease: MyString
+  source: MyString
+  diabetes: MyString
+  group: MyString
   note: MyText

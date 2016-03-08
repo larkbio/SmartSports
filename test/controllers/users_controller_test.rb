@@ -69,7 +69,6 @@ class UsersControllerTest < ActionController::TestCase
     assert_equal json_result["msg"][0], "Password must be at least 4 characters!"
   end
 
-
   test "should destroy user" do
     user2 = users(:two)
     assert_difference('User.count', -1) do
@@ -79,4 +78,35 @@ class UsersControllerTest < ActionController::TestCase
     json_result = JSON.parse(response.body)
     assert_equal json_result["ok"], true
   end
+
+  test "should accept doctor flag" do
+    assert_difference('User.count', 1) do
+      post :create, user: {
+                      email: "xxx@ab.cd",
+                      password: "abcd",
+                      password_confirmation: "abcd",
+                      doctor: true
+                  }, format: :json
+    end
+    json_result = JSON.parse(response.body)
+    assert_equal json_result["ok"], true
+    new_user = User.find(json_result["id"])
+    assert new_user.doctor?, "new user is doctor"
+  end
+
+  test "should reject doctor flag if not admin" do
+    @user = users(:two)
+    login_user
+    assert_difference('User.count', 0) do
+      post :create, user: {
+                      email: "xxx@ab.cd",
+                      password: "abcd",
+                      password_confirmation: "abcd",
+                      doctor: true
+                  }, format: :json
+    end
+    json_result = JSON.parse(response.body)
+    assert_equal json_result["ok"], false
+  end
+
 end

@@ -264,15 +264,16 @@ button.dataFormField {
 .geneticsStyle button {
   background: #2BC7EC !important;
 }
-.geneticsStyle div.dataFormContainer {
+.geneticsStyle.dataFormContainer {
   width: 320px;
   //height: 350px;
 }
-.geneticsStyle div.dataFormSeparator {
-  height:325px !important;
+.geneticsStyle.dataFormSeparator {
+  height:430px !important;
 }
 .geneticsStyle .dataForm {
   height: 195px;
+  width: 300px;
 }
 
 .c7, .labresultColor {
@@ -550,16 +551,9 @@ button.deleteForm {
   background-size: 40px 40px;
 }
 
-.sectionTitle {
-    margin-top: 40px;
-    /*background-color: rgba(0, 0, 0, 0.1);*/
-    height: 60px;
-    padding-left: 60px;
-    line-height: 60px;
-    font-variant: small-caps;
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 300;
-    font-size: 30px;
+.bl1, .doctorBodyLogo {
+  background: image-url("doctor40.png") 10px 10px no-repeat;
+  background-size: 40px 40px;
 }
 
 div.dataFormContainer {
@@ -1048,6 +1042,10 @@ div.egfr {
 
 .drinkType {
   background-image: image-url("type/img_drink.png");
+}
+
+.smokeType {
+  background-image: image-url("type/img_smoke.png");
 }
 
 .weightType {

@@ -89,7 +89,7 @@ module LabresultsCommon
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def labresult_params
-    params.require(:labresult).permit(:user_id, :source, :category, :hba1c, :ldl_chol, :egfr_epi, :ketone, :date, :controll_type, :remainder_date)
+    params.require(:labresult).permit(:user_id, :source, :category, :hba1c, :ldl_chol, :egfr_epi, :ketone, :date, :controll_type, :remainder_date, :labresult_type_id)
   end
 
 end

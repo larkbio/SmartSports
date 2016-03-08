@@ -32,6 +32,7 @@ end
 
 class Labresult < ActiveRecord::Base
   belongs_to :user
+  belongs_to :labresult_type
   validates :user_id, :presence => true, :allow_nil => true
   validates :hba1c, :numericality => {message: 'should_be_number'}, :allow_nil => true
   validates :ldl_chol, :numericality => {message: 'should_be_number'}, :allow_nil => true

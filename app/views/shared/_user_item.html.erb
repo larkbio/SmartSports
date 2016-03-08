@@ -1,0 +1,45 @@
+<tr class="bg">
+
+  <td class="padded icons-two">
+
+    <% if user_item.doctor? %>
+        <i class="fa fa-stethoscope fa-lg"></i>
+    <% end %>
+
+    <% if user_item.admin? %>
+        <i class="fa fa-gears fa-lg"></i>
+    <% end %>
+
+  </td>
+
+  <td class="historyTitle padded dietItem">
+    <span><%= user_item.name %></span>
+  </td>
+  <td class="historyTitle padded dietItem">
+    <span><%= user_item.email %></span>
+  </td>
+  <td class="historyTitle padded dietItem">
+    <span><%= user_item.id %></span>
+  </td>
+
+  <td class="historyTitle padded dietItem tag">
+
+  </td>
+
+  <td class="icons-more">
+    <%= form_tag( pages_traffic_path(:usid => user_item.id.to_s), id: "user_traffic_"+user_item.id.to_s, remote: true, method: "get", class: "traffic-form") do %>
+    <button id="fav-icon" class="tableControl">
+      <i class="fa fa-area-chart fa-2x"></i>
+    </button>
+    <% end %>
+
+    <button id="fav-icon" class="tableControl">
+      <i class="fa fa-star fa-2x is-favorite"></i>
+      <input type="hidden" name="user[favourite]" value="false">
+    </button>
+
+    <button class="tableControl">
+      <i class="fa fa-trash-o fa-2x"></i>
+    </button>
+  </td>
+</tr>

@@ -1,0 +1,28 @@
+<tr class="bg">
+    <td class="padded icons-two">
+      <i class="fa fa-stethoscope fa-lg "></i>
+    </td>
+
+  <td class="historyTitle padded dietItem">
+    <span><%= doctor_item.name %></span>
+  </td>
+  <td class="historyTitle padded dietItem">
+    <span><%= doctor_item.email %></span>
+  </td>
+  <td class="historyTitle padded dietItem">
+    <span><%= doctor_item.id %></span>
+  </td>
+
+  <td class="historyTitle padded dietItem tag">
+    <span class="tag kcal right">cardiologist</span>
+  </td>
+
+  <td class="icons-more">
+
+      <i class="fa fa-star fa-lg is-favorite"></i>
+
+    <%= link_to user_path(doctor_item), method: :delete, remote: true, class: "resourceIcon", data: {confirm: "Are you sure?"} do %>
+      <i class="fa fa-trash-o fa-lg"></i>
+    <% end %>
+  </td>
+</tr>

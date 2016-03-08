@@ -20,7 +20,15 @@
       <% elsif  labresult_item.category=='egfr_epi' %>
           <span class="itemTitle">eGFR-EPI: </span><span><%= labresult_item.egfr_epi %> ml/min/1.73m2</span>
       <% elsif  labresult_item.category=='ketone' %>
-          <span class="itemTitle">Ketone: </span><span><%= @ketoneHash[labresult_item.ketone] %> </span>
+          <span class="itemTitle"><%=t 'labresult_ketone' %>: </span><span>
+            <%if labresult_item.labresult_type%>
+                <%if I18n.locale == :hu%>
+                    <%= DB_HU_CONFIG['labresult']['ketone'][labresult_item.labresult_type.name]%>
+                <%else%>
+                    <%= DB_EN_CONFIG['labresult']['ketone'][labresult_item.labresult_type.name]%>
+                <%end%>
+            <%end%>
+          </span>
       <% else %>
           <span class="itemTitle">Unknown labresult</span>
       <% end %>

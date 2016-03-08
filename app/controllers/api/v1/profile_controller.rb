@@ -15,7 +15,7 @@ module Api::V1
         res[:sex] = prf.sex
         res[:smoke] = prf.smoke
         res[:insulin] = prf.insulin
-        res[:dateofbirth] = prf.dateofbirth
+        res[:year_of_birth] = prf.year_of_birth
         res[:default_lang] = prf.default_lang
       else
         res[:profile] = false
@@ -47,7 +47,7 @@ module Api::V1
       end
 
       respond_to do |format|
-        par = params.require(:profile).permit(:full_name, :height, :weight, :sex, :smoke, :insulin, :dateofbirth, :default_lang)
+        par = params.require(:profile).permit(:full_name, :height, :weight, :sex, :smoke, :insulin, :year_of_birth, :default_lang)
         if par[:full_name]
           user.name = par[:full_name]
           user.save!

@@ -1,6 +1,7 @@
 @loadStatistics = () ->
   resetMdUI()
 
+  registerPopupHandler()
   registerLogoutHandler()
   registerLangHandler()
 

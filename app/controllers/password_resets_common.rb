@@ -1,4 +1,5 @@
 module PasswordResetsCommon
+  require 'json'
 
   def create
       @user = User.find_by_email(params[:email])
@@ -8,7 +9,10 @@ module PasswordResetsCommon
           if params[:lang]
             @user.mail_lang = params[:lang]
           end
-          @user.deliver_reset_password_instructions!
+          @user.generate_reset_password_token!
+          url = edit_password_reset_url({id: @user.reset_password_token, locale: I18n.locale})
+          Delayed::Job.enqueue InfoMailJob.new(:reset_password_email, @user.email, I18n.locale, {reset_url: url})
+
           render json: {:ok => true, :locale => I18n.locale}
         else
           render json: {:ok => false, :locale => I18n.locale}

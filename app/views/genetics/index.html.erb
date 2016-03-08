@@ -1,0 +1,27 @@
+<table>
+    <thead>
+    <tr>
+        <th>User name</th>
+        <th>Source</th>
+        <th>Relative</th>
+        <th>Note</th>
+        <th>Created at</th>
+        <th colspan="3"></th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <% @genetics.each do |genetics| %>
+        <tr>
+            <td><%= genetics.user.name %></td>
+            <td><%= genetics.source %></td>
+            <td><%= genetics.relative %></td>
+            <td><%= genetics.note %></td>
+            <td><%= genetics.created_at %></td>
+        </tr>
+    <% end %>
+    </tbody>
+</table>
+
+<br>
+

@@ -22,7 +22,7 @@ module ResponseHelper
     end
 
     save_click_record( :failure, id, click_msg )
-    render json: { msg:  msg, ok: false }, :status => status
+    render json: { msg:  msg, ok: false, data: id }, :status => status
   end
 
 end

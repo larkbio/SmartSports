@@ -7,7 +7,7 @@
   <td class="historyTitle padded lifestyleItem">
     <input id="lifestyle_data_<%=lifestyle_item.id%>" type="hidden" value="<%=
         d = {'lifestyle' => lifestyle_item.as_json }
-        if lifestyle_item.group=='illness'
+        if lifestyle_item.group=='illness' && lifestyle_item.illness_type
           d['illness_name']=lifestyle_item.illness_type.name
         end
         JSON.dump(d)
@@ -23,10 +23,28 @@
         <span class="itemTitle"><%=(t :stress)%></span> <span><%= get_lifestyle_elem((t :stressList), lifestyle_item)%></span><br/>
         <span><%=(t :start)%>: <%= get_lifestyle_date(lifestyle_item.start_time) %> <%=(t :end)%>: <%= get_lifestyle_date(lifestyle_item.end_time) %> </span>
   <% elsif  lifestyle_item.group=='illness' %>
-        <span class="itemTitle"><%=(t :illness)%></span> <span><%= get_lifestyle_elem((t :illnessList), lifestyle_item)%> <%=lifestyle_item.illness_type.name%></span><br/>
+        <span class="itemTitle"><%=(t :illness)%></span>
+        <span>  <%= get_lifestyle_elem((t :illnessList), lifestyle_item)%>
+            <%if lifestyle_item.illness_type%>
+                <%if I18n.locale == :hu%>
+                    <%= DB_HU_CONFIG['lifestyle']['illnesses'][lifestyle_item.illness_type.name]%>
+                <%else%>
+                    <%= DB_EN_CONFIG['lifestyle']['illnesses'][lifestyle_item.illness_type.name]%>
+                <%end%>
+            <%end%>
+        </span><br/>
         <span><%=(t :start)%>: <%= get_lifestyle_date(lifestyle_item.start_time) %> <%=(t :end)%>: <%= get_lifestyle_date(lifestyle_item.end_time) %> </span>
   <% elsif  lifestyle_item.group=='pain' %>
-        <span class="itemTitle"><%=(t :pain)%></span> <span><%= get_lifestyle_elem((t :painList), lifestyle_item)%> <%=lifestyle_item.pain_type_name%></span><br/>
+        <span class="itemTitle"><%=(t :pain)%></span> <span><%= get_lifestyle_elem((t :painList), lifestyle_item)%>
+            <%if lifestyle_item.illness_type%>
+                <%pain_type = LifestyleType.find(lifestyle_item.illness_type_id).name %>
+                <%if I18n.locale == :hu%>
+                    <%= DB_HU_CONFIG['lifestyle']['pains'][pain_type]%>
+                <%else%>
+                    <%= DB_EN_CONFIG['lifestyle']['pains'][pain_type]%>
+                <%end%>
+            <%end%>
+        </span><br/>
         <span><%=(t :start)%>: <%= get_lifestyle_time(lifestyle_item.start_time) %>
         <%mins = get_lifestyle_time_min(lifestyle_item.start_time, lifestyle_item.end_time) %>
         <%=t :duration %>: <% if mins < 60 %> <%=mins%><%=t :minute_abbr %> <%else%> <%=mins/60%><%=t :hours %> <%=mins%60%><%=t :minute_abbr %><%end%>

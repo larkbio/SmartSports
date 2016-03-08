@@ -10,28 +10,31 @@
     console.log("geneticstypes loaded")
     document.body.style.cursor = 'auto'
     init_genetics()
-    load_family_histories()
+    load_genetics()
   )
 
   popup_messages = JSON.parse($("#popup-messages").val())
 
-  $("#familyhist-create-form button").click ->
-    if(relativeSelected==null || diseaseSelected==null)
-      popup_error(popup_messages.failed_to_add_data, "geneticsStyle")
-
-      return false
-    relativeSelected = null
-    diseaseSelected = null
-    return true
-
-  $("form.resource-create-form.family-history-form").on("ajax:success", (e, data, status, xhr) ->
+  $("form.resource-create-form.genetics_family_history-create-form").on("ajax:success", (e, data, status, xhr) ->
     form_id = e.currentTarget.id
     console.log "success "+form_id
     console.log data
     $("#"+form_id+" input.dataFormField").val("")
-    $("#gen_hist_note").val("")
-    load_family_histories()
-    popup_success(data['disease']+popup_messages.saved_successfully, "geneticsStyle")
+    $("#family_hist_note").val("")
+    load_genetics()
+    popup_success(popup_messages.saved_successfully, "geneticsStyle")
+  ).on("ajax:error", (e, xhr, status, error) ->
+    popup_error(popup_messages.failed_to_add_data, "geneticsStyle")
+  )
+
+  $("form.resource-create-form.genetics_personal_history-create-form").on("ajax:success", (e, data, status, xhr) ->
+    form_id = e.currentTarget.id
+    console.log "success "+form_id
+    console.log data
+    $("#"+form_id+" input.dataFormField").val("")
+    $("#personal_hist_note").val("")
+    load_genetics()
+    popup_success(popup_messages.saved_successfully, "geneticsStyle")
   ).on("ajax:error", (e, xhr, status, error) ->
     popup_error(popup_messages.failed_to_add_data, "geneticsStyle")
   )
@@ -40,7 +43,7 @@
     form_item = e.currentTarget
     console.log "delete success "+form_item
 
-    load_family_histories()
+    load_genetics()
   ).on("ajax:error", (e, xhr, status, error) ->
     console.log xhr.responseText
     popup_error(popup_messages.failed_to_delete_data, "geneticsStyle")
@@ -49,7 +52,7 @@
 @init_genetics = () ->
   self = this
   relSelected = null
-  $(".gen_type_name").autocomplete({
+  $(".rel_type_name").autocomplete({
     minLength: 0,
     source: (request, response) ->
       matcher = new RegExp($.ui.autocomplete.escapeRegex(remove_accents(request.term), ""), "i")
@@ -66,11 +69,63 @@
           cnt += 1
       response(result)
     select: (event, ui) ->
-      $(".gen_type_id").val(ui.item.id)
+      $(".rel_type_id").val(ui.item.id)
     create: (event, ui) ->
-      $(".gen_type_name").removeAttr("disabled")
+      $(".rel_type_name").removeAttr("disabled")
     change: (event, ui) ->
       relSelected = ui['item']
+  }).focus ->
+    $(this).autocomplete("search")
+
+  diabSelected = null
+  $(".diab_type_name").autocomplete({
+    minLength: 0,
+    source: (request, response) ->
+      matcher = new RegExp($.ui.autocomplete.escapeRegex(remove_accents(request.term), ""), "i")
+      result = []
+      cnt = 0
+      user_lang = $("#user-lang")[0].value
+      if user_lang
+        genkey = 'sd_diabetes_'+user_lang
+      else
+        genkey = 'sd_diabetes_hu'
+      for element in getStored(genkey)
+        if matcher.test(remove_accents(element.label))
+          result.push(element)
+          cnt += 1
+      response(result)
+    select: (event, ui) ->
+      $(".diab_type_id").val(ui.item.id)
+    create: (event, ui) ->
+      $(".diab_type_name").removeAttr("disabled")
+    change: (event, ui) ->
+      diabSelected = ui['item']
+  }).focus ->
+    $(this).autocomplete("search")
+
+  antibodySelected = null
+  $(".antibody_type_name").autocomplete({
+    minLength: 0,
+    source: (request, response) ->
+      matcher = new RegExp($.ui.autocomplete.escapeRegex(remove_accents(request.term), ""), "i")
+      result = []
+      cnt = 0
+      user_lang = $("#user-lang")[0].value
+      if user_lang
+        genkey = 'sd_autoantibody_'+user_lang
+      else
+        genkey = 'sd_autoantibody_hu'
+      for element in getStored(genkey)
+        if matcher.test(remove_accents(element.label))
+          result.push(element)
+          cnt += 1
+      response(result)
+    select: (event, ui) ->
+      $(".antibody_type_id").val(ui.item.id)
+    create: (event, ui) ->
+      $(".antibody_type_name").removeAttr("disabled")
+    change: (event, ui) ->
+      antibodySelected = ui['item']
   }).focus ->
     $(this).autocomplete("search")
 
@@ -124,15 +179,16 @@
     )
   return ret
 
-@load_family_histories = () ->
+@load_genetics = () ->
   self = this
   current_user = $("#current-user-id")[0].value
-  console.log "calling load recent family histories"
-  url = 'users/' + current_user + '/family_histories.js?source='+window.default_source+'&order=desc&limit=10'
+  lang = $("#user-lang")[0].value
+  console.log "calling load recent genetics"
+  url = 'users/' + current_user + '/genetics.js?source='+window.default_source+'&order=desc&limit=10&lang='+lang
   $.ajax urlPrefix()+url,
     type: 'GET',
     error: (jqXHR, textStatus, errorThrown) ->
-      console.log "load recent family hist AJAX Error: #{textStatus}"
+      console.log "load recent genetics hist AJAX Error: #{textStatus}"
     success: (data, textStatus, jqXHR) ->
-      console.log "load recent family hist  Successful AJAX call"
+      console.log "load recent genetics hist  Successful AJAX call"
       console.log textStatus

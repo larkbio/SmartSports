@@ -1,5 +1,13 @@
+@admin_common = () ->
+  define_globals()
+  setTooltips()
+  registerPopupHandler()
+
 @admin_loaded = () ->
   console.log "admin loaded"
+  $("div.app2Menu a.menulink").removeClass("menulink-selected")
+  $("#users-link").addClass("menulink-selected")
+
   url = "pages/traffic"
   $.ajax urlPrefix()+url,
     type: "GET"
@@ -10,6 +18,7 @@
       console.log "Successful AJAX call"
       if result['status'] == "OK"
         drawTraffic(result)
+        $("body").scrollTop(0)
       else
         console.log "status nok"
 
@@ -25,18 +34,13 @@
       $("#sectionAdmin").removeClass("hiddenSection")
       drawTraffic(data)
       if data.email
-        $("#traffic-uinfo p").html(data.email)
+        $(".chartData").html(data.email)
       else
-        $("#traffic-uinfo p").html("All traffic of site")
+        $(".chartData").html("All")
+      $("body").scrollTop(0)
   ).on("ajax:error", (e, data, status, xhr) ->
     console.log "err"
   )
-
-  $("#edit-button").click (event) ->
-    console.log "edit pressed"
-
-  $("#delete-button").click (event) ->
-    console.log "delete pressed"
 
 @drawTraffic = (data) ->
   buckets = 11
@@ -52,11 +56,12 @@
   for i in [0..6]
     newdate = new Date
     newdate.setDate(newdate.getDate() - (6-i));
-    days[i][0] = fmt(newdate) + " "+ days[i][0]
+    days[i][0] = fmt(newdate)
   createTiles(hours,days)
   reColorTiles(buckets, pdata)
 
 @createTiles = (hours, days) ->
+  console.log(days)
   html = '<table id="traffic-tiles" class="front">'
   html += '<tr><th><div>&nbsp;</div></th>'
   for  h in [0..hours.length-1]
@@ -64,9 +69,10 @@
   html += '</tr>';
   for d in [0..days.length-1]
     html += '<tr class="d' + d + '">'
-    html += '<th>' + days[d][0] + '</th>'
+    html += '<th>' + days[d][0]+'</th>'
     for h in [0..hours.length-1]
       html += '<td id="d' + d + 'h' + h + '" class="d' + d + ' h' + h + '"><div class="tile"><div class="face front"></div><div class="face back"></div></div></td>'
+    html += '<th>' + days[d][1]+'</th>'
     html += '</tr>'
   html += '</table>'
   d3.select("#traffic-vis").html(html)

@@ -1,3 +1,3 @@
 class GeneticsType < ActiveRecord::Base
-  has_many :family_histories
+  has_many :genetics
 end

@@ -1,3 +1,0 @@
-console.log("load family_histories js called");
-$("#recentResourcesTable").html("");
-$("#recentResourcesTable").html("<%= escape_javascript(render :partial=> 'shared/family_history_item', :collection=> @family_histories ) %>");

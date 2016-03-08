@@ -1,5 +1,61 @@
 <% if current_user.admin %>
-      <%= render "admin" %>
+    <div class="columns one-half">
+      <div class="boxed-group connection-block">
+        <h3 class="noClickSelect">
+          <img src="<%= asset_path( "logo-login.png")%>" width="24px" height="24px" class="left">
+          <div class="training-type left chartTitle"><%=t 'site_traffic'%> - </div>
+          <div class="training-type left chartData"><%= t :all%></div>
+
+          <div class="right legend-label">high</div>
+          <div class="right rbow2 traffic-legend">
+            <ul>
+              <li class="q1-11"></li>
+              <li class="q2-11"></li>
+              <li class="q3-11"></li>
+              <li class="q4-11"></li>
+              <li class="q5-11"></li>
+              <li class="q6-11"></li>
+              <li class="q7-11"></li>
+              <li class="q8-11"></li>
+              <li class="q9-11"></li>
+              <li class="q10-11"></li>
+              <li class="q11-11"></li>
+            </ul>
+          </div>
+          <div class="right legend-label">low</div>
+
+        </h3>
+        <div class="boxed-group-inner chart timelineChart">
+            <div id="traffic-vis"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="adminTitle dietColor top40">
+        <i class="fa fa-user fa-lg "></i>
+        <span class="hisTitle selected"><%= t :all%></span> | <%= t :fav_link%></span></span>
+        <div class="right">
+          <%= form_tag( pages_traffic_path, id: "user_traffic_all", remote: true, method: "get", class: "traffic-form") do %>
+              <button id="fav-icon" class="tableControl">
+                <i class="fa fa-area-chart fa-2x"></i>
+              </button>
+          <% end %>
+        </div>
+    </div>
+    <table class="historyTable userTable" cellpadding="0" cellspacing="0">
+        <thead>
+        <tr>
+          <th></th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Id</th>
+          <th colspan="3"></th>
+        </tr>
+        </thead>
+        <tbody id="recentResourcesTable">
+        <%= render partial: "shared/user_item", collection: @users %>
+        </tbody>
+    </table>
 <% end %>
 
 <% content_for :menu do %>
@@ -7,5 +63,6 @@
 <% end %>
 
 <script type="text/javascript">
-    admin_loaded();
+  admin_common();
+  admin_loaded();
 </script>

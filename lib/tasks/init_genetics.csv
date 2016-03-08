@@ -11,9 +11,10 @@ id;name;category
 10;diabtype5;diabetes
 11;diabtype6;diabetes
 12;diabtype7;diabetes
-13;antibodytype1;autoantibody
-14;antibodytype2;autoantibody
-15;antibodytype3;autoantibody
-16;antibodytype4;autoantibody
-17;antibodytype5;autoantibody
-18;antibodytype6;autoantibody
+13;diabtype8;diabetes
+14;antibodytype1;autoantibody
+15;antibodytype2;autoantibody
+16;antibodytype3;autoantibody
+17;antibodytype4;autoantibody
+18;antibodytype5;autoantibody
+19;antibodytype6;autoantibody

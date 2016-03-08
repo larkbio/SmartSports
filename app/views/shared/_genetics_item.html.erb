@@ -1,0 +1,54 @@
+<tr class="bg">
+
+    <td style="width:40px;" class="padded">
+      <%if genetics_item.group && genetics_item.group == "family_history"%>
+        <%= image_tag "family40.png" %>
+      <%else%>
+          <%= image_tag "doctor_40.png" %>
+      <%end%>
+    </td>
+
+    <td class="historyTitle padded familyhistoryItem">
+      <span>
+        <% if genetics_item && genetics_item.relative_type_id && genetics_item.group && genetics_item.group == "family_history"%>
+            <%gen_type = GeneticsType.find(genetics_item.relative_type_id) %>
+            <%if I18n.locale == :hu%>
+                <%= DB_HU_CONFIG['genetics'][gen_type.category][gen_type.name] %>
+            <%else%>
+                <%= DB_EN_CONFIG['genetics'][gen_type.category][gen_type.name] %>
+            <%end%>,
+        <%end%>
+      </span>
+      <span>
+        <% if genetics_item && genetics_item.diabetes_type_id%>
+            <%gen_type = GeneticsType.find(genetics_item.diabetes_type_id) %>
+            <%if I18n.locale == :hu%>
+                <%= DB_HU_CONFIG['genetics'][gen_type.category][gen_type.name] %>
+            <%else%>
+                <%= DB_EN_CONFIG['genetics'][gen_type.category][gen_type.name] %>
+            <%end%>
+        <%end%>
+      </span>
+      <span>
+        <% if genetics_item && genetics_item.antibody_type_id && genetics_item.group && genetics_item.group == "personal_history" %>,
+            <%gen_type = GeneticsType.find(genetics_item.antibody_type_id) %>
+            <%if I18n.locale == :hu%>
+                <%= DB_HU_CONFIG['genetics'][gen_type.category][gen_type.name] %>
+            <%else%>
+                <%= DB_EN_CONFIG['genetics'][gen_type.category][gen_type.name] %>
+            <%end%>
+        <%end%>
+      </span>
+      <br/>
+      <span><%= genetics_item.note %></span>
+    </td>
+
+
+  <td class="iconColumn">
+    <%= form_tag( root_path+"users/#{current_user.id}/genetics/#{genetics_item.id}", id: "delete_ls_#{genetics_item.id}", remote: true, method: "delete", class: "resource-delete-form") do %>
+        <button class="tableControl">
+          <i class="fa fa-trash-o fa-2x"></i>
+        </button>
+    <% end %>
+  </td>
+</tr>

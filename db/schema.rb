@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160301153958) do
+ActiveRecord::Schema.define(version: 20160305090239) do
 
   create_table "activities", force: true do |t|
     t.integer  "user_id"
@@ -123,21 +123,6 @@ ActiveRecord::Schema.define(version: 20160301153958) do
     t.integer  "food_type_id"
   end
 
-  create_table "family_histories", force: true do |t|
-    t.integer  "user_id"
-    t.string   "source"
-    t.string   "relative"
-    t.string   "disease"
-    t.text     "note"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "genetics_type_id"
-  end
-
-  add_index "family_histories", ["user_id", "created_at"], name: "index_family_histories_on_user_id_and_created_at"
-  add_index "family_histories", ["user_id", "source"], name: "index_family_histories_on_user_id_and_source"
-  add_index "family_histories", ["user_id"], name: "index_family_histories_on_user_id"
-
   create_table "food_types", force: true do |t|
     t.string "name"
     t.string "category"
@@ -159,6 +144,27 @@ ActiveRecord::Schema.define(version: 20160301153958) do
 
   add_index "friendships", ["user1_id", "user2_id"], name: "index_friendships_on_user1_id_and_user2_id"
 
+  create_table "genetics", force: true do |t|
+    t.integer  "user_id"
+    t.string   "source"
+    t.string   "relative"
+    t.string   "diabetes"
+    t.string   "antibody"
+    t.text     "note"
+    t.string   "group"
+    t.integer  "diabetes_type_id"
+    t.integer  "antibody_type_id"
+    t.integer  "relative_type_id"
+    t.boolean  "antibody_kind"
+    t.string   "antibody_value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "genetics", ["user_id", "created_at"], name: "index_genetics_on_user_id_and_created_at"
+  add_index "genetics", ["user_id", "source"], name: "index_genetics_on_user_id_and_source"
+  add_index "genetics", ["user_id"], name: "index_genetics_on_user_id"
+
   create_table "genetics_types", force: true do |t|
     t.string "name"
     t.string "category"
@@ -167,6 +173,13 @@ ActiveRecord::Schema.define(version: 20160301153958) do
 
   create_table "illness_types", force: true do |t|
     t.string "name"
+    t.string "lang"
+  end
+
+  create_table "labresult_types", force: true do |t|
+    t.string "name"
+    t.string "category"
+    t.string "lang"
   end
 
   create_table "labresults", force: true do |t|
@@ -180,6 +193,7 @@ ActiveRecord::Schema.define(version: 20160301153958) do
     t.datetime "date"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "labresult_type_id"
   end
 
   create_table "lifestyle_types", force: true do |t|
@@ -321,12 +335,12 @@ ActiveRecord::Schema.define(version: 20160301153958) do
     t.float    "weight"
     t.float    "height"
     t.string   "sex"
-    t.date     "dateofbirth"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "smoke",        default: false
-    t.boolean  "insulin",      default: false
+    t.boolean  "smoke",         default: false
+    t.boolean  "insulin",       default: false
     t.string   "default_lang"
+    t.integer  "year_of_birth"
   end
 
   add_index "profiles", ["user_id"], name: "index_profiles_on_user_id", unique: true

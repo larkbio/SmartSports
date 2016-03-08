@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
   has_many :diets
   has_many :medications
   has_many :lifestyles
-  has_many :family_histories
+  has_many :genetics
   has_many :notifications
   has_many :sensor_measurements
   has_many :labresults

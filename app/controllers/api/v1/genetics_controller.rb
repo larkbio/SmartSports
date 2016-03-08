@@ -1,7 +1,7 @@
 module Api::V1
-  class FamilyHistoriesController < ApiController
+  class GeneticsController < ApiController
 
-    include FamilyHistoriesCommon
+    include GeneticsCommon
 
     def index
       lim = 10
@@ -16,7 +16,7 @@ module Api::V1
       end
 
       user = User.find(user_id)
-      hist = user.family_histories.order(created_at: :desc).limit(lim)
+      hist = user.genetics.order(created_at: :desc).limit(lim)
       render json: hist
     end
 

@@ -114,6 +114,7 @@ class AnalysisDataController < ApplicationController
                       name = food_key_list.find_by_id(diet.food_type_id).try(:name)
                       unless category.nil? || name.nil?
                         item['tooltip'] = food_val_list[category][name]
+                        item['evt_type'] = category.downcase
                       end
                     end
 

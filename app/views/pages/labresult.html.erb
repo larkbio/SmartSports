@@ -56,7 +56,7 @@
             <div class="dataFormContainer labresultStyle">
                 <div class="dataFormTitle">
                     <%= image_tag "ketone40.png" %><br/>
-                    Ketone
+                    <%=t 'labresult_ketone' %>
                 </div>
                 <%= form_tag(root_path+"users/#{current_user.id}/labresults", remote: true, id: "ketone-create-form", class: "resource-create-form lab_results-form") do %>
                     <%= render "forms/labresult_ketone" %>

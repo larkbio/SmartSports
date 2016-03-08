@@ -1,0 +1,2 @@
+$("table.userTable tbody").html("");
+$("table.userTable tbody").html("<%= escape_javascript(render :partial=> 'shared/doctor_item', :collection=> @users ) %>");

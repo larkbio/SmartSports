@@ -76,6 +76,19 @@ namespace :smartdiab do
     end
   end
 
+  task init_labresult: :environment do
+    if LabresultType.all.size != 0
+      LabresultType.all.delete_all
+    end
+
+    dirName = File.dirname(__FILE__)
+    csv_text = dirName + "/init_labresult.csv"
+    csv = CSV.read(csv_text, headers: true, col_sep: ";")
+    csv.each do |row|
+      LabresultType.create!(row.to_hash)
+    end
+  end
+
   task init_lifestyle: :environment do
     if LifestyleType.all.size != 0
       LifestyleType.all.delete_all
@@ -117,11 +130,10 @@ namespace :smartdiab do
     dirName = File.dirname(__FILE__)
     csv_text = dirName + "/init_illness.csv"
     csv = CSV.read(csv_text, headers: true, col_sep: ";")
-    i = 0
+
     csv.each do |row|
-      ft = IllnessType.new(:id => i, :name =>  row['Name'])
+      ft = IllnessType.new(:id => row['id'], :name =>  row['name'])
       ft.save!
-      i += 1
     end
   end
 

@@ -33,6 +33,7 @@
 
   registerLangHandler()
   registerLogoutHandler()
+  registerPopupHandler()
 
 @registerLangHandler = () ->
   $(document).unbind("click.lang")
@@ -68,7 +69,7 @@
     popup_messages = JSON.parse($("#popup-messages").val())
     popup_error(popup_messages.logout_failed)
   )
-
+@registerPopupHandler = () ->
   $('body').on('click', "#infoOkButton", () ->
     $("#infoPopup").addClass("hidden")
   )
@@ -266,6 +267,13 @@
     }
 
   window.genetics_map_fn = (d) ->
+    {
+    label: d['name'],
+    id: d['id'],
+    lang: d['lang']
+    }
+
+  window.labresults_map_fn = (d) ->
     {
     label: d['name'],
     id: d['id'],

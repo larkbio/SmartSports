@@ -41,7 +41,7 @@ class PagesController < ApplicationController
     if lang
       loc = lang.to_sym
     end
-    if current_user.doctor?
+    if SmartSports::SHOW_DOCTOR and current_user.doctor?
       redirect_to pages_md_patients_path(locale: loc)
     else
       redirect_to pages_dashboard_path(locale: loc)
@@ -113,9 +113,7 @@ class PagesController < ApplicationController
   end
 
   def genetics
-    @relativeList = JSON.dump(FamilyHistory.relativeList)
-    @diseaseList = JSON.dump(FamilyHistory.diseaseList)
-    @family_histories = current_user.family_histories.order(created_at: :desc).limit(4)
+    @genetics = current_user.genetics.order(created_at: :desc).limit(4)
     save_click_record(:success, nil, nil)
   end
 
@@ -154,6 +152,14 @@ class PagesController < ApplicationController
     @form_list = CustomForm.form_list
     @form_params = CustomForm.form_params
     @hidden_forms = true
+  end
+
+  def admin_doctors
+    if !current_user.admin
+      redirect_to :controller => 'pages', :action => 'error', :locale => I18n.locale
+      return
+    end
+    @doctors = User.where(doctor: true)
   end
 
   def admin

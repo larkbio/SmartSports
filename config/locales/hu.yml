@@ -1,7 +1,11 @@
 hu:
   project_name: "SmheartRehab"
   top_title: "SmheartRehab - intelligent heart rehabilitation"
+  all: "Összes"
+  site_traffic: "A weblap forgalma"
+  invite_doctor: "Orvos meghívása"
 
+  tooltip_signedin: "Bejelentkezett felhasználó"
   menu_dashboard: "Asztal"
   menu_diet:      "Étrend"
   menu_exercise:  "Testmozgás"
@@ -16,6 +20,7 @@ hu:
   menu_connections: "Eszközök"
   menu_custom: "Saját"
   menu_users: "Felhasználók"
+  menu_doctors: "Orvosok"
   menu_forms: "Kérdőívek"
   menu_patients: "Betegek"
   menu_patient_groups: "Beteg Csoportok"
@@ -94,6 +99,7 @@ hu:
   fill_personal_info: "Kérem adja meg az alábbi adatokat, melyek segítségével személyreszabott szolgáltatásokat tudunk nyújtani Önnek. Lehetősége van kihagyni ezt és azonnal elkezdheti használni a SmheartRehab rendszert."
   height: "Magasság, pl: 180"
   date_of_birth: "Születési év"
+  date_of_birth_placeholder: "Születési év, pl:1970"
   sex: "Nem"
   male: "Férfi"
   female: "Nő"
@@ -117,6 +123,7 @@ hu:
   error_profile_height_format: "A magasság formátuma nem megfelelő!"
   error_profile_weight_interval: "A testsúlynak 20 és 500kg között kell lennie!"
   error_profile_height_interval: "A magasságnak 100 és 250cm között kell lennie!"
+  error_profile_year_interval: "A születési évnek 1900 es 2016 között kell lennie!"
   error_registration_password: "A jelszónak legalább 4 karakternek kell lennie!"
   error_registration_password_confirmation: "Jelszó megerősítése mező kitöltése kötelező!"
   error_registration_password_confirmation2: "A megadott jelszavak nem egyeznek!"
@@ -156,6 +163,8 @@ hu:
     pain_name_missing: "A fájdalom megnevezése hiányzik"
     failed_custom_form: "A saját form mentése sikertelen"
     connection_added_html: "A %{conn} kapcsolat sikeresen létrejött. A szinkronizáláshoz klikkeljen a <i class='fa fa-refresh fa-1x'></i> nyílra"
+    doctor_create_fail_email_exists: "Sikertelen az orvos meghívása, %{email} már foglalt."
+    doctor_invited_msg: "Meghívás sikeres: %{email}"
 # dashboard
   today:  "Mai nap"
   lastweek: "Elmúlt hét"
@@ -217,6 +226,7 @@ hu:
   activity_unknown: "Ismeretlen aktivitás"
 
   amount_values: "Kevés,Átlagos,Sok"
+  cal_message: "Az elhasznált kalóriák megjelenítéséhez a következő adatok megadása szükséges: kor, magasság, testsúly és nem."
 
 # health
   health:           "Egészség"
@@ -279,7 +289,7 @@ hu:
   period_amount_mild_pain: "Gyenge fájdalom"
   period_volume:      "Mérték"
   period_volume_moderate: "Mérsékelt"
-  illness_placeholder:     "Írjon legalább 3 betűt..."
+  illness_placeholder:     "Válasszon..."
   pain_placeholder:  "Válasszon..."
   unknown:                "Ismeretlen"
   sleepList:              "Nagyon rossz,Rossz,Jó,Nagyon jó"
@@ -297,6 +307,14 @@ hu:
   relative:           "Rokon"
   diabetes:           "Diabétesz"
   genetics_history:   "Betegtörténet"
+  personal_history:   "Személyes adatok"
+  family_history:     "Családi adatok"
+  relatives:          "Rokonok"
+  diabetes_type:      "Diabétesz típusa"
+  autoantibody_test:  "Autoantitest vizsgálat"
+  autoantibody_value: "Autoantitest érték"
+  positive:           "Pozitív"
+  negative:           "Negatív"
 
 # lab results
   lab_results:        "Kontroll"
@@ -308,7 +326,7 @@ hu:
   reminder:           "Emlékeztető"
   select:             "Kérem válasszon..."
   doctorList:         "háziorvos;szakorvos"
-  labresult_ketone:   "Ketone"
+  labresult_ketone:   "Keton"
 
   doctors_visit_general: "Háziorvos"
   doctors_visit_specialist: "Szakorvos"
@@ -376,3 +394,11 @@ hu:
     A SmheartRehab csapata
 
   reset_password_email_subj: "SmheartRehab jelszó visszaállítás"
+  doctor_invite_email_subj: "Orvos meghívó a SmheartRehab-ra"
+  doctor_invite_email: |
+      A SmheartRehab üdvözli Önt!
+
+      Csatlakzzon orvosként a SmheartRehab-hoz, a jelszó beállításához kövesse a linket: %{url}.
+
+      Szép napot kívánunk!
+      A SmheartRehab csapata

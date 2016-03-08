@@ -11,7 +11,7 @@ Rails.application.routes.draw do
         resources :diets
         resources :medications
         resources :lifestyles
-        resources :family_histories
+        resources :genetics
         resources :labresults
         resources :notifications
         resources :sensor_measurements
@@ -24,6 +24,7 @@ Rails.application.routes.draw do
       resources :activity_types
       resources :illness_types
       resources :genetics_types
+      resources :labresult_types
       get 'profile' => 'profile#show'
       put 'profile' => 'profile#update'
       post 'profile_image' => 'profile#profile_image'
@@ -39,6 +40,7 @@ Rails.application.routes.draw do
   resources :activity_types
   resources :illness_types
   resources :genetics_types
+  resources :labresult_types
   resources :click_records
   resources :custom_forms do
     resources :custom_form_elements
@@ -54,7 +56,7 @@ Rails.application.routes.draw do
     resources :lifestyles
     resources :diets
     resources :medications
-    resources :family_histories
+    resources :genetics
     resources :labresults
     resources :sensor_measurements
     resources :profile
@@ -67,12 +69,11 @@ Rails.application.routes.draw do
     post 'uploadAv'
   end
 
-  put 'password_resets/:id/edit' => 'password_resets#update'
-
   scope ':locale', locale: /#{I18n.available_locales.join("|")}/ do
     get 'password_resets/create'
     get 'password_resets/edit'
     get 'password_resets/update'
+    put '/password_resets/:id/edit' => 'password_resets#update'
     resources :password_resets
 
     get 'pages/main'
@@ -87,6 +88,7 @@ Rails.application.routes.draw do
     get 'pages/analytics'
     get 'pages/profile'
     get 'pages/admin'
+    get 'pages/admin_doctors'
     get 'pages/md_patients'
     get 'pages/md_customforms'
     get 'pages/md_statistics'

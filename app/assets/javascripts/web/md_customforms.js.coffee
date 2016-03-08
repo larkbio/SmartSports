@@ -2,6 +2,7 @@
   console.log "md loaded"
 
   registerLogoutHandler()
+  registerPopupHandler()
   registerLangHandler()
 
   resetMdUI()
