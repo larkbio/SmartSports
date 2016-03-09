@@ -37,7 +37,7 @@
 
             <!--<div id="langswitcher" class="langSwitcherTop topBannerControl" title="Change Language"><!%= @lang_label %></div>-->
 
-            <% if current_user.admin %>
+            <% if current_user.admin? %>
             <div class="imgContainer headerItemIcon topBannerControl" title="Admin">
                 <%= link_to url_for( :action => 'admin', :locale => I18n.locale ) do %>
                     <i class="fa fa-gear fa-lg headerItemIconMod"></i>
@@ -45,11 +45,13 @@
             </div>
             <% end %>
 
-            <div class="imgContainer headerItemIcon topBannerControl" title="<%=t 'alt_data_explorer'%>">
-            <%= link_to url_for( :action => 'analytics', :locale => I18n.locale ) do %>
-                <i class="fa fa-line-chart fa-lg headerItemIconMod"></i>
+            <% if not SmartSports::SHOW_DOCTOR or not current_user.doctor? %>
+                <div class="imgContainer headerItemIcon topBannerControl" title="<%=t 'alt_data_explorer'%>">
+                <%= link_to url_for( :action => 'analytics', :locale => I18n.locale ) do %>
+                    <i class="fa fa-line-chart fa-lg headerItemIconMod"></i>
+                <% end %>
+                </div>
             <% end %>
-            </div>
 
             <div class="topBannerRight topBannerControl" title="<%=t 'alt_profile_settings'%>">
             <%= link_to url_for( :action => 'profile', :locale => I18n.locale ), :class => "titleIcon" do %>

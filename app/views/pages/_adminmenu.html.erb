@@ -1,10 +1,12 @@
 <div class="app2Menu">
   <div class="inner ">
+    <% if not SmartSports::SHOW_DOCTOR or not current_user.doctor? %>
     <div class="menuitem c0  b0">
       <a id="dashboard-link" class="menulink" href="<%= url_for( :action => 'dashboard', :locale => I18n.locale ) %>">
         <%=t 'menu_dashboard' %>
       </a>
     </div>
+    <% end %>
     <div class="menuitem c0 myprofile">
       <a id="users-link" class="menulink menulink-selected" href="<%= url_for( :action => 'admin', :locale => I18n.locale ) %>">
         <%= t 'menu_users' %>

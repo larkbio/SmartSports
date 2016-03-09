@@ -1,21 +1,31 @@
 <div class="app2Menu">
   <div class="inner ">
-    <div class="menuitem c0  b0">
-      <a id="dashboard-link" class="menulink" href="<%= url_for( :action => 'dashboard', :locale => I18n.locale ) %>">
-        <%=t 'menu_dashboard' %>
-      </a>
-    </div>
+    <% if not SmartSports::SHOW_DOCTOR or not current_user.doctor? %>
+        <div class="menuitem c0  b0">
+          <a id="dashboard-link" class="menulink" href="<%= url_for( :action => 'dashboard', :locale => I18n.locale ) %>">
+            <%=t 'menu_dashboard' %>
+          </a>
+        </div>
+    <% end %>
+    <% if SmartSports::SHOW_DOCTOR and current_user.doctor? %>
+        <div class="menuitem mdProfile">
+          <a id="patients-link" class="menulink" href="<%= url_for( :action => 'md_patients', :locale => I18n.locale ) %>">
+            <%= t 'menu_patients' %>
+          </a>
+        </div>
+    <% end %>
     <div class="menuitem c0 myprofile">
       <a id="myprofile-link" class="menulink" href="<%= url_for( :action => 'profile', :locale => I18n.locale ) %>">
         <%=t 'menu_profile' %>
       </a>
     </div>
+    <% if not SmartSports::SHOW_DOCTOR or not current_user.doctor? %>
     <div class="menuitem c0 connections">
       <a id="connections-link" class="menulink" href="<%= url_for( :action => 'connections', :locale => I18n.locale ) %>">
         <%=t 'menu_connections' %>
       </a>
     </div>
-
+    <% end %>
     <div style="float: right;width: 50px;">
 
     </div>
