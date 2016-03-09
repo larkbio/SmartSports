@@ -91,9 +91,7 @@
       data["notification[date]"] = defaultHashVal[timeKey]
 
     data["notification[default_data]"] = defaultValues
-    console.log("creating notification:")
-    console.log(data)
-    $.ajax urlPrefix()+action,
+    $.ajax action,
       type: 'POST',
       data: data
       dataType: 'json'

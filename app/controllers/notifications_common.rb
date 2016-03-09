@@ -1,4 +1,5 @@
 module NotificationsCommon
+  require 'json'
   def create
     @user = User.find(params[:user_id])
     par = notification_params
@@ -87,8 +88,12 @@ module NotificationsCommon
 
       notif_data = {
           user_name: user.username,
-          user_id: user.id
+          user_id: user.id,
+          notification_id: notif.id,
+          form_name: notif.form_name
       }
+      logger.debug("Notif data:")
+      logger.debug(JSON.pretty_generate(notif_data))
       notification = Grocer::Notification.new(
           device_token:      user.dev_token.upcase,
           alert:             msg,

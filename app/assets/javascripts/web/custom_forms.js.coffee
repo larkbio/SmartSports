@@ -154,16 +154,12 @@
     $(this).autocomplete("search")
 
 @getFormElement = (formName, targetSelector, formButton) ->
-  url = '/form_element.js'
-  console.log "calling load form for: "+url
-  console.log formName+" sel: "+targetSelector+" button:"+formButton
+  url = 'form_element.js'
   $(targetSelector).removeClass("hidden")
-  req = $.ajax({
+  req = $.ajax urlPrefix()+url,
     method: "GET",
     data: {form_name: formName, target_element_selector: targetSelector, form_button: formButton},
-    url: url,
     dataType: "script"
-  })
   req.done( (data, textStatus, jqXHR) ->
     console.log "load form_element Successful AJAX call"
   )
