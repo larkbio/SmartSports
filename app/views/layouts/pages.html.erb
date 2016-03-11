@@ -14,7 +14,7 @@
 </head>
 <body class="nobgAnimation" id="pageTop">
     <input id="user-lang" value="<%=I18n.locale%>" type="hidden" />
-    <input id="db-version" value="<%=SmartSports::DBVERSION%>" type="hidden" />
+    <input id="db-version" value="<%=@dbversion%>" type="hidden" />
     <input id="amount_values" value="<%=t :amount_values%>" type="hidden" />
     <%= render partial: 'shared/popups' %>
     <%= yield :background_style %>

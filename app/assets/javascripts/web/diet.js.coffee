@@ -257,7 +257,7 @@
   else
     foodkey = 'sd_foods_hu'
 
-  if getStored(foodkey)==undefined || getStored(foodkey).length==0 || testDbVer(db_version)
+  if getStored(foodkey)==undefined || getStored(foodkey).length==0 || testDbVer(db_version, ['sd_foods_hu','sd_drinks_hu','sd_smoke_hu','sd_foods_en','sd_drinks_en','sd_smoke_en'])
     ret = $.ajax urlPrefix()+'food_types.json',
       type: 'GET',
       error: (jqXHR, textStatus, errorThrown) ->

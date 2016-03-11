@@ -38,6 +38,7 @@ class UsersController < ApplicationController
         @user = User.new(par)
         @user.username = @user.email.split("@")[0]
         @user.name = @user.username
+        @user.profile = Profile.new
 
         @user.save!
         @user.generate_reset_password_token!
@@ -51,6 +52,7 @@ class UsersController < ApplicationController
 
     @user.username = @user.email.split("@")[0]
     @user.name = @user.username
+    @user.profile = Profile.new
     respond_to do |format|
       if @user.save
         mail_lang = params[:lang] || "en"

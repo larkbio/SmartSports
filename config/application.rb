@@ -7,7 +7,6 @@ require 'rails/all'
 Bundler.require(*Rails.groups)
 
 module SmartSports
-  DBVERSION = '1.0.11'
   SHOW_DOCTOR = true
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.

@@ -131,6 +131,7 @@ hu:
   error_registration_email_format: "A megadott e-mail cím formátuma nem megfelelő!"
   error_login_password: "Helytelen jelszó"
   error_login_username: "Helytelen felasználónév vagy jelszó"
+  error_end_time_greater: "A befejezés időpontjának a kezedti időpont után kell esnie!"
 
   reg_succ: "Sikeres regisztráció"
 
@@ -165,6 +166,8 @@ hu:
     connection_added_html: "A %{conn} kapcsolat sikeresen létrejött. A szinkronizáláshoz klikkeljen a <i class='fa fa-refresh fa-1x'></i> nyílra"
     doctor_create_fail_email_exists: "Sikertelen az orvos meghívása, %{email} már foglalt."
     doctor_invited_msg: "Meghívás sikeres: %{email}"
+    password_change_success: "A jelszó beállítás sikeres."
+
 # dashboard
   today:  "Mai nap"
   lastweek: "Elmúlt hét"

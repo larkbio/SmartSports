@@ -10,14 +10,13 @@
       input.datetimepicker('hide')
   })
 
-  langList = [{ label: "Magyar", value: "hu"},
-    { label: "English", value: "en"}
+  langList = [{ value: "Magyar", dbval: "hu"},
+    { value: "English", dbval: "en"}
   ]
   $("#lang_sel").autocomplete({
     minLength: 0,
     source: langList
     change: (event, ui) ->
-      console.log ui.item
       setLang(event, ui)
     select: (event, ui) ->
       setLang(event, ui)
@@ -26,14 +25,13 @@
     $(this).autocomplete("search")
 
   gendervals = $("#gender_values").val().split(",")
-  sexList = [{ label: gendervals[0], value: "male"},
-    { label: gendervals[1], value: "female"}
+  sexList = [{ value: gendervals[0], dbval: "male"},
+    { value: gendervals[1], dbval: "female"}
   ]
   $("#sex_sel").autocomplete({
       minLength: 0,
       source: sexList
       change: (event, ui) ->
-        console.log ui.item
         setGender(event, ui)
       select: (event, ui) ->
         setGender(event, ui)
@@ -42,14 +40,13 @@
     $(this).autocomplete("search")
 
   yesnovals = $("#yes_no_values").val().split(",")
-  yesnoList = [{ label: yesnovals[0], value: "1"},
-    { label: yesnovals[1], value: "0"}
+  yesnoList = [{ value: yesnovals[0], dbval: "1"},
+    { value: yesnovals[1], dbval: "0"}
   ]
   $("#smoke_sel").autocomplete({
     minLength: 0,
     source: yesnoList
     change: (event, ui) ->
-      console.log ui.item
       setSmoke(event, ui)
     select: (event, ui) ->
       setSmoke(event, ui)
@@ -57,31 +54,17 @@
   }).focus ->
     $(this).autocomplete("search")
 
-#  $("#insulin_sel").autocomplete({
-#    minLength: 0,
-#    source: yesnoList
-#    change: (event, ui) ->
-#      console.log ui.item
-#  }).focus ->
-#    $(this).autocomplete("search")
-
   setSmoke = (event, ui) ->
-    labelItem = event.target
-    labelItem.value = ui['item']['label']
-    valueItem = labelItem.parentNode.querySelector("input[name='profile[smoke]']")
-    valueItem.value = ui['item']['value']
+    event.target.parentElement.querySelector("#smoke_sel").value = ui.item.value
+    event.target.parentNode.querySelector("input[name='profile[smoke]']").value = ui.item.dbval
 
   setGender = (event, ui) ->
-    labelItem = event.target
-    labelItem.value = ui['item']['label']
-    valueItem = labelItem.parentNode.querySelector("input[name='profile[sex]']")
-    valueItem.value = ui['item']['value']
+    event.target.parentElement.querySelector("#sex_sel").value = ui.item.value
+    event.target.parentNode.querySelector("input[name='profile[sex]']").value = ui.item.dbval
 
   setLang = (event, ui) ->
-    labelItem = event.target
-    labelItem.value = ui['item']['label']
-    valueItem = labelItem.parentNode.querySelector("input[name='profile[default_lang]']")
-    valueItem.value = ui['item']['value']
+    event.target.parentElement.querySelector("#lang_sel").value = ui.item.value
+    event.target.parentNode.querySelector("input[name='profile[default_lang]']").value = ui.item.dbval
 
   $("#profileForm").on("ajax:success", (e, data, status, xhr) ->
     form_id = e.currentTarget.id
@@ -118,11 +101,11 @@
     if(data.ok == false)
       popup_error(data.responseJSON["msg"])
     else
-      document.location = urlPrefix()+data.locale+"/profile/new"
+      document.location = urlPrefix()+data.locale+"/profile/edit"
   ).on("ajax:error", (e, data, status, error) ->
     console.log data.responseJSON
     popup_error(data.responseJSON["msg"])
-#    popup_error(popup_messages.sign_up_failed)
+    #popup_error(popup_messages.sign_up_failed)
   )
 
 
@@ -135,10 +118,12 @@
   $(document).on("ajax:success.login", "#loginForm", (e, data, status, xhr) ->
     form_id = e.currentTarget.id
     console.log "success "+form_id
-    document.location = data.redir_url
+    #redir to main page
+    document.location = urlPrefix()
   ).on("ajax:error", (e, xhr, status, error) ->
     console.log error
     popup_error(xhr.responseJSON["msg"])
+    #popup_error(popup_messages.login_failed)
   )
 
 @resetpw_loaded = () ->
@@ -149,9 +134,14 @@
 
   $("#infoPopup").one( "click", ".infoButton", () ->
     console.log document.location.href
-    lang = document.location.pathname.split("/")[1]
-    url = urlPrefix()+lang+"/pages/signin"
-    document.location = url
+    path = document.location.pathname.split("/")
+    if path.length == 4
+      lang = path[1]
+    else if path.size() == 5
+      lang = path[2]
+    else
+      lang = 'hu'
+    document.location = urlPrefix()+lang+"/pages/signin"
   )
   $("#pwResetForm").on("ajax:success", (e, data, status, error) ->
     form_id = e.currentTarget.id
@@ -169,8 +159,14 @@
   console.log "resetpw page loaded"
 
   $("#infoPopup").one( "click", ".infoButton", () ->
-      lang = document.location.pathname.split("/")[1]
-      document.location = urlPrefix()+lang+"/pages/signin"
+    path = document.location.pathname.split("/")
+    if path.length == 4
+      lang = path[1]
+    else if path.size() == 5
+      lang = path[2]
+    else
+      lang = 'hu'
+    document.location = urlPrefix()+lang+"/pages/signin"
   )
   $("#pwChangeForm").on("ajax:success", (e, data, status, xhr) ->
     form_id = e.currentTarget.id

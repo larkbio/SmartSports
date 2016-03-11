@@ -28,7 +28,7 @@
     console.log data
     popup_success(data['activity_name']+popup_messages.saved_successfully+' '+data['cal_message'], "exerciseStyle")
   ).on("ajax:error", (e, xhr, status, error) ->
-    popup_error(popup_messages.failed_to_add+$("#activityname").val(), "exerciseStyle")
+    popup_error(popup_messages.failed_to_add+$(".activity_exercise_name").val()+' '+xhr.responseJSON.msg, "exerciseStyle")
   )
 
   $("#regular-activity-create-form").on("ajax:success", (e, data, status, xhr) ->
@@ -44,7 +44,7 @@
     console.log data
     popup_success(data['activity_name']+popup_messages.saved_successfully+' '+data['cal_message'], "exerciseStyle")
   ).on("ajax:error", (e, xhr, status, error) ->
-    popup_error(popup_messages.failed_to_add+$("#otheractivityname").val(), "exerciseStyle")
+    popup_error(popup_messages.failed_to_add+$("#otheractivityname").val()+' '+xhr.responseJSON.msg, "exerciseStyle")
   )
 
   $("#recentResourcesTable").on("ajax:success", (e, data, status, xhr) ->
@@ -258,7 +258,7 @@
   else
     activity_key = 'sd_activities_hu'
 
-  if !getStored(activity_key) || testDbVer(db_version)
+  if !getStored(activity_key) || testDbVer(db_version,['sd_activities_hu','sd_activities_en'])
     ret = $.ajax urlPrefix()+'activity_types.json',
       type: 'GET',
       error: (jqXHR, textStatus, errorThrown) ->

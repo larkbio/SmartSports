@@ -139,7 +139,7 @@
     geneticskey = 'sd_relatives_'+user_lang
   else
     geneticskey = 'sd_relatives_hu'
-  if !getStored(geneticskey) || testDbVer(db_version)
+  if !getStored(geneticskey) || testDbVer(db_version,['sd_relatives_hu','sd_diabetes_hu','sd_autoantibody_hu','sd_relatives_en','sd_diabetes_en','sd_autoantibody_en'])
     ret = $.ajax '/genetics_types.json',
       type: 'GET',
       error: (jqXHR, textStatus, errorThrown) ->
@@ -170,6 +170,8 @@
         setStored('sd_autoantibody_en', data.filter( (d) ->
           d['category'] == "autoantibody" && d['lang'] == 'en'
         ).map( window.genetics_map_fn))
+
+        setStored('db_version', db_version)
         cb()
   else
     ret = new Promise( (resolve, reject) ->

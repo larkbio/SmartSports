@@ -29,7 +29,7 @@
     resetLifesyleForms()
     popup_success(popup_messages.save_success, "wellbeingStyle")
   ).on("ajax:error", (e, xhr, status, error) ->
-    alert("Failed to create object.")
+    popup_error(popup_messages.failed_to_add+' '+xhr.responseJSON.msg, "lifestyleStyle")
     $("input[name='lifestyle[name]']").val(null)
     $('#illnessname').val(null)
     $('#pain_name').val(null)
@@ -309,7 +309,8 @@
   else
     painkey = 'sd_pains_hu'
     illnesskey = 'sd_illness_hu'
-  if getStored(illnesskey)==undefined || getStored(illnesskey).length==0 || getStored(painkey)==undefined || getStored(painkey).length==0|| testDbVer(db_version)
+  if !getStored(illnesskey) || testDbVer(db_version,['sd_illness_hu','sd_illness_en','sd_pains_hu','sd_pains_en'])
+  #  if getStored(illnesskey)==undefined || getStored(illnesskey).length==0 || getStored(painkey)==undefined || getStored(painkey).length==0|| testDbVer(db_version)
     ret = $.ajax urlPrefix()+'illness_types.json',
       type: 'GET',
       error: (jqXHR, textStatus, errorThrown) ->
@@ -340,6 +341,8 @@
             label: d['name'],
             id: d['id']
           }))
+
+        setStored('db_version', db_version)
 
         cb()
   else

@@ -5,9 +5,7 @@ namespace :smartdiab do
   "Load default medications"
   task init_medication: :environment do
     if MedicationType.all.size != 0
-      MedicationType.all.each {|mt|
-        mt.destroy!
-      }
+      MedicationType.all.delete_all
     end
 
     insulin = Regexp.new(/insulin/)
@@ -31,6 +29,23 @@ namespace :smartdiab do
         mt = MedicationType.new(:name =>  m['name'], :group => grp)
         mt.save!
       end
+    end
+  end
+
+  task init_db: :environment do
+    Rake::Task['smartdiab:init_activity'].execute
+    Rake::Task['smartdiab:init_food'].execute
+    Rake::Task['smartdiab:init_genetics'].execute
+    Rake::Task['smartdiab:init_illness'].execute
+    Rake::Task['smartdiab:init_labresult'].execute
+    Rake::Task['smartdiab:init_lifestyle'].execute
+    if InitVersion.all.size == 1
+      actualVersion = InitVersion.last
+      actualVersion.update(:version_number => actualVersion.version_number+1)
+    else
+      InitVersion.all.delete_all
+      v = InitVersion.new(:id => 1, :version_number =>  1)
+      v.save!
     end
   end
 
@@ -102,26 +117,6 @@ namespace :smartdiab do
     end
   end
 
-  task load_foods_csv: :environment do
-    if FoodType.all.size != 0
-      FoodType.all.each {|mt|
-        mt.destroy!
-      }
-    end
-
-    foodlist = nil
-    f = "#{ENV['HOME']}/Downloads/foods_exported_final.csv"
-    foodlist = CSV.read(f, headers: true)
-
-    #print foodlist.first.as_json.pretty_inspect
-    foodlist.each do |m|
-      # ["id", "name", "category", "amount", "kcal", "prot", "carb", "fat"]
-      ft = FoodType.new(:id => m['ID'], :name =>  m['Description'], :category => m['Category'], :amount => m['Quantity'], :kcal => m['Kcal'], :prot => m['Protein'], :carb => m['Carb'], :fat => m['Fat'])
-      ft.save!
-    end
-
-  end
-
   task init_illness: :environment do
     if IllnessType.all.size != 0
       IllnessType.all.delete_all
@@ -137,54 +132,74 @@ namespace :smartdiab do
     end
   end
 
-  task export_foods: :environment do
-    k = ["id", "name", "category", "amount", "kcal", "prot", "carb", "fat"]
-    CSV.open("#{ENV['HOME']}/Downloads/foods_exported.csv", 'w') do |csv|
-      csv << k
-      prev = nil
-      FoodType.all.order("name").order("kcal").each do |ft|
-        row = ft.as_json
-        cmp = row.clone
-        cmp.delete('id')
-        if cmp!=prev
-          prev=cmp
-          csv << k.map{|it| row[it]}
-        end
-      end
-    end
-  end
-
-  task export_json: :environment do
-    File.open("#{ENV['HOME']}/Downloads/foods_exported.json", 'w') do |f|
-      arr = []
-      prev = nil
-      FoodType.all.order("name").order("kcal").each do |ft|
-        curr = ft.as_json
-        cmp = curr.clone
-        cmp.delete('id')
-        if cmp!=prev
-          arr << curr
-          prev = cmp
-        end
-      end
-      JSON.dump(arr, f)
-    end
-  end
-
-  task export_activities: :environment do
-    k = ["name", "kcal", "category"]
-    CSV.open("#{ENV['HOME']}/Downloads/activity_exported.csv", 'w') do |csv|
-      csv << k
-      prev = nil
-      ActivityType.all.order("id").each do |at|
-        row = at.as_json
-        cmp = row.clone
-        cmp.delete('id')
-        if cmp!=prev
-          prev=cmp
-          csv << k.map{|it| row[it]}
-        end
-      end
-    end
-  end
+  # task load_foods_csv: :environment do
+  #   if FoodType.all.size != 0
+  #     FoodType.all.each {|mt|
+  #       mt.destroy!
+  #     }
+  #   end
+  #
+  #   foodlist = nil
+  #   f = "#{ENV['HOME']}/Downloads/foods_exported_final.csv"
+  #   foodlist = CSV.read(f, headers: true)
+  #
+  #   #print foodlist.first.as_json.pretty_inspect
+  #   foodlist.each do |m|
+  #     # ["id", "name", "category", "amount", "kcal", "prot", "carb", "fat"]
+  #     ft = FoodType.new(:id => m['ID'], :name =>  m['Description'], :category => m['Category'], :amount => m['Quantity'], :kcal => m['Kcal'], :prot => m['Protein'], :carb => m['Carb'], :fat => m['Fat'])
+  #     ft.save!
+  #   end
+  #
+  # end
+  #
+  # task export_foods: :environment do
+  #   k = ["id", "name", "category", "amount", "kcal", "prot", "carb", "fat"]
+  #   CSV.open("#{ENV['HOME']}/Downloads/foods_exported.csv", 'w') do |csv|
+  #     csv << k
+  #     prev = nil
+  #     FoodType.all.order("name").order("kcal").each do |ft|
+  #       row = ft.as_json
+  #       cmp = row.clone
+  #       cmp.delete('id')
+  #       if cmp!=prev
+  #         prev=cmp
+  #         csv << k.map{|it| row[it]}
+  #       end
+  #     end
+  #   end
+  # end
+  #
+  # task export_json: :environment do
+  #   File.open("#{ENV['HOME']}/Downloads/foods_exported.json", 'w') do |f|
+  #     arr = []
+  #     prev = nil
+  #     FoodType.all.order("name").order("kcal").each do |ft|
+  #       curr = ft.as_json
+  #       cmp = curr.clone
+  #       cmp.delete('id')
+  #       if cmp!=prev
+  #         arr << curr
+  #         prev = cmp
+  #       end
+  #     end
+  #     JSON.dump(arr, f)
+  #   end
+  # end
+  #
+  # task export_activities: :environment do
+  #   k = ["name", "kcal", "category"]
+  #   CSV.open("#{ENV['HOME']}/Downloads/activity_exported.csv", 'w') do |csv|
+  #     csv << k
+  #     prev = nil
+  #     ActivityType.all.order("id").each do |at|
+  #       row = at.as_json
+  #       cmp = row.clone
+  #       cmp.delete('id')
+  #       if cmp!=prev
+  #         prev=cmp
+  #         csv << k.map{|it| row[it]}
+  #       end
+  #     end
+  #   end
+  # end
 end

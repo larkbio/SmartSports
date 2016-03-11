@@ -5,6 +5,11 @@ class LifeStyleValidator < ActiveModel::Validator
     elsif (record.group == 'pain' && record.pain_type_name == nil || record.pain_type_name == "")
       record.errors[:pain_type_name] << 'no_value'
     end
+    if record.start_time && record.end_time
+      if record.end_time < record.start_time
+        record.errors[:base] << (I18n.t :error_end_time_greater)
+      end
+    end
   end
 end
 

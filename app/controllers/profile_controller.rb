@@ -12,6 +12,7 @@ class ProfileController < ApplicationController
   end
 
   def edit
+    @values = JSON.dump(I18n.t :popupmessages)
   end
 
   def show

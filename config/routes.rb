@@ -70,10 +70,10 @@ Rails.application.routes.draw do
   end
 
   scope ':locale', locale: /#{I18n.available_locales.join("|")}/ do
-    get 'password_resets/create'
-    get 'password_resets/edit'
-    get 'password_resets/update'
-    put '/password_resets/:id/edit' => 'password_resets#update'
+    #get 'password_resets/create'
+    #get 'password_resets/edit'
+    #get 'password_resets/update'
+    #put '/password_resets/:id/edit' => 'password_resets#update'
     resources :password_resets
 
     get 'pages/main'
@@ -104,7 +104,7 @@ Rails.application.routes.draw do
     get 'pages/signup'
     get 'pages/reset_password'
 
-    get 'profile/new'
+    get 'profile/edit'
     post 'profile/set_default_lang'
 
   end

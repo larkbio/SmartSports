@@ -290,12 +290,13 @@
   return m.format(moment_fmt)
 
 
-@testDbVer = (actualDbVersion) ->
+@testDbVer = (actualDbVersion, localItems) ->
   if typeof(Storage) != "undefined"
     try
       storedDbVersion = JSON.parse(localStorage.getItem("db_version"))
       if !storedDbVersion || storedDbVersion !=  actualDbVersion
-        localStorage.clear
+        for localItem in localItems
+          localStorage.removeItem(localItem)
         return true
     catch
       return false

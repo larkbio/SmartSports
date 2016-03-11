@@ -143,8 +143,9 @@
 @loadMedicationTypes = (cb) ->
   self = this
   current_user = $("#current-user-id")[0].value
+  db_version = $("#db-version")[0].value
 
-  if !getStored("sd_pills")
+  if !getStored("sd_pills") || testDbVer(db_version,['sd_pills','sd_insulin'])
     console.log "calling load medication types"
     ret = $.ajax urlPrefix()+'medication_types.json',
       type: 'GET',
@@ -167,6 +168,8 @@
           label: d['name'],
           id: d['id']
           }))
+
+        setStored('db_version', db_version)
         cb()
   else
     console.log "medication types already loaded"

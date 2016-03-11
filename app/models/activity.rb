@@ -3,7 +3,7 @@ require 'csv'
 class DateTimeValidator < ActiveModel::Validator
   def validate(record)
     if record.end_time < record.start_time
-      record.errors[:base] << 'End time should be greater that start time!'
+      record.errors[:base] << (I18n.t :error_end_time_greater)
     end
   end
 end

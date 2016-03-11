@@ -152,6 +152,7 @@ en:
   error_registration_email_format: "Invalid e-mail format!"
   error_login_password: "Invalid password"
   error_login_username: "Invalid username or password"
+  error_end_time_greater: "End time should be greater than start time!"
 
   reg_succ: "Registration successful"
 
@@ -186,6 +187,8 @@ en:
     connection_added_html: "The %{conn} connection has been added successfully. Click <i class='fa fa-refresh fa-1x'></i> to synchronize now."
     doctor_create_fail_email_exists: "Failed to add doctor, %{email} already exists."
     doctor_invited_msg: "Successfully invited: %{email}"
+    password_change_success: "Password was successfully updated."
+
 # dashboard
   today: "Today"
   lastweek: "Last Week"

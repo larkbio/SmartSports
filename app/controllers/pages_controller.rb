@@ -3,6 +3,7 @@ class PagesController < ApplicationController
 
   before_action :set_locale
   before_action :set_user_data
+  before_action :set_db_version
   before_filter :require_login, except: [:signin, :signup, :reset_password]
   layout :which_layout
 
@@ -319,6 +320,14 @@ private
       end
     end
     @values = JSON.dump(I18n.t :popupmessages)
+  end
+
+  def set_db_version
+    if InitVersion.all.size == 1
+      @dbversion = InitVersion.last.version_number
+    else
+      @dbversion = 1
+    end
   end
 
 end

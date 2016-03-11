@@ -199,7 +199,7 @@
     labresultkey = 'sd_labresult_'+user_lang
   else
     labresultkey = 'sd_labresult_hu'
-  if !getStored(labresultkey) || testDbVer(db_version)
+  if !getStored(labresultkey) || testDbVer(db_version,['sd_labresult_hu','sd_labresult_en'])
     ret = $.ajax '/labresult_types.json',
       type: 'GET',
       error: (jqXHR, textStatus, errorThrown) ->
@@ -214,6 +214,8 @@
         setStored('sd_labresult_en', data.filter( (d) ->
           d['category'] == "ketone" && d['lang'] == 'en'
         ).map( window.labresults_map_fn))
+
+        setStored('db_version', db_version)
 
         cb()
   else

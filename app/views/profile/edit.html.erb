@@ -1,2 +1,53 @@
-<h1>Profile#edit</h1>
-<p>Find me in app/views/profile/edit.html.erb</p>
+<input id="popup-messages" value="<%=@values%>" type="hidden" />
+<input id="yes_no_values" value="<%=t :yes_no_list%>" type="hidden" />
+<input id="gender_values" value="<%=t :gender_list%>" type="hidden" />
+
+<div style="position:absolute;left:47%;margin-left:-240px;top:100px;">
+
+  <div style="width: 600px;height: 128px;color: grey;">
+    <%= image_tag "logo-login.png", id:"loginLogo", class: "loginLogo", alt:"Login" %>
+    <div style="padding-top: 15px;">
+      <span style="font-family: 'Open Sans', sans-serif;font-size: 18px;"><%=t 'fill_personal_info' %></span><br>
+    </div>
+  </div>
+</div>
+
+
+<div id="registerDiv" class="registerDiv">
+  <div>
+    <%= form_tag(root_path+"users/#{current_user.id}/profile/#{current_user.profile.id}", :method => :PUT, :remote => true, :id=> 'profileForm', class: "resource-update-form profileForm") do %>
+        <input name="lang" value="<%=I18n.locale%>" type="hidden" />
+        <input type="hidden" id="user_id" name="profile[user_id]" value="<%= @current_user.id %>">
+        <input id="lastname_field" name="profile[lastname]" type="text" class="loginField" placeholder="<%=t 'lastname' %>"/><br>
+        <input id="firstname_field" name="profile[firstname]" type="text" class="loginField" placeholder="<%=t 'firstname' %>"/><br>
+        <input id="sex_sel" type="search" class="loginField" placeholder="<%=t :sex %>">
+        <input type="hidden" name="profile[sex]" >
+        <input id="year_field" name="profile[year_of_birth]" type="text" class="loginField" placeholder="<%=t 'date_of_birth_placeholder' %>"/>
+        <input id="weight_field" name="profile[weight]" type="text" class="loginField" placeholder="<%=t 'weight_placeholder' %>"/>
+        <input id="height_field" name="profile[height]" type="text" class="loginField" placeholder="<%=t 'height' %>"/>
+        <input id="smoke_sel" type="search" class="loginField" placeholder="<%=t :smoke_question %>">
+        <input type="hidden" name="profile[smoke]" >
+        <input id="lang_sel" type="search" class="loginField" placeholder="<%=t :default_lang %>">
+        <input type="hidden" name="profile[default_lang]" value="hu">
+        <input type="hidden" id="insulin_sel_default" name="profile[insulin]" value="1">
+        <br/>
+
+        <input type="submit" class="loginButton animButton" value="<%=t 'save' %>"/>
+    <% end %>
+    <%= form_tag(root_path+"users/#{current_user.id}/profile/#{current_user.profile.id}", :method => :PUT, :remote => true, :id=> 'emptyProfileForm') do %>
+        <input name="lang" value="<%=I18n.locale%>" type="hidden" />
+        <input type="hidden" id="user_id" name="profile[user_id]" value="<%= @current_user.id %>">
+        <input type="hidden" id="default_lang" name="profile[default_lang]" value="hu">
+        <input type="submit" class="skipButton animButton" value="<%=t 'skip' %>"/>
+    <%end%>
+  </div>
+</div>
+
+<%= render partial: 'shared/popups' %>
+
+<script>
+    pages_menu()
+    profile_reg_loaded()
+</script>
+
+

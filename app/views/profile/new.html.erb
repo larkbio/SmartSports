@@ -18,13 +18,8 @@
     <%= form_tag(root_path+"users/#{current_user.id}/profile", :method => :post, :remote => true, :id=> 'profileForm', class: "resource-update-form profileForm") do %>
         <input name="lang" value="<%=I18n.locale%>" type="hidden" />
         <input type="hidden" id="user_id" name="profile[user_id]" value="<%= @current_user.id %>">
-        <% if I18n.locale.to_s == "hu" %>
-            <input id="lastname_field" name="profile[lastname]" type="text" class="loginField" placeholder="<%=t 'lastname' %>"/><br>
-            <input id="firstname_field" name="profile[firstname]" type="text" class="loginField" placeholder="<%=t 'firstname' %>"/><br>
-        <% else %>
-            <input id="firstname_field" name="profile[firstname]" type="text" class="loginField" placeholder="<%=t 'firstname' %>"/><br>
-            <input id="lastname_field" name="profile[lastname]" type="text" class="loginField" placeholder="<%=t 'lastname' %>"/><br>
-        <% end %>
+        <input id="lastname_field" name="profile[lastname]" type="text" class="loginField" placeholder="<%=t 'lastname' %>"/><br>
+        <input id="firstname_field" name="profile[firstname]" type="text" class="loginField" placeholder="<%=t 'firstname' %>"/><br>
         <input id="sex_sel" type="search" class="loginField" placeholder="<%=t :sex %>">
         <input type="hidden" name="profile[sex]" >
         <input id="year_field" name="profile[year_of_birth]" type="text" class="loginField" placeholder="<%=t 'date_of_birth_placeholder' %>"/>
