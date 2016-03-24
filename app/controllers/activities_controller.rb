@@ -12,6 +12,8 @@ class ActivitiesController < ApplicationController
     order = params[:order]
     limit = params[:limit]
 
+    lang = params[:lang]
+
     favourites = params[:favourites]
 
     @activities = Activity.where("user_id = #{user_id}")
@@ -19,9 +21,9 @@ class ActivitiesController < ApplicationController
       @activities = @activities.where("source = '#{source}'")
     end
     if order and order=="desc"
-      @activities = @activities.order(created_at: :desc)
+      @activities = @activities.order(start_time: :desc)
     else
-      @activities = @activities.order(created_at: :asc)
+      @activities = @activities.order(start_time: :asc)
     end
     if limit and limit.to_i>0
       @activities = @activities.limit(limit)
@@ -43,18 +45,24 @@ class ActivitiesController < ApplicationController
       @activities = @activities.where(favourite: true)
     end
 
-    @activities = @activities.order(:start_time)
-
     for a in @activities
       if a.activity_type
-        a["activity"] = a.activity_type.name
+        if lang
+          if lang == "hu"
+            a.activity = DB_HU_CONFIG['activities'][a.activity_type.name]
+          elsif lang == "en"
+            a.activity = DB_EN_CONFIG['activities'][a.activity_type.name]
+          end
+        else
+         a.activity = a.activity_type.name
+        end
       end
     end
 
     respond_to do |format|
       format.html
       format.json
-      format.csv { send_data @activities.to_csv}
+      format.csv { send_data @activities.to_csv({}, lang)}
       format.js
     end
   end

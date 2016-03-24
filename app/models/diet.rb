@@ -1,7 +1,7 @@
 class DietValidator < ActiveModel::Validator
   def validate(record)
-    if (record.diet_type == 'Food' || record.diet_type == 'Drink') && record.food_type_id == nil
-      record.errors[:food_type_id] << 'No value'
+    if (record.diet_type == 'Food' || record.diet_type == 'Drink') && record.food_type_name == nil
+      record.errors[:food_type_name] << 'No value'
     elsif record.diet_type == 'Calory'
       if((record.calories == nil || record.calories == "") && (record.carbs == nil || record.carbs == ""))
         record.errors[:calories] << 'No value'

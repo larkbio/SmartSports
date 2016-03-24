@@ -22,7 +22,7 @@ Rails.application.routes.draw do
       resources :medication_types
       resources :food_types
       resources :activity_types
-      resources :illness_types
+      resources :lifestyle_types
       resources :genetics_types
       resources :labresult_types
       get 'profile' => 'profile#show'
@@ -38,7 +38,7 @@ Rails.application.routes.draw do
   resources :medication_types
   resources :food_types
   resources :activity_types
-  resources :illness_types
+  resources :lifestyle_types
   resources :genetics_types
   resources :labresult_types
   resources :click_records
@@ -73,7 +73,7 @@ Rails.application.routes.draw do
     #get 'password_resets/create'
     #get 'password_resets/edit'
     #get 'password_resets/update'
-    #put '/password_resets/:id/edit' => 'password_resets#update'
+    put '/password_resets/:id/edit' => 'password_resets#update'
     resources :password_resets
 
     get 'pages/main'

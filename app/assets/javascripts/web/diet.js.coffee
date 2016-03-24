@@ -266,28 +266,53 @@
         console.log "load food_types  Successful AJAX call"
 
         setStored('sd_foods_hu', data.filter( (d) ->
-          d['category'] == "Food" && d['lang'] == 'hu'
-        ).map( window.food_map_fn ))
+          d['category'] == "Food"
+        ).map( (d) ->
+          {
+          label: d['hu'],
+          id: d['name']
+          }))
+
 
         setStored('sd_drinks_hu', data.filter( (d) ->
-          d['category'] == "Drink" && d['lang'] == 'hu'
-        ).map( window.food_map_fn ))
+          d['category'] == "Drink"
+        ).map( (d) ->
+          {
+          label: d['hu'],
+          id: d['name']
+          }))
 
         setStored('sd_smoke_hu', data.filter( (d) ->
-          d['category'] == "Smoke" && d['lang'] == 'hu'
-        ).map( window.food_map_fn ))
+          d['category'] == "Smoke"
+        ).map( (d) ->
+          {
+          label: d['hu'],
+          id: d['name']
+          }))
 
         setStored('sd_foods_en', data.filter( (d) ->
-          d['category'] == "Food" && d['lang'] == 'en'
-        ).map( window.food_map_fn ))
+          d['category'] == "Food"
+        ).map( (d) ->
+          {
+          label: d['en'],
+          id: d['name']
+          }))
 
         setStored('sd_drinks_en', data.filter( (d) ->
-          d['category'] == "Drink" && d['lang'] == 'en'
-        ).map( window.food_map_fn ))
+          d['category'] == "Drink"
+        ).map( (d) ->
+          {
+          label: d['en'],
+          id: d['name']
+          }))
 
         setStored('sd_smoke_en', data.filter( (d) ->
-          d['category'] == "Smoke" && d['lang'] == 'en'
-        ).map( window.food_map_fn ))
+          d['category'] == "Smoke"
+        ).map( (d) ->
+          {
+          label: d['en'],
+          id: d['name']
+          }))
 
         setStored('db_version', db_version)
 
@@ -315,7 +340,7 @@
   console.log "load diet food to:"+sel+" diet: "+diet.name
   console.log diet
   $(sel+" input[name='diet[name]']").val(diet.name)
-  $(sel+" input[name='diet[food_type_id]']").val(diet.food_type_id)
+  #$(sel+" input[name='diet[food_type_id]']").val(diet.food_type_id)
   $(sel+" .diet_food_unit").html(amount_values[diet.amount])
   $(sel+" .diet_food_scale").slider({value: diet.amount})
   $(sel+" input[name='diet[date]']").val(moment().format(moment_fmt))
@@ -323,7 +348,7 @@
 @load_diet_drink =  (sel, data) ->
   diet = data['diet']
   $(sel+" input[name='diet[name]']").val(diet.name)
-  $(sel+" input[name='diet[food_type_id]']").val(diet.food_type_id)
+  #$(sel+" input[name='diet[food_type_id]']").val(diet.food_type_id)
   $(sel+" .diet_drink_unit").html(diet.amount+" dl")
   $(sel+" .diet_drink_scale").slider({value: diet.amount})
   $(sel+" input[name='diet[date]']").val(moment().format(moment_fmt))

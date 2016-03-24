@@ -9,6 +9,13 @@ module LabresultsCommon
     print par
     labresult = Labresult.new(par)
 
+    if params['labresult'] && params['labresult']['labresult_type_name']
+      lt = LabresultType.where(name: params['labresult']['labresult_type_name']).first
+      if lt != nil
+        labresult.labresult_type_id = lt.id
+      end
+    end
+
     if labresult.save
       send_success_json(labresult.id, {category: labresult.category})
     else
@@ -40,6 +47,12 @@ module LabresultsCommon
       return
     end
 
+    if params['labresult'] && params['labresult']['labresult_type_name']
+      lt = LabresultType.where(name: params['labresult']['labresult_type_name']).first
+      if lt != nil
+         update_hash[:labresult_type_id] = lt.id
+      end
+    end
     if params['labresult'] && params['labresult']['hba1c']
       update_hash[:hba1c] = params['labresult']['hba1c'].to_f
     end
@@ -89,7 +102,7 @@ module LabresultsCommon
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def labresult_params
-    params.require(:labresult).permit(:user_id, :source, :category, :hba1c, :ldl_chol, :egfr_epi, :ketone, :date, :controll_type, :remainder_date, :labresult_type_id)
+    params.require(:labresult).permit(:user_id, :source, :category, :hba1c, :ldl_chol, :egfr_epi, :ketone, :date, :controll_type, :remainder_date, :labresult_type_id, :labresult_type_name)
   end
 
 end

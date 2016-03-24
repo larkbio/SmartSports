@@ -74,7 +74,12 @@
       matcher = new RegExp("^" + $.ui.autocomplete.escapeRegex(request.term, ""), "i")
       result = []
       cnt = 0
-      for element in getStored("sd_pills")
+      user_lang = $("#user-lang")[0].value
+      if user_lang
+        pillkey = 'sd_pills_'+user_lang
+      else
+        pillkey = 'sd_pills_hu'
+      for element in getStored(pillkey)
         if matcher.test(element.label)
           result.push(element)
           cnt += 1
@@ -93,7 +98,12 @@
       matcher = new RegExp("^" + $.ui.autocomplete.escapeRegex(request.term, ""), "i")
       result = []
       cnt = 0
-      for element in getStored("sd_insulin")
+      user_lang = $("#user-lang")[0].value
+      if user_lang
+        insulinkey = 'sd_insulin_'+user_lang
+      else
+        insulinkey = 'sd_insulin_hu'
+      for element in getStored(insulinkey)
         if matcher.test(element.label)
           result.push(element)
           cnt += 1
@@ -145,7 +155,13 @@
   current_user = $("#current-user-id")[0].value
   db_version = $("#db-version")[0].value
 
-  if !getStored("sd_pills") || testDbVer(db_version,['sd_pills','sd_insulin'])
+  user_lang = $("#user-lang")[0].value
+  if user_lang
+    pillkey = 'sd_pills_'+user_lang
+  else
+    pillkey = 'sd_pills_hu'
+
+  if !getStored(pillkey) || testDbVer(db_version,['sd_pills_hu', 'sd_pills_en', 'sd_insulin_hu', 'sd_insulin_en'])
     console.log "calling load medication types"
     ret = $.ajax urlPrefix()+'medication_types.json',
       type: 'GET',
@@ -154,19 +170,33 @@
       success: (data, textStatus, jqXHR) ->
         console.log "load medication_types  Successful AJAX call"
         popup_messages = JSON.parse($("#popup-messages").val())
-        setStored("sd_pills", data.filter( (d) ->
-          d['group'] == 'oral'
+        setStored("sd_pills_hu", data.filter( (d) ->
+          d['category'] == 'oral'
         ).map( (d) ->
           {
-            label: d['name'],
-            id: d['id']
+            label: d['hu'],
+            id: d['name']
         }))
-        setStored("sd_insulin", data.filter( (d) ->
-          d['group'] == 'insulin'
+        setStored("sd_pills_en", data.filter( (d) ->
+          d['category'] == 'drugs_en'
         ).map( (d) ->
           {
-          label: d['name'],
-          id: d['id']
+          label: d['en'],
+          id: d['name']
+          }))
+        setStored("sd_insulin_hu", data.filter( (d) ->
+          d['category'] == 'insulin'
+        ).map( (d) ->
+          {
+          label: d['hu'],
+          id: d['name']
+          }))
+        setStored("sd_insulin_en", data.filter( (d) ->
+          d['category'] == 'insulin_en'
+        ).map( (d) ->
+          {
+          label: d['en'],
+          id: d['name']
           }))
 
         setStored('db_version', db_version)

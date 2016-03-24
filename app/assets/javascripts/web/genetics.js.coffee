@@ -148,28 +148,57 @@
         console.log "load genetics_types  Successful AJAX call"
 
         setStored('sd_relatives_hu', data.filter( (d) ->
-          d['category'] == "relatives" && d['lang'] == 'hu'
-        ).map( window.genetics_map_fn))
+          d['category'] == "relatives"
+        ).map( (d) ->
+          {
+          label: d['hu'],
+          id: d['name']
+          }))
 
         setStored('sd_diabetes_hu', data.filter( (d) ->
-          d['category'] == "diabetes" && d['lang'] == 'hu'
-        ).map( window.genetics_map_fn))
+          d['category'] == "diabetes"
+        ).map( (d) ->
+          {
+          label: d['hu'],
+          id: d['name']
+          }))
+
 
         setStored('sd_autoantibody_hu', data.filter( (d) ->
-          d['category'] == "autoantibody" && d['lang'] == 'hu'
-        ).map( window.genetics_map_fn))
+          d['category'] == "autoantibody"
+        ).map( (d) ->
+          {
+          label: d['hu'],
+          id: d['name']
+          }))
+
 
         setStored('sd_relatives_en', data.filter( (d) ->
-          d['category'] == "relatives" && d['lang'] == 'en'
-        ).map( window.genetics_map_fn))
+          d['category'] == "relatives"
+        ).map( (d) ->
+          {
+          label: d['en'],
+          id: d['name']
+          }))
+
 
         setStored('sd_diabetes_en', data.filter( (d) ->
-          d['category'] == "diabetes" && d['lang'] == 'en'
-        ).map( window.genetics_map_fn))
+          d['category'] == "diabetes"
+        ).map( (d) ->
+          {
+          label: d['en'],
+          id: d['name']
+          }))
+
 
         setStored('sd_autoantibody_en', data.filter( (d) ->
-          d['category'] == "autoantibody" && d['lang'] == 'en'
-        ).map( window.genetics_map_fn))
+          d['category'] == "autoantibody"
+        ).map( (d) ->
+          {
+          label: d['en'],
+          id: d['name']
+          }))
+
 
         setStored('db_version', db_version)
         cb()

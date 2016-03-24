@@ -16,14 +16,21 @@ module DietsCommon
     #   @diet.fat = @diet.amount*ft.fat
     #   @diet.prot = @diet.amount*ft.prot
     # end
+    if params['diet'] && params['diet']['food_type_name']
+      ft = FoodType.where(name: params['diet']['food_type_name']).first
+      if ft != nil
+        @diet.food_type_id = ft.id
+      end
+    end
 
     if @diet.diet_type=='Calory'
       diet_name = I18n.t :quick_calories_prefix
     elsif @diet.diet_name && @diet.diet_name != ""
       diet_name = @diet.diet_name
-    else
-      diet_name = @diet.food_type.name
     end
+    # else
+    #   diet_name = @diet.food_type.name
+    # end
 
     @diet.name = diet_name
     if @diet.save
@@ -54,8 +61,8 @@ module DietsCommon
     if params['diet'] && params['diet']['amount']
       update_hash[:amount] = params['diet']['amount'].to_f
     end
-    if params['diet'] && params['diet']['food_type_id']
-      ft = FoodType.find_by_id(params['diet']['food_type_id'].to_i)
+    if params['diet'] && params['diet']['food_type_name']
+      ft = FoodType.where(name: params['diet']['food_type_name']).first
       if !ft.nil?
         amount = @diet.amount
         if !update_hash[:amount].nil?
@@ -112,7 +119,7 @@ module DietsCommon
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def diet_params
-    params.require(:diet).permit(:user_id, :source, :name, :date, :calories, :carbs, :amount, :category, :diet_type, :fat, :prot, :food_type_id, :favourite)
+    params.require(:diet).permit(:user_id, :source, :name, :date, :calories, :carbs, :amount, :category, :diet_type, :fat, :prot, :food_type_id, :food_type_name, :favourite)
   end
   def diet_update_params
     params.require(:diet).permit(:favourite, :amount, :date)

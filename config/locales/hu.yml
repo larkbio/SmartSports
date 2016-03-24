@@ -6,6 +6,7 @@ hu:
   invite_doctor: "Orvos meghívása"
 
   tooltip_signedin: "Bejelentkezett felhasználó"
+  tooltip_user_info: "Regisztrálás dátuma"
   menu_dashboard: "Asztal"
   menu_diet:      "Étrend"
   menu_exercise:  "Testmozgás"
@@ -164,6 +165,7 @@ hu:
     pain_name_missing: "A fájdalom megnevezése hiányzik"
     failed_custom_form: "A saját form mentése sikertelen"
     connection_added_html: "A %{conn} kapcsolat sikeresen létrejött. A szinkronizáláshoz klikkeljen a <i class='fa fa-refresh fa-1x'></i> nyílra"
+    connection_synced: "A %{conn} szinkronizálás sikeresen befejeződött."
     doctor_create_fail_email_exists: "Sikertelen az orvos meghívása, %{email} már foglalt."
     doctor_invited_msg: "Meghívás sikeres: %{email}"
     password_change_success: "A jelszó beállítás sikeres."
@@ -188,6 +190,7 @@ hu:
   sleep_amount_today: "Mai alvásidő"
   hours: "óra"
   body_weight: "Testsúly"
+  connected_devices: "Csatlakoztatott eszközök"
 
 # diet
   food:             "Étkezés"
@@ -341,6 +344,7 @@ hu:
   statistics:         "Statisztika"
 
   intensities: "Alacsony Közepes Magas"
+  header_values: "Dátum Megnevezés Intenzitás Időtartam Kalória"
 
   time: "Időpont"
   daily_timeline: "Napi idővonal"

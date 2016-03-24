@@ -5,6 +5,25 @@ module GeneticsCommon
     user_id = params[:user_id]
     user = User.find(user_id)
     @genetics = user.genetics.build(genetics_params)
+    if params['genetics'] && params['genetics']['relative_type_name']
+      gt = GeneticsType.where(name: params['genetics']['relative_type_name']).first
+      if gt != nil
+        @genetics.relative_type_id = gt.id
+      end
+    end
+    if params['genetics'] && params['genetics']['diabetes_type_name']
+      gt = GeneticsType.where(name: params['genetics']['diabetes_type_name']).first
+      if gt != nil
+        @genetics.diabetes_type_id = gt.id
+      end
+    end
+    if params['genetics'] && params['genetics']['antibody_type_name']
+      gt = GeneticsType.where(name: params['genetics']['antibody_type_name']).first
+      if gt != nil
+        @genetics.antibody_type_id = gt.id
+      end
+    end
+
 
     if @genetics.save
       send_success_json(@genetics.id)
@@ -32,6 +51,6 @@ module GeneticsCommon
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def genetics_params
-    params.require(:genetics).permit(:source, :relative, :diabetes, :antibody, :note, :group, :relative_type_id, :diabetes_type_id, :antibody_type_id, :antibody_kind, :antibody_value)
+    params.require(:genetics).permit(:source, :relative, :diabetes, :antibody, :note, :group, :relative_type_id, :relative_type_name, :diabetes_type_id, :diabetes_type_name, :antibody_type_id, :antibody_type_name, :antibody_kind, :antibody_value)
   end
 end

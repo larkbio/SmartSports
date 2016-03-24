@@ -2,7 +2,11 @@
 
   <td style="width:40px;" class="padded">
     <% if  medication_item.medication_type %>
-        <%= image_tag "#{medication_item.medication_type.group}40.png" %>
+        <% if medication_item.medication_type.group == 'insulin' || medication_item.medication_type.group == 'insulin_en' %>
+            <%= image_tag "insulin40.png" %>
+        <% else %>
+            <%= image_tag "oral40.png" %>
+        <% end %>
     <% else %>
         <%= image_tag "oral40.png" %>
     <% end %>

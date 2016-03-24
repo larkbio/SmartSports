@@ -1,9 +1,7 @@
 class LifeStyleValidator < ActiveModel::Validator
   def validate(record)
-    if (record.group == 'illness' && record.illness_type_id == nil)
-      record.errors[:illness_type_id] << 'no_value'
-    elsif (record.group == 'pain' && record.pain_type_name == nil || record.pain_type_name == "")
-      record.errors[:pain_type_name] << 'no_value'
+    if ((record.group == 'illness' || record.group == 'pain') && record.lifestyle_type_name == nil)
+      record.errors[:lifestyle_type_name] << 'no_value'
     end
     if record.start_time && record.end_time
       if record.end_time < record.start_time
@@ -15,8 +13,7 @@ end
 
 class Lifestyle < ActiveRecord::Base
   belongs_to :user
-  belongs_to :illness_type
-  belongs_to :pain_type
+  belongs_to :lifestyle_type
   validates :user_id, presence: true
   validates :group, presence: true
   validates :start_time, presence: true
@@ -56,9 +53,9 @@ class Lifestyle < ActiveRecord::Base
   def title
     if self.group
       if self.group=="illness"
-        return self.illness_type.name
+        return self.lifestyle_type.name
       elsif self.group == "pain"
-        return "#{self.pain_type_name} pain"
+        return "#{self.lifestyle_type.name} pain"
       else
         return self.group.capitalize
       end

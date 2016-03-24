@@ -23,8 +23,11 @@
         <input id="sex_sel" type="search" class="loginField" placeholder="<%=t :sex %>">
         <input type="hidden" name="profile[sex]" >
         <input id="year_field" name="profile[year_of_birth]" type="text" class="loginField" placeholder="<%=t 'date_of_birth_placeholder' %>"/>
+        <a href="#" data-toggle="tooltip" data-placement="top" title="<%=t :error_profile_year_interval%>" tabindex="-1" class="tooltipUnit"><img src="<%= asset_path("question_mark_16.png")%>" border="0"></a> <br>
         <input id="weight_field" name="profile[weight]" type="text" class="loginField" placeholder="<%=t 'weight_placeholder' %>"/>
+        <a href="#" data-toggle="tooltip" data-placement="top" title="<%=t :error_profile_weight_interval%>" tabindex="-1" class="tooltipUnit"><img src="<%= asset_path("question_mark_16.png")%>" border="0"></a> <br>
         <input id="height_field" name="profile[height]" type="text" class="loginField" placeholder="<%=t 'height' %>"/>
+        <a href="#" data-toggle="tooltip" data-placement="top" title="<%=t :error_profile_height_interval%>" tabindex="-1" class="tooltipUnit"><img src="<%= asset_path("question_mark_16.png")%>" border="0"></a> <br>
         <input id="smoke_sel" type="search" class="loginField" placeholder="<%=t :smoke_question %>">
         <input type="hidden" name="profile[smoke]" >
         <input id="lang_sel" type="search" class="loginField" placeholder="<%=t :default_lang %>">

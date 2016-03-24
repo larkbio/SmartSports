@@ -1,0 +1,9 @@
+ftone:
+  id: 1
+  name: breakfast
+  category: Food
+
+fttwo:
+  id: 2
+  name: water
+  category: Drink

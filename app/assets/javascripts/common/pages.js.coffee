@@ -9,6 +9,7 @@
       }
     }
   )
+  $('[data-toggle="tooltip"]').tooltip();
 
 @pages_menu = () ->
   self = this
@@ -240,17 +241,17 @@
     else
       return ""
 
-  window.food_map_fn = (d) ->
-    {
-      label: d['name'],
-      id: d['id'],
-      kcal: d['kcal'],
-      fat: d['fat'],
-      carb: d['carb'],
-      prot: d['prot'],
-      categ: d['category'],
-      lang: d['lang']
-    }
+#  window.food_map_fn = (d) ->
+#    {
+#      label: d['name'],
+#      id: d['id'],
+#      kcal: d['kcal'],
+#      fat: d['fat'],
+#      carb: d['carb'],
+#      prot: d['prot'],
+#      categ: d['category'],
+#      lang: d['lang']
+#    }
 
   window.activity_map_fn = (d) ->
     {

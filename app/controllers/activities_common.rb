@@ -10,13 +10,19 @@ module ActivitiesCommon
     if not @activity.start_time
       @activity.start_time = DateTime.now
     end
-    actType = ActivityType.find_by_id(@activity.activity_type_id)
+    actType = ActivityType.where(name: params['activity']['activity_type_name']).first
     if actType.nil?
       send_error_json(nil, "Invalid activity type", 404)
       return
     elsif not @activity.duration
       if @activity.start_time && @activity.end_time
         @activity.duration = ((@activity.end_time-@activity.start_time) / 60).to_i
+      end
+    end
+    if params['activity'] && params['activity']['activity_type_name']
+      at = ActivityType.where(name: params['activity']['activity_type_name']).first
+      if at != nil
+        @activity.activity_type_id = at.id
       end
     end
 
@@ -72,6 +78,15 @@ module ActivitiesCommon
       update_hash[:group] = params['activity']['group']
     end
 
+    if params['activity'] && params['activity']['activity_type_name']
+      at = ActivityType.where(name: params['activity']['activity_type_name']).first
+      if !at.nil?
+        update_hash[:activity_type_id] = at.id
+      else
+        send_error_json(@activity.id,  "Invalid activity type", 400)
+        return
+      end
+    end
 
     if @activity.update_attributes(update_hash)
       send_success_json(@activity.id)
@@ -112,6 +127,6 @@ module ActivitiesCommon
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def activity_params
-    params.require(:activity).permit(:source, :activity, :group, :game_id, :start_time, :end_time, :steps, :duration, :distance, :calories, :manual, :intensity, :favourite, :activity_type_id)
+    params.require(:activity).permit(:source, :activity, :group, :game_id, :start_time, :end_time, :steps, :duration, :distance, :calories, :manual, :intensity, :favourite, :activity_type_id, :activity_type_name)
   end
 end

@@ -39,6 +39,9 @@ Rails.application.configure do
 
   APP_CONFIG = {}
 
+  DB_EN_CONFIG=YAML.load_file(File.join(Rails.root, 'config', 'locales', 'databases.en.yml'))['en']
+  DB_HU_CONFIG=YAML.load_file(File.join(Rails.root, 'config', 'locales', 'databases.hu.yml'))['hu']
+
   DATA_DIR =  File.join(ENV['HOME'], 'Downloads/hr_data')
   if not File.exists?(DATA_DIR)
     raise "Data dir '#{DATA_DIR}' missing"

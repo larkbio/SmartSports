@@ -1,0 +1,25 @@
+pone:
+  id: 1
+  user_id: 1
+  firstname: yyy
+  lastname: zzz
+  weight: 99
+  height: 180
+  sex: nil
+  smoke: yes
+  insulin: yes
+  default_lang: en
+  year_of_birth: 1977
+
+ptwo:
+  id: 2
+  user_id: 2
+  firstname: abc
+  lastname: def
+  weight: 178
+  height: 90
+  sex: nil
+  smoke: nil
+  insulin: nil
+  default_lang: hu
+  year_of_birth: 1975

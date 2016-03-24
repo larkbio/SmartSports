@@ -27,6 +27,7 @@ en:
   invite_doctor: "Invite doctor"
 
   tooltip_signedin: "Signed in as"
+  tooltip_user_info: "Registration date"
   menu_dashboard: "Dashboard"
   menu_diet:      "Diet"
   menu_exercise:  "Exercise"
@@ -185,6 +186,7 @@ en:
     pain_name_missing: "Pain name is missing"
     failed_custom_form: "Failed to save custom form"
     connection_added_html: "The %{conn} connection has been added successfully. Click <i class='fa fa-refresh fa-1x'></i> to synchronize now."
+    connection_synced: "The synchronization of %{conn} has been finished successfully."
     doctor_create_fail_email_exists: "Failed to add doctor, %{email} already exists."
     doctor_invited_msg: "Successfully invited: %{email}"
     password_change_success: "Password was successfully updated."
@@ -209,6 +211,7 @@ en:
   sleep_amount_today: "Sleep amount today"
   hours: "hours"
   body_weight: "Body weight"
+  connected_devices: "Connected devices"
 
 # diet
   food: "Meal"
@@ -360,6 +363,7 @@ en:
   statistics:         "Statistics"
 
   intensities: "Low Moderate High"
+  header_values: "Date Name Intensity Duration Calories"
 
   time: "Time"
   daily_timeline: "Daily timeline"

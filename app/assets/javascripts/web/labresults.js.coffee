@@ -208,12 +208,20 @@
         console.log "load labresult_types  Successful AJAX call"
 
         setStored('sd_labresult_hu', data.filter( (d) ->
-          d['category'] == "ketone" && d['lang'] == 'hu'
-        ).map( window.labresults_map_fn))
+          d['category'] == "ketone"
+        ).map( (d) ->
+          {
+          label: d['hu'],
+          id: d['name']
+          }))
 
         setStored('sd_labresult_en', data.filter( (d) ->
-          d['category'] == "ketone" && d['lang'] == 'en'
-        ).map( window.labresults_map_fn))
+          d['category'] == "ketone"
+        ).map( (d) ->
+          {
+          label: d['en'],
+          id: d['name']
+          }))
 
         setStored('db_version', db_version)
 
@@ -263,5 +271,5 @@
   console.log(labres.ketone)
 
   $(sel+" input[name='labresult[ketone]']").val(labres['ketone'])
-  $(sel+" input[name='labresult[labresult_type_id]']").val(labres['labresult_type_id'])
+  $(sel+" input[name='labresult[labresult_type_name]']").val(labres['labresult_type_name'])
   $(sel+" input[name='labresult[date]']").val(labres['date'])

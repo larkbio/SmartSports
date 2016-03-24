@@ -44,7 +44,7 @@ class DietsController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.json  { render :json => {:diets => @diets}}
+      format.json
       format.js
     end
   end

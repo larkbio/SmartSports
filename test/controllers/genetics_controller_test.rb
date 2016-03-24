@@ -23,7 +23,6 @@ class GeneticsControllerTest < ActionController::TestCase
           note: @genetics.note
       }, format: :json
       json_result = JSON.parse(response.body)
-      puts json_result
       assert_equal json_result["ok"], true
       assert_not json_result["id"].nil?
     end

@@ -3,9 +3,10 @@
   <input type="hidden" name="activity[group]" value="sport">
 
   <input type="search" name="activity[activity]" class="dataFormField activity_exercise_name" placeholder="<%=t :activity_name_placeholder%>" disabled>
-  <input class="activity_exercise_type_id" name="activity[activity_type_id]" type="hidden">
+  <input class="activity_exercise_type_id" name="activity[activity_type_name]" type="hidden">
 
   <label for="activity_exercise_scale" style="margin-left: 20px;"><%=t :intensity%></label>
+  <br/>
   <div class="dataScale">
     <div class="dataFormField activity_exercise_scale"></div>
   </div>
@@ -13,7 +14,7 @@
   <input class="activity_exercise_intensity" type="hidden" name="activity[intensity]"/>
 
   <input type="text" class="dataFormField activity_exercise_start_datepicker" name="activity[start_time]" value="<%= (DateTime.current-30.minutes).strftime("%F %R") %>"/>
-  <div class="dataFormFieldUnit activity_exercise_unit"><%=t :start%></div>
+  <div class="dataFormFieldUnit"><%=t :start%></div>
 
   <input type="text" class="dataFormField activity_exercise_end_datepicker" name="activity[end_time]" value="<%= DateTime.current.strftime("%F %R") %>"/>
   <div class="dataFormFieldUnit"><%=t :end%></div>

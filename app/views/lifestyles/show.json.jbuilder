@@ -1,1 +1,1 @@
-json.extract! @lifestyle, :id, :user_id, :illness_type_id, :pain_type_name, :source, :group, :name, :details, :amount, :period_volume, :data, :created_at, :updated_at, :title, :subtitle, :interval
+json.extract! @lifestyle, :id, :user_id, :lifestyle_type_id, :lifestyle_type_name, :source, :group, :name, :details, :amount, :period_volume, :data, :created_at, :updated_at, :title, :subtitle, :interval

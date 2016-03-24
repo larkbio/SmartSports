@@ -3,7 +3,7 @@
   @popup_messages = JSON.parse($("#popup-messages").val())
 
   $("div.app2Menu a.menulink").removeClass("selected")
-  $("#wellbeing-link").css
+  $("#lifestyle-link").css
     background: "rgba(232, 115, 180, 0.3)"
 
   loadIllnessTypes( () ->
@@ -80,7 +80,7 @@
   illnessSelected = null
   popup_messages = JSON.parse($("#popup-messages").val())
 
-  $(selector+"input[name='lifestyle[name]']").autocomplete({
+  $(selector+'.illness_name').autocomplete({
     minLength: 0,
     source: (request, response) ->
       matcher = new RegExp($.ui.autocomplete.escapeRegex(remove_accents(request.term), ""), "i")
@@ -97,14 +97,14 @@
           cnt += 1
       response(result)
     select: (event, ui) ->
-      event.target.parentElement.parentElement.querySelector("input[name='lifestyle[illness_type_id]']").value = ui.item.id
+      $(selector+'.illness_type_id').val(ui.item.id)
     create: (event, ui) ->
-      event.target.parentElement.parentElement.querySelector("input[name='lifestyle[name]']").removeAttribute("disabled")
+      event.target.parentElement.parentElement.querySelector('.illness_type_id').removeAttribute("disabled")
     change: (event, ui) ->
       if ui.item
-        event.target.parentElement.parentElement.querySelector("input[name='lifestyle[illness_type_id]']").value = ui.item.id
+        $(selector+'.illness_type_id').value = ui.item.id
       else
-        event.target.parentElement.parentElement.querySelector("input[name='lifestyle[illness_type_id]']").value = ""
+        $(selector+'.illness_type_id').value = ""
   }).focus ->
     $(this).autocomplete("search")
 
@@ -172,7 +172,7 @@
 
   $(selector+'.pain_start_datepicker').datetimepicker(timepicker_defaults)
   $(selector+'.pain_end_datepicker').datetimepicker(timepicker_defaults)
-  $("input[name='lifestyle[pain_type_name]']").autocomplete({
+  $(selector+'.pain_type_name').autocomplete({
     minLength: 0,
     source: (request, response) ->
       matcher = new RegExp($.ui.autocomplete.escapeRegex(remove_accents(request.term), ""), "i")
@@ -189,14 +189,14 @@
           cnt += 1
       response(result)
     select: (event, ui) ->
-      event.target.parentElement.parentElement.querySelector("input[name='lifestyle[illness_type_id]']").value = ui.item.id
+      $(selector+'.pain_type_id').val(ui.item.id)
     create: (event, ui) ->
-      event.target.parentElement.parentElement.querySelector("input[name='lifestyle[pain_type_name]']").removeAttribute("disabled")
+      event.target.parentElement.parentElement.querySelector('.pain_type_id').removeAttribute("disabled")
     change: (event, ui) ->
       if ui.item
-        event.target.parentElement.parentElement.querySelector("input[name='lifestyle[illness_type_id]']").value = ui.item.id
+        $(selector+'.pain_type_id').value = ui.item.id
       else
-        event.target.parentElement.parentElement.querySelector("input[name='lifestyle[illness_type_id]']").value = ""
+        $(selector+'.pain_type_id').value = ""
   }).focus ->
     $(this).autocomplete("search")
 
@@ -266,9 +266,10 @@
   $(".pain_percent").html(illnessList[1])
   $(".default_datetime_picker").val(new moment().format(moment_fmt))
   $(".default_date_picker").val(new moment().format(moment_datefmt))
-  $("input[name='lifestyle[name]']").val("")
-  $("input[name='lifestyle[illness_type_id]']").val("")
-  $("input[name='lifestyle[pain_type_name]']").val("")
+  $(".illness_name").val("")
+  $(".illness_type_id").val("")
+  $(".pain_type_id").val("")
+  $(".pain_type_name").val("")
   $(".illness_details").val("")
   $(".pain_details").val("")
 
@@ -280,7 +281,7 @@
   if group=='illness' && isempty("#"+formId+" input[name='lifestyle[name]']")
     popup_error(popup_messages.illness_name_missing, "wellbeingStyle")
     return false
-  if group=='pain' && isempty("#"+formId+" input[name='lifestyle[pain_type_name]']")
+  if group=='pain' && isempty("#"+formId+" input[name='lifestyle[name]']")
     popup_error(popup_messages.pain_name_missing, "wellbeingStyle")
     return false
 
@@ -310,38 +311,44 @@
     painkey = 'sd_pains_hu'
     illnesskey = 'sd_illness_hu'
   if !getStored(illnesskey) || testDbVer(db_version,['sd_illness_hu','sd_illness_en','sd_pains_hu','sd_pains_en'])
-  #  if getStored(illnesskey)==undefined || getStored(illnesskey).length==0 || getStored(painkey)==undefined || getStored(painkey).length==0|| testDbVer(db_version)
-    ret = $.ajax urlPrefix()+'illness_types.json',
+    ret = $.ajax urlPrefix()+'lifestyle_types.json',
       type: 'GET',
       error: (jqXHR, textStatus, errorThrown) ->
-        console.log "load illness_types AJAX Error: #{textStatus}"
+        console.log "load lifestyle_types AJAX Error: #{textStatus}"
       success: (data, textStatus, jqXHR) ->
-        console.log "load illness_types  Successful AJAX call"
+        console.log "load lifestyle_types  Successful AJAX call"
 
-        setStored("sd_illness_hu", data[0].filter( (d) ->
-          d['lang'] == 'hu'
-        ).map( window.illness_map_fn ))
-
-        setStored("sd_illness_en", data[0].filter( (d) ->
-          d['lang'] == 'en'
-        ).map( window.illness_map_fn ))
-
-        setStored('sd_pains_hu', data[1].filter( (d) ->
-          d['lang'] == 'hu'
+        setStored("sd_illness_hu", data.filter( (d) ->
+          d['category'] == "illnesses"
         ).map( (d) ->
           {
-          label: d['name'],
-          id: d['id']
+          label: d['hu'],
+          id: d['name']
           }))
 
-        setStored('sd_pains_en', data[1].filter( (d) ->
-            d['lang'] == 'en'
+        setStored("sd_illness_en", data.filter( (d) ->
+          d['category'] == "illnesses"
         ).map( (d) ->
           {
-            label: d['name'],
-            id: d['id']
+          label: d['en'],
+          id: d['name']
           }))
 
+        setStored('sd_pains_hu', data.filter( (d) ->
+          d['category'] == "pains"
+        ).map( (d) ->
+          {
+          label: d['hu'],
+          id: d['name']
+          }))
+
+        setStored('sd_pains_en', data.filter( (d) ->
+          d['category'] == "pains"
+        ).map( (d) ->
+          {
+          label: d['en'],
+          id: d['name']
+          }))
         setStored('db_version', db_version)
 
         cb()
@@ -376,8 +383,8 @@
   console.log "load illness"+sel
   console.log data
   lifestyle = data['lifestyle']
-  $(sel+" input[name='lifestyle[name]'").val(lifestyle.name)
-  $(sel+" input[name='lifestyle[illness_type_id]").val(lifestyle.illness_type_id)
+  $(sel+" .illness_name").val(lifestyle.name)
+  $(sel+" .illness_type_id").val(lifestyle.lifestyle_type_name)
   $(sel+" .illness_scale").slider({value: lifestyle.amount})
   $(sel+" .illness_percent").html(illnessList[lifestyle.amount])
   $(sel+" .illness_details").val(lifestyle.details)
@@ -388,9 +395,10 @@
   console.log "load pain"+sel
   console.log data
   lifestyle = data['lifestyle']
-  $(sel+" .pain_type_name").val(lifestyle.pain_type_name)
+  $(sel+" .pain_type_name").val(lifestyle.name)
+  $(sel+" .pain_type_id").val(lifestyle.lifestyle_type_name)
   $(sel+" .pain_scale").slider({value: lifestyle.amount})
-  $(sel+" .pain_percent").html(illnessList[lifestyle.amount])
+  $(sel+" .pain_percent").html(painList[lifestyle.amount])
   $(sel+" .pain_details").val(lifestyle.details)
   $(sel+" input[name='lifestyle[start_time]']").val(new moment().format(moment_fmt))
   $(sel+" input[name='lifestyle[end_time]']").val(new moment().format(moment_fmt))

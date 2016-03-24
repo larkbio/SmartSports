@@ -12,7 +12,6 @@ class NotificationsController < ApplicationController
     if params[:patient] && params[:patient]=='true'
       @patient = true
     end
-    print "PATIENT: #{@patient}"
 
     @user = User.find(params[:user_id])
     @notifications = @user.notifications

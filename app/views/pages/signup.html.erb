@@ -18,9 +18,11 @@
     <div>
         <%= form_tag users_path, :method => :post, :remote => true, :id=> 'signupForm' do %>
         <input name="lang" value="<%=I18n.locale%>" type="hidden" />
-        <input id="username_field" name="user[email]" type="text" class="loginField animField" placeholder="<%=t 'email' %>"/><br>
-        <input id="password_field" name="user[password]" type="password" class="loginField animField" placeholder="<%=t 'password' %>"/><br>
-        <input id="password_retry_field" name="user[password_confirmation]" type="password" class="loginField animField" placeholder="<%=t 'password_confirm' %>"/><br>
+        <input id="username_field" name="user[email]" type="text" class="loginField animField" placeholder="<%=t 'email' %>"/>
+        <input id="password_field" name="user[password]" type="password" class="loginField animField" placeholder="<%=t 'password' %>"/>
+        <a href="#" data-toggle="tooltip" data-placement="top" title="<%=t :error_registration_password%>" tabindex="-1" class="tooltipUnit"><img src="<%= asset_path("question_mark_16.png")%>" border="0"></a> <br>
+        <input id="password_retry_field" name="user[password_confirmation]" type="password" class="loginField animField" placeholder="<%=t 'password_confirm' %>"/>
+        <a href="#" data-toggle="tooltip" data-placement="top" title="<%=t :error_registration_password%>" tabindex="-1" class="tooltipUnit"><img src="<%= asset_path("question_mark_16.png")%>" border="0"></a> <br>
         <input type="submit" class="loginButton animButton" value="<%=t 'join_button' %>"/>
         <% end %>
         <div style="padding-top: 5px;color: #A5A5A5;font-size: 12px; display: table; width: 260px;">

@@ -310,6 +310,9 @@ private
   def set_user_data
     @display_name = ""
     if current_user
+      user_reg_date = current_user.created_at.to_date
+      user_reg_days = (DateTime.now.to_date-user_reg_date).to_i
+      @user_info = [user_reg_date, user_reg_days]
       @display_name = current_user.name
       prf = current_user.profile
       if (!prf.nil?) && (!prf.firstname.nil? || !prf.lastname.nil?) && (prf.firstname!='' || prf.lastname!='')

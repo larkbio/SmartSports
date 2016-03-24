@@ -79,6 +79,10 @@ end
 group :test do
   gem 'minitest-reporters', '1.0.5'
   gem 'mocha'
+  gem 'capybara'
+  gem 'capybara_minitest_spec'
+  gem 'selenium-webdriver'
+  gem 'database_cleaner'
 end
 
 gem 'grocer'

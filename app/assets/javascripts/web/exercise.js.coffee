@@ -68,15 +68,18 @@
     data = JSON.parse(e.currentTarget.querySelector("input").value)
     if data.activity_category=="sport"
       load_activity_exercise(".formElement.activity_exercise_elem", data)
-    else
-      load_activity_regular(".formElement.activity_regular_elem", data)
+#    else
+#      load_activity_regular(".formElement.activity_regular_elem", data)
   )
 
   $(document).unbind("click.exerciseShow")
   $(document).on("click.exerciseShow", "#exercise-show-table", (evt) ->
     console.log "datatable clicked"
     current_user = $("#current-user-id")[0].value
-    url = 'users/' + current_user + '/activities.json'
+    lang = $("#user-lang")[0].value
+    header = $("#header_values").val().split(" ")
+    url = 'users/' + current_user + '/activities.json'+'?lang='+lang
+    console.log url
     $.ajax urlPrefix()+url,
       type: 'GET',
       error: (jqXHR, textStatus, errorThrown) ->
@@ -87,18 +90,43 @@
         ).filter( (v) ->
           return(v!=null)
         )
+        if lang == 'hu'
+          plugin = {
+            sEmptyTable: "Nincs rendelkezésre álló adat",
+            sInfo: "Találatok: _START_ - _END_ Összesen: _TOTAL_",
+            sInfoEmpty: "Nulla találat",
+            sInfoFiltered: "(_MAX_ összes rekord közül szűrve)",
+            sInfoPostFix: "",
+            sInfoThousands: " ",
+            sLengthMenu: "_MENU_ találat oldalanként",
+            sLoadingRecords: "Betöltés...",
+            sProcessing: "Feldolgozás...",
+            sSearch: "Keresés:",
+            sZeroRecords: "Nincs a keresésnek megfelelő találat",
+            oPaginate: {
+              sFirst: "Első",
+              sPrevious: "Előző",
+              sNext: "Következő",
+              sLast: "Utolsó"
+            },
+            oAria: {
+              sSortAscending: ": aktiválja a növekvő rendezéshez",
+              sSortDescending: ": aktiválja a csökkenő rendezéshez"
+            }
+          }
         $("#exercise-data-container").html("<table id=\"exercise-data\" class=\"display\" cellspacing=\"0\" width=\"100%\"></table>")
         $("#exercise-data").dataTable({
           "data": tblData,
           "columns": [
-            {"title": "id"},
-            {"title": "date"},
-            {"title": "name"},
-            {"title": "intensity"},
-            {"title": "duration"}
+            {"title": header[0]},
+            {"title": header[1]},
+            {"title": header[2]},
+            {"title": header[3]},
+            {"title": header[4]}
           ],
-          "order": [[1, "desc"]],
-          "lengthMenu": [10]
+          "order": [[0, "desc"]],
+          "lengthMenu": [10],
+          "language": plugin
         })
         location.href = "#openModalEx"
   )
@@ -106,7 +134,8 @@
   $(document).unbind("click.downloadExercise")
   $(document).on("click.downloadExercise", "#download-exercise-data", (evt) ->
     current_user = $("#current-user-id")[0].value
-    url = '/users/' + current_user + '/activities.csv?order=desc'
+    lang = $("#user-lang")[0].value
+    url = '/users/' + current_user + '/activities.csv?order=desc&lang='+lang
     location.href = url
   )
 
@@ -117,9 +146,10 @@
   )
 
 @get_exercise_table_row = (item ) ->
-  if item.activity==null || !item.intensity || !item.duration
+  if item.activity==null
     return null
-  return ([item.id, moment(item.start_time).format("YYYY-MM-DD HH:MM"), item.activity, item.intensity, item.duration])
+  intensities = $("#intensity_values").val().split(" ")
+  return ([moment(item.start_time).format("YYYY-MM-DD HH:MM"), item.activity, intensities[Math.round(item.intensity)], item.duration, Math.round(item.calories * 100) / 100])
 
 @initActivity = (selector) ->
   console.log "initActivity called, selector="+selector
@@ -194,30 +224,30 @@
   }).focus ->
     $(this).autocomplete("search")
 
-  otherActivitySelected = null
-  $(".activity_regular_name").autocomplete({
-    minLength: 0,
-    source: (request, response) ->
-      matcher = new RegExp($.ui.autocomplete.escapeRegex(remove_accents(request.term), ""), "i")
-      result = []
-      cnt = 0
-      for element in getStored("sd_other_activities")
-        if matcher.test(remove_accents(element.label))
-          result.push(element)
-          cnt += 1
-      response(result)
-    select: (event, ui) ->
-      $(".activity_regular_type_id").val(ui.item.id)
-      $(".activity_regular_scale" ).slider({
-        value: "1"
-      })
-      $(".activity_regular_percent").text(intensities[1])
-    create: (event, ui) ->
-      $(".activity_regular_name").removeAttr("disabled")
-    change: (event, ui) ->
-      otherActivitySelected = ui['item']
-  }).focus ->
-    $(this).autocomplete("search")
+#  otherActivitySelected = null
+#  $(".activity_regular_name").autocomplete({
+#    minLength: 0,
+#    source: (request, response) ->
+#      matcher = new RegExp($.ui.autocomplete.escapeRegex(remove_accents(request.term), ""), "i")
+#      result = []
+#      cnt = 0
+#      for element in getStored("sd_other_activities")
+#        if matcher.test(remove_accents(element.label))
+#          result.push(element)
+#          cnt += 1
+#      response(result)
+#    select: (event, ui) ->
+#      $(".activity_regular_type_id").val(ui.item.id)
+#      $(".activity_regular_scale" ).slider({
+#        value: "1"
+#      })
+#      $(".activity_regular_percent").text(intensities[1])
+#    create: (event, ui) ->
+#      $(".activity_regular_name").removeAttr("disabled")
+#    change: (event, ui) ->
+#      otherActivitySelected = ui['item']
+#  }).focus ->
+#    $(this).autocomplete("search")
 
 
 @loadExerciseHistory = () ->
@@ -267,19 +297,19 @@
         console.log "load activity_types  Successful AJAX call"
 
         setStored('sd_activities_hu', data.filter( (d) ->
-          d['category'] == 'sport' && d['lang'] == 'hu'
+          d['category'] == 'sport'
         ).map( (d) ->
           {
-          label: d['name'],
-          id: d['id']
+          label: d['hu'],
+          id: d['name']
           }))
 
         setStored('sd_activities_en', data.filter( (d) ->
-          d['category'] == 'sport' && d['lang'] == 'en'
+          d['category'] == 'sport'
         ).map( (d) ->
           {
-          label: d['name'],
-          id: d['id']
+          label: d['en'],
+          id: d['name']
           }))
 
         setStored('db_version', db_version)
@@ -297,7 +327,7 @@
   console.log(data)
   activity = data['activity']
   $(sel+" input[name='activity[activity]']").val(activity.activity)
-  $(sel+" input[name='activity[activity_type_id]']").val(activity.activity_type_id)
+  $(sel+" input[name='activity[activity_type_name]']").val(activity.activity_type_name)
   $(sel+" input[name='activity[intensity]']").val(activity.intensity)
   $(sel+" .activity_exercise_percent").html(@intensities[activity.intensity])
   $(sel+" .activity_exercise_scale").slider({value: activity.intensity})
@@ -305,24 +335,24 @@
   curr = moment()
   f = curr.format(moment_fmt)
   t = curr.add(diff).format(moment_fmt)
-  $(sel+" input[name='activity[start_time]']").val(f)
-  $(sel+" input[name='activity[end_time]']").val(t)
+  $(sel+" input[name='activity[start_time]']").val(t)
+  $(sel+" input[name='activity[end_time]']").val(f)
 
-@load_activity_regular= (sel, data) ->
-  if !sel
-    sel=""
-  console.log('load regular, sel='+sel)
-  activity = data['activity']
-  console.log(data)
-  console.log(activity)
-  $(sel+" input[name='activity[activity]']").val(activity.activity)
-  $(sel+" input[name='activity[activity_type_id]']").val(activity.activity_type_id)
-  $(sel+" input[name='activity[intensity]']").val(activity.intensity)
-  $(sel+" .activity_regular_percent").html(@intensities[activity.intensity])
-  $(sel+" .activity_regular_scale").slider({value: activity.intensity})
-  diff = moment(activity.start_time).diff(moment(activity.end_time))
-  curr = moment()
-  f = curr.format(moment_fmt)
-  t = curr.add(diff).format(moment_fmt)
-  $(sel+" input[name='activity[start_time]']").val(f)
-  $(sel+" input[name='activity[end_time]']").val(t)
+#@load_activity_regular= (sel, data) ->
+#  if !sel
+#    sel=""
+#  console.log('load regular, sel='+sel)
+#  activity = data['activity']
+#  console.log(data)
+#  console.log(activity)
+#  $(sel+" input[name='activity[activity]']").val(activity.activity)
+#  $(sel+" input[name='activity[activity_type_id]']").val(activity.activity_type_id)
+#  $(sel+" input[name='activity[intensity]']").val(activity.intensity)
+#  $(sel+" .activity_regular_percent").html(@intensities[activity.intensity])
+#  $(sel+" .activity_regular_scale").slider({value: activity.intensity})
+#  diff = moment(activity.start_time).diff(moment(activity.end_time))
+#  curr = moment()
+#  f = curr.format(moment_fmt)
+#  t = curr.add(diff).format(moment_fmt)
+#  $(sel+" input[name='activity[start_time]']").val(f)
+#  $(sel+" input[name='activity[end_time]']").val(t)

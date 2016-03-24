@@ -58,13 +58,13 @@ module DataHelper
     end
   end
   def export_illness_types
-    arr = IllnessType.all
+    arr = LifestyleType.all
     i = 1
     for a in arr do
       a.id = i
       i = i+1
     end
-    File.open("/data/tmp1/illness_types.json", 'w') do |f|
+    File.open("/data/tmp1/lifestyle_types.json", 'w') do |f|
       JSON.dump(arr.as_json, f)
     end
   end
@@ -97,10 +97,10 @@ module DataHelper
   end
 
   def import_illness_types
-    File.open('/home/deploy/illness_types.json', 'r') do |f|
+    File.open('/home/deploy/lifestyle_types.json', 'r') do |f|
       arr = JSON.parse(f.read())
       arr.each do |d|
-        at = IllnessType.create(d)
+        at = LifestyleType.create(d)
       end
     end
   end

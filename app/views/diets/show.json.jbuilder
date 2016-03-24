@@ -1,3 +1,3 @@
-json.extract! @diet, :id, :user_id, :source,:diet_type, :food_type_id, :name, :amount, :date, :calories, :carbs, :fat, :prot, :category, :created_at, :updated_at, :favourite
-json.food_name @diet.food_type.name if @diet.diet_type !='Smoke' and @diet.diet_type != 'Calory' and @diet.food_type
-json.food_category @diet.food_type.category if @diet.diet_type !='Smoke' and @diet.diet_type != 'Calory' and @diet.food_type
+json.extract! @diet, :id, :user_id, :source, :amount, :date, :calories, :carbs, :fat, :prot, :created_at, :updated_at, :favourite
+json.name @diet.food_type.name if @diet.food_type
+json.category @diet.food_type.category if @diet.food_type

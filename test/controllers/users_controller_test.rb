@@ -58,6 +58,7 @@ class UsersControllerTest < ActionController::TestCase
   end
 
   test "should update user if pw len >= 4" do
+    I18n.locale = 'en'
     patch :update, id: @user.id, user: {
                      name: "newname",
                      password: "pwx",

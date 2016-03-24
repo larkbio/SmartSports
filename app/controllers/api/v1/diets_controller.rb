@@ -17,8 +17,7 @@ module Api::V1
       end
 
       user = User.find(user_id)
-      diets = user.diets.where(source: @default_source).order(created_at: :desc).limit(lim)
-      render json: diets
+      @diets = user.diets.where(source: @default_source).order(created_at: :desc).limit(lim)
     end
   end
 end

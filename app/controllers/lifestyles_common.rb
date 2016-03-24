@@ -12,14 +12,20 @@ module LifestylesCommon
     if not @lifestyle.start_time
       @lifestyle.start_time = DateTime.now
     end
+    if params['lifestyle'] && params['lifestyle']['lifestyle_type_name']
+      lt = LifestyleType.where(name: params['lifestyle']['lifestyle_type_name']).first
+      if lt != nil
+        @lifestyle.lifestyle_type_id = lt.id
+      end
+    end
 
     if @lifestyle.save
       illness_name = nil
-      if @lifestyle.illness_type
-        illness_name = @lifestyle.illness_type.name
+      if @lifestyle.lifestyle_type
+        illness_name = @lifestyle.lifestyle_type.name
       end
       send_success_json(@lifestyle.id, {group: @lifestyle.group,
-                                        pain_name: @lifestyle.pain_type_name,
+                                        pain_name: illness_name,
                                         illness_name: illness_name})
     else
       send_error_json(nil, @lifestyle.errors.full_messages.to_sentence, 400)
@@ -29,6 +35,16 @@ module LifestylesCommon
   # PATCH/PUT /lifestyles/1
   # PATCH/PUT /lifestyles/1.json
   def update
+    if params['lifestyle'] && params['lifestyle']['lifestyle_type_name']
+      lt = LifeStyleType.where(name: params['lifestyle']['lifestyle_type_name']).first
+      if !lt.nil?
+        @lifestyle.lifestyle_type_id = lt.id
+      else
+        send_error_json(@lifestyle.id,  "Invalid lifestyle type", 400)
+        return
+      end
+    end
+
     if @lifestyle.update(lifestyle_params)
       send_success_json(@lifestyle.id, {})
     else
@@ -55,6 +71,6 @@ module LifestylesCommon
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def lifestyle_params
-    params.require(:lifestyle).permit(:user_id, :illness_type_id, :pain_type_name, :source, :group, :name, :details, :amount, :period_volume, :start_time, :end_time, :favourite)
+    params.require(:lifestyle).permit(:user_id, :lifestyle_type_id, :lifestyle_type_name, :source, :group, :name, :details, :amount, :period_volume, :start_time, :end_time, :favourite)
   end
 end

@@ -175,9 +175,9 @@ class AnalysisDataController < ApplicationController
         if lifestyle.group=='stress'
           ret['lf_group']= [lifestyle.group, "Stress"]
         elsif lifestyle.group=='illness'
-          ret['lf_group']= [lifestyle.group, IllnessType.find(lifestyle.illness_type_id).name]
+          ret['lf_group']= [lifestyle.group, lifestyle.lifestyle_type_name]
         elsif lifestyle.group=='pain'
-          ret['lf_group']= [lifestyle.group, lifestyle.pain_type_name+"(pain)"]
+          ret['lf_group']= [lifestyle.group, lifestyle.lifestyle_type_name+"(pain)"]
         end
         ret
       end
@@ -355,9 +355,9 @@ class AnalysisDataController < ApplicationController
         ret['end'] = lifestyle.start_time+1.day
       end
       if lifestyle.group=='illness'
-        ret['value2']= IllnessType.find(lifestyle.illness_type_id).name
+        ret['value2']= lifestyle.lifestyle_type_name
       elsif lifestyle.group=='pain'
-        ret['value2']= lifestyle.pain_type_name
+        ret['value2']= lifestyle.lifestyle_type_name
       else
         ret['value2']= nil
       end

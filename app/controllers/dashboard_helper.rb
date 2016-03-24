@@ -164,6 +164,8 @@ module DashboardHelper
     @steps_walked = Activity.where("user_id = :user_id AND start_time >= :start_date", {user_id: current_user.id, start_date: (DateTime.now-1.week)})
                         .sum("steps")
 
+    @connected_devices = Connection.where(user_id: current_user.id)
+
   end
 
   private

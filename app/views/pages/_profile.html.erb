@@ -52,6 +52,7 @@
             <td>
               <input id="password_field" name="user[password]" type="password" class="loginField" placeholder="<%= t 'password' %>"/>
               <input id="password_retry_field" name="user[password_confirmation]" type="password" class="loginField" placeholder="<%= t 'password_confirm' %>"/>
+              <a href="#" data-toggle="tooltip" data-placement="top" title="<%=t :error_registration_password%>" tabindex="-1" class="tooltipUnit"><img src="<%= asset_path("question_mark_16.png")%>" border="0"></a>
             </td>
             <td>
               <button id="update-user-button" class="settingsButton">
@@ -158,7 +159,7 @@
                 </td>
                 <td>
                   <input id="height_field" name="profile[height]" type="text" class="loginField" value="<%= @profile.height %>"/>
-                  (cm)
+                  <a href="#" data-toggle="tooltip" data-placement="top" title="<%=t :error_profile_height_interval%>" tabindex="-1" class="tooltipUnit"><img src="<%= asset_path("question_mark_16.png")%>" border="0"></a>
                 </td>
                 <td>
                 </td>
@@ -169,7 +170,7 @@
                 </td>
                 <td>
                   <input id="weight_field" name="profile[weight]" type="text" class="loginField" value="<%= @profile.weight %>"/>
-                  (kg)
+                  <a href="#" data-toggle="tooltip" data-placement="top" title="<%=t :error_profile_weight_interval%>" tabindex="-1" class="tooltipUnit"><img src="<%= asset_path("question_mark_16.png")%>" border="0"></a> <br>
                 </td>
                 <td>
                 </td>
@@ -200,6 +201,7 @@
                 </td>
                 <td>
                   <input id="weight_field" name="profile[year_of_birth]" type="text" class="loginField" value="<%= @profile.year_of_birth %>"/>
+                  <a href="#" data-toggle="tooltip" data-placement="top" title="<%=t :error_profile_year_interval%>" tabindex="-1" class="tooltipUnit"><img src="<%= asset_path("question_mark_16.png")%>" border="0"></a> <br>
                 </td>
                 <td>
                   <button id="update-profile-button" class="settingsButton">

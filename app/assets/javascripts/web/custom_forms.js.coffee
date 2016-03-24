@@ -77,8 +77,8 @@
     console.log("illness types loaded")
     initLifestyle()
   )
-  p5 = loadIllnessTypes( () ->
-    console.log("illness types loaded")
+  p5 = load_labresult_types( () ->
+    console.log("labresult types loaded")
     initLabresult()
   )
   Promise.all([p1, p2, p3, p4, p5]).then( (results) ->

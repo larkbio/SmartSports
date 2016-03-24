@@ -5,6 +5,11 @@
         <%=t 'menu_dashboard' %>
       </a>
     </div>
+    <div class="menuitem customColor customIcon">
+      <a id="customforms-link" class="menulink" href="<%= url_for( :action => 'customforms', :locale => I18n.locale ) %>">
+        <%=t 'menu_custom' %>
+      </a>
+    </div>
     <div class="menuitem c1 b1">
       <a id="diet-link" class="menulink" href="<%= url_for( :action => 'diet', :locale => I18n.locale ) %>">
         <%=t 'menu_diet' %>
@@ -38,11 +43,6 @@
     <div class="menuitem c7 b7">
       <a id="labresults-link" class="menulink" href="<%= url_for( :action => 'labresult', :locale => I18n.locale ) %>">
         <%=t 'menu_labresults' %>
-      </a>
-    </div>
-    <div class="menuitem customColor customIcon">
-      <a id="customforms-link" class="menulink" href="<%= url_for( :action => 'customforms', :locale => I18n.locale ) %>">
-        <%=t 'menu_custom' %>
       </a>
     </div>
 

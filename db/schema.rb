@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160309115201) do
+ActiveRecord::Schema.define(version: 20160323094828) do
 
   create_table "activities", force: true do |t|
     t.integer  "user_id"
@@ -30,8 +30,9 @@ ActiveRecord::Schema.define(version: 20160309115201) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.float    "intensity"
-    t.boolean  "favourite",        default: false
+    t.boolean  "favourite",          default: false
     t.integer  "activity_type_id"
+    t.string   "activity_type_name"
   end
 
   add_index "activities", ["user_id", "created_at"], name: "index_activities_on_user_id_and_created_at"
@@ -116,11 +117,12 @@ ActiveRecord::Schema.define(version: 20160309115201) do
     t.float    "amount"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "favourite",    default: false
+    t.boolean  "favourite",      default: false
     t.float    "fat"
     t.float    "prot"
     t.string   "category"
     t.integer  "food_type_id"
+    t.string   "food_type_name"
   end
 
   create_table "food_types", force: true do |t|
@@ -159,6 +161,9 @@ ActiveRecord::Schema.define(version: 20160309115201) do
     t.string   "antibody_value"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "relative_type_name"
+    t.string   "diabetes_type_name"
+    t.string   "antibody_type_name"
   end
 
   add_index "genetics", ["user_id", "created_at"], name: "index_genetics_on_user_id_and_created_at"
@@ -168,11 +173,6 @@ ActiveRecord::Schema.define(version: 20160309115201) do
   create_table "genetics_types", force: true do |t|
     t.string "name"
     t.string "category"
-    t.string "lang"
-  end
-
-  create_table "illness_types", force: true do |t|
-    t.string "name"
     t.string "lang"
   end
 
@@ -198,6 +198,7 @@ ActiveRecord::Schema.define(version: 20160309115201) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "labresult_type_id"
+    t.string   "labresult_type_name"
   end
 
   create_table "lifestyle_types", force: true do |t|
@@ -216,11 +217,11 @@ ActiveRecord::Schema.define(version: 20160309115201) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "end_time"
-    t.boolean  "favourite",       default: false
-    t.integer  "illness_type_id"
-    t.string   "pain_type_name"
+    t.boolean  "favourite",           default: false
+    t.integer  "lifestyle_type_id"
     t.integer  "period_volume"
     t.text     "details"
+    t.string   "lifestyle_type_name"
   end
 
   add_index "lifestyles", ["user_id", "created_at"], name: "index_lifestyles_on_user_id_and_created_at"
@@ -264,7 +265,8 @@ ActiveRecord::Schema.define(version: 20160309115201) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "medication_type_id"
-    t.boolean  "favourite",          default: false
+    t.boolean  "favourite",            default: false
+    t.string   "medication_type_name"
   end
 
   create_table "notifications", force: true do |t|

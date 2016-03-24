@@ -200,6 +200,26 @@
     </div>
     <% end %>
 
+    <% if @connected_devices && @connected_devices.size > 0 %>
+      <div class="dashboardT">
+        <div class="tileTitle">
+          <div style="height: 40px">
+            <div class="historyItem bgc3 titleIcon">
+              <div class="inner devices"></div>
+            </div>
+          </div>
+          <div class="" style="padding-top: 10px;">
+            <%=t 'connected_devices'%>
+          </div>
+        </div>
+        <div>
+          <% for a in @connected_devices %>
+            <%= image_tag "menu/#{a.name}60.png", class: "connIcon" %>
+          <%end%>
+        </div>
+      </div>
+  <% end %>
+
     <!--
     <div class="dashboardT">
       <div class="tileTitle">
@@ -217,12 +237,12 @@
         <table id="dashboardGraph" cellpadding="0" cellspacing="0" border="0">
           <tbody>
           <tr>
-            <% (1..31).each do %>
+            <!% (1..31).each do %>
             <td style="vertical-align:bottom;padding-left:0px;">
-              <div style="background-color:#0F6FDF;overflow:hidden;width:2px;height:<%= 10 + Random.rand(10)*2%>px;"></div>
+              <div style="background-color:#0F6FDF;overflow:hidden;width:2px;height:<!%= 10 + Random.rand(10)*2%>px;"></div>
             </td>
             <td><div style="background-color:#fff;width:2px;height:0px;"></div></td>
-            <% end %>
+            <!% end %>
           </tr>
           </tbody>
         </table>

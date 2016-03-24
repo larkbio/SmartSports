@@ -11,7 +11,7 @@
     <input id="diet_data_<%= diet_item.id %>" type="hidden" value="<%=
         d = {'diet' => diet_item.as_json}
         if diet_item.diet_type!= "Smoke" && diet_item.diet_type!= "Calory" && diet_item.food_type && diet_item.name.nil?
-          d.merge!({'diet_name' => diet_item.food_type.name})
+          d.merge!({'diet_name' => diet_item.food_type_name})
         else
           d.merge!({'diet_name' => diet_item.name})
         end
@@ -19,16 +19,20 @@
     %>">
 
   <% if diet_item.diet_type== "Smoke" %>
-      <span class="itemTitle">
-        <%if I18n.locale == :hu%>
-            <%=DB_HU_CONFIG['diets']['Smoke'][diet_item.food_type.name]%>
-        <%else%>
-            <%= DB_EN_CONFIG['diets']['Smoke'][diet_item.food_type.name]%>
-        <%end%>
-      </span>
+      <% if diet_item.food_type_name %>
+          <span class="itemTitle">
+            <%if I18n.locale == :hu%>
+                <%=DB_HU_CONFIG['diets']['Smoke'][diet_item.food_type_name]%>
+            <%else%>
+                <%= DB_EN_CONFIG['diets']['Smoke'][diet_item.food_type_name]%>
+            <%end%>
+          </span>
+      <% else %>
+        Smoke <%= diet_item.name %>
+      <% end %>
 
   <% elsif diet_item.diet_type== "Food" %>
-      <% if diet_item.food_type %>
+      <% if diet_item.food_type_name %>
           <% vals = (t :amount_values).split(",")
              amount = diet_item.amount
              if amount > 2
@@ -37,9 +41,9 @@
           %>
           <span class="itemTitle">
             <%if I18n.locale == :hu%>
-                <%= DB_HU_CONFIG['diets']['Food'][diet_item.food_type.name] %>
+                <%= DB_HU_CONFIG['diets']['Food'][diet_item.food_type_name] %>
             <%else%>
-                <%= DB_EN_CONFIG['diets']['Food'][diet_item.food_type.name] %>
+                <%= DB_EN_CONFIG['diets']['Food'][diet_item.food_type_name] %>
             <%end%>
           </span>
             <span> <%= vals[amount] %></span>
@@ -55,12 +59,12 @@
             <span> <%= (t :carbs) %>: <%= diet_item.carbs %>g</span>
         <% end %>
   <% elsif diet_item.diet_type== "Drink" %>
-      <% if diet_item.food_type %>
+      <% if diet_item.food_type_name %>
           <span class="itemTitle">
             <%if I18n.locale == :hu%>
-                <%= DB_HU_CONFIG['diets']['Drink'][diet_item.food_type.name] %>
+                <%= DB_HU_CONFIG['diets']['Drink'][diet_item.food_type_name] %>
             <%else%>
-                <%= DB_EN_CONFIG['diets']['Drink'][diet_item.food_type.name] %>
+                <%= DB_EN_CONFIG['diets']['Drink'][diet_item.food_type_name] %>
             <%end%>
           </span>
           <span> <%= diet_item.amount %>dl</span>

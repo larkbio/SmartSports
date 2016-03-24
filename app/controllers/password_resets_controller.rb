@@ -8,7 +8,9 @@ class PasswordResetsController < ApplicationController
   def update
     @token = params[:id]
     @user = User.load_from_reset_password_token(params[:id])
-
+    if params[:lang]
+      I18n.locale = params[:lang]
+    end
     if @user.blank?
       not_authenticated
       return
@@ -19,7 +21,7 @@ class PasswordResetsController < ApplicationController
     begin
       if @user.change_password!(params[:user][:password])
         #redirect_to(root_path, :notice => 'Password was successfully updated.')
-        render json: {:ok => true, :locale => I18n.locale, :msg => I18n.translate('password_change_success')}
+        render json: {:ok => true, :locale => I18n.locale, :msg => (I18n.t "popupmessages.password_change_success")}
       else
         key = @user.errors.values[0]
         message = (I18n.translate(key))
