@@ -44,6 +44,7 @@ gem 'sorcery'
 gem 'doorkeeper'
 
 gem 'moves'
+gem 'omniauth-oauth'
 gem 'omniauth-moves'
 gem 'simplificator-withings'
 gem 'omniauth-withings'
