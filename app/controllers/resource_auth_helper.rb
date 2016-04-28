@@ -1,11 +1,18 @@
-module AuthHelper
+module ResourceAuthHelper
+
+  def check_owner_or_doctor()
+    unless owner? || doctor?
+      send_error_json(params[:id], "Unauthorized", 403)
+    end
+  end
+
   def check_doctor()
     unless doctor?
       send_error_json(nil, "Unauthorized", 403)
     end
   end
   def doctor?
-    return self.try(:current_user).try(:doctor?)
+    self.try(:current_resource_owner).try(:doctor?)
   end
 
   def check_admin()
@@ -15,7 +22,7 @@ module AuthHelper
   end
 
   def admin?
-    self.try(:current_user).try(:admin?)
+    return self.try(:current_resource_owner).try(:admin?)
   end
 
   def check_owner()
@@ -23,16 +30,11 @@ module AuthHelper
       send_error_json(nil, "Unauthorized", 403)
     end
   end
+
   def owner?
     user_id = params[:user_id].to_i
-    return (self.try(:current_user).try(:id) == user_id)
+    return (self.try(:current_resource_owner).try(:id) == user_id)
   end
 
-  def check_owner_or_doctor
-    logger.info("owner: #{owner?} doctor: #{doctor?}")
-    unless owner? || doctor?
-      send_error_json(params[:id], "Unauthorized", 403)
-    end
-  end
 
 end

@@ -47,7 +47,9 @@ class LoginTest < ActionDispatch::IntegrationTest
     end
 
     click_button 'Login'
-    page.must_have_content('SmheartRehab - intelligent')
+    within('body') do
+      page.must_have_content('SmheartRehab - intelligent')
+    end
 
     click_link 'health-link'
     within('#health_2') do

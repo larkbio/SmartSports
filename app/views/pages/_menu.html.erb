@@ -46,10 +46,22 @@
       </a>
     </div>
 
+    <div class="menuitem guideColor guideIcon">
+      <a id="labresults-link" class="menulink" href="<%= url_for( :action => 'guide', :locale => I18n.locale ) %>">
+        <%=t 'menu_guide' %>
+      </a>
+    </div>
+
+    <div class="menuitem faqColor faqIcon">
+      <a id="labresults-link" class="menulink" href="<%= url_for( :action => 'faq', :locale => I18n.locale ) %>">
+        <%=t 'menu_faq' %>
+      </a>
+    </div>
+
     <div style="float: right;width: 50px;">
 
     </div>
-    <div style="clear: both;"></div>
+    <div class="clearBoth"></div>
 
   </div>
   <div class="footer">

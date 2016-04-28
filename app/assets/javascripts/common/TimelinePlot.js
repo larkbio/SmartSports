@@ -171,7 +171,9 @@ TimelinePlot.prototype.dataAdapter = function(data) {
     for(i = 0; i < data.length; ++i ) {
         var d = data[i];
         var dispType = "other";
-        if(new Set(["exercise", "medication", "diet"]).has(d.kind)) {
+        var kinds = new Set();
+        kinds.add(["exercise", "medication", "diet"]);
+        if(kinds.has(d.kind)) {
             dispType = "point";
         } else if(d.kind=="health"){
             dispType = "point";

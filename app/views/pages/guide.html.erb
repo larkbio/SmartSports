@@ -1,0 +1,99 @@
+<div class="mainContent guide">
+  <span>
+  The following servings each contain about 15 grams of carbohydrate.
+  Each serving counts as ONE CARB PORTION.
+  </span>
+    <br/>
+    <br/>
+    <br/>
+  <strong>Milk Group</strong>
+  <br/>
+  <ul>
+      <li>1 cup of milk                                                         </li>
+      <li>1 cup of soy milk                                                     </li>
+      <li>1 cup of buttermilk                                                   </li>
+      <li>2/3 cup of plain yogurt                                          </li>
+      <li>2/3 cup of aspartame sweetened yogurt                            </li>
+  </ul>
+  <strong>Starch Group (measured after cooking)</strong>
+  <ul>
+      <li>1 slice of bread (weighing 1 ounce)                                   </li>
+      <li>1/4 large bagel                                                  </li>
+      <li>1/2 hamburger bun, hot-dog bun, pita bread, English muffin       </li>
+      <li>1/3 cup rice, pasta, millet, couscous                            </li>
+      <li>1/2 cup beans (pinto, kidney, garbanzo, lentils)                 </li>
+      <li>1/2 cup starchy vegetable (potato, corn, peas, sweet potato, yam)</li>
+      <li>1/2 cup oatmeal, kasha, grits, bulgur                            </li>
+      <li>1 small tortilla (flour or corn, 6 inch size)                         </li>
+      <li>6 saltine crackers                                                    </li>
+      <li>3 graham cracker squares                                              </li>
+      <li>3 cups popcorn                                                        </li>
+  </ul>
+  <br/>
+    <strong>Fruit Group</strong>
+  <br/>
+    <ul>
+  <li>1 small apple, orange, peach, pear, or nectarine (1/2 if large fruit)</li>
+  <li>1 small banana (1/2 of average banana)                               </li>
+  <li>1/2 grapefruit                                                       </li>
+  <li>1/2 cup unsweetened applesauce                                       </li>
+  <li>3/4 cup fresh pineapple chunks, blueberries, or blackberries         </li>
+  <li>17 grapes                                                            </li>
+  <li>3 prunes                                                             </li>
+  <li>1 1/4 cups strawberries, or watermelon                               </li>
+  <li>1 cup cantaloupe, honeydew, or papaya                                </li>
+  <li>1 large kiwi                                                         </li>
+  <li>2 tablespoons raisins                                                </li>
+  <li>1/2 cup orange juice, apple juice, or grapefruit juice               </li>
+  <li>1 cup = 8 fluid ounces                                               </li>
+</ul>
+  <br/>
+    <strong>Non-Starchy Vegetables</strong>
+  <br/>
+    <span class="guidePara">
+  The following non-starchy vegetables contain about
+  5 grams of carbohydrate per 1/2 cup cooked, or 1 cup raw.<br/>
+  Artichokes, asparagus, green beans, beets, broccoli, brussels sprouts,
+  cabbage, carrots, cauliflower, eggplant, greens, kohlrabi, leeks, okra,
+  onions, pea pods, peppers, spinach, summer squash, tomato, tomato sauce,
+  turnips, and zucchini.
+  </span>
+  <br/>
+  <br/>
+    <strong>Meats, Proteins, and Fats</strong>
+  <br/>
+  <span class="guidePara">
+  The following meats, protein foods, and fats contain little or no carbohydrate.<br/>
+  meat margarine
+  chicken butter
+  fish oil
+  tuna mayonnaise
+  cheese avocado
+  cottage cheese cream cheese
+  tofu seeds
+  eggs olives
+  nuts sour cream
+  </span>
+  <br/>
+  <br/>
+  <strong>Free Foods</strong>
+  <br/>
+    <span class="guidePara">
+  The following foods are insignificant sources of calories and carbohydrate.
+  diet soda lettuce lemons/limes artificial sweeteners
+  mineral water broth spices Crystal Light
+  coffee salsa ginger sugar-free Jello
+  tea garlic Diet Snapple nonstick cooking spray
+  </span>
+  <br/>
+</div>
+<script>
+    //    pages_menu();
+    //    diet_loaded();
+</script>
+<% content_for :menu do %>
+    <%= render "menu" %>
+<% end %>
+<% content_for :title_text do %>
+    <%=t :menu_faq %> | <%= t :project_name %>
+<% end %>

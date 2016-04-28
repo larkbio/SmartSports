@@ -1,7 +1,7 @@
 module Api::V1
   class MeasurementsController < ApiController
     before_action :set_measurement, only: [ :update, :destroy]
-
+    before_action :check_owner_or_doctor
     include MeasurementsCommon
 
     def index

@@ -1,5 +1,6 @@
 class DietsController < ApplicationController
   before_action :set_diet, only: [:edit, :update, :destroy]
+  before_action :check_owner_or_doctor
 
   include DietsCommon
 

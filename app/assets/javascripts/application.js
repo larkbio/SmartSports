@@ -16,6 +16,7 @@
 //= require turbolinks
 //= require jquery.color-2.1.2.min
 //= require jquery.datetimepicker
+//= require bootstrap
 //= require d3.min
 //= require moment
 //= require jquery.qtip.min
@@ -58,7 +59,7 @@ function base64DecToArr (sBase64, nBlocksSize) {
 }
 
 function decodeSensorTimeVal(base64Data) {
-    data = base64DecToArr(base64Data);
+    var data = base64DecToArr(base64Data);
     var arr = [];
     for(var i = 0; i<data.length; i++) {
         if(i%2 == 1) {

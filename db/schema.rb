@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160407135037) do
+ActiveRecord::Schema.define(version: 20160422132615) do
 
   create_table "activities", force: true do |t|
     t.integer  "user_id"
@@ -135,6 +135,13 @@ ActiveRecord::Schema.define(version: 20160407135037) do
 
   add_index "family_records", ["user_id"], name: "index_family_records_on_user_id"
 
+  create_table "faqs", force: true do |t|
+    t.integer "sortcode"
+    t.string  "title"
+    t.text    "detail"
+    t.string  "lang"
+  end
+
   create_table "food_types", force: true do |t|
     t.string "name"
     t.string "category"
@@ -232,12 +239,11 @@ ActiveRecord::Schema.define(version: 20160407135037) do
 
   create_table "medication_types", force: true do |t|
     t.string "category"
-    t.float  "dosage"
     t.string "name"
+    t.float  "dosage"
     t.string "title"
   end
 
-  add_index "medication_types", ["name"], name: "index_medication_types_on_name"
   add_index "medication_types", ["title"], name: "index_medication_types_on_title"
 
   create_table "medications", force: true do |t|

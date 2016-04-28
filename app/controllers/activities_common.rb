@@ -55,11 +55,6 @@ module ActivitiesCommon
       return
     end
 
-    if !check_owner()
-      send_error_json(@activity.id, "Unauthorized", 403)
-      return
-    end
-
     fav = true
     if params['activity'].nil? || params['activity']['favourite'].nil? || params['activity']['favourite']=='false'
       fav = false
@@ -102,10 +97,6 @@ module ActivitiesCommon
     end
 
     currid = @activity.id
-    if !check_owner()
-      send_error_json(currid, "Unauthorized", 403)
-      return
-    end
 
     if @activity.destroy
       send_success_json(currid, {})

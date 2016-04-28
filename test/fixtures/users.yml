@@ -17,3 +17,4 @@ two:
   name: balint2
   salt: <%= salt = "asdasdastr4325234324sdfds" %>
   crypted_password: <%= Sorcery::CryptoProviders::BCrypt.encrypt("mypw", salt) %>
+  admin: false

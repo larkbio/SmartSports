@@ -12,11 +12,6 @@ module MeasurementsCommon
       @measurement.date = DateTime.now
     end
 
-    if !check_owner()
-      send_error_json(nil, "Unauthorized", 403)
-      return
-    end
-
     if @measurement.save
       send_success_json(@measurement.id, {msg: create_success_message() } )
     else
@@ -32,11 +27,6 @@ module MeasurementsCommon
 
     if @measurement.nil?
       send_error_json(nil, "Param 'measurement' missing", 400)
-      return
-    end
-
-    if !check_owner()
-      send_error_json(nil, "Unauthorized", 403)
       return
     end
 
@@ -87,11 +77,6 @@ module MeasurementsCommon
     @measurement = Measurement.find(params[:id])
     if @measurement.nil?
       send_error_json(nil, "Delete error", 400)
-      return
-    end
-
-    if !check_owner()
-      send_error_json(@measurement.id, "Unauthorized", 403)
       return
     end
 

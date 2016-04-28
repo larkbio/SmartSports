@@ -32,11 +32,23 @@
     return validateLifestyleForm(evt.target.parentNode.parentNode.querySelector("form").id)
   )
 
+#  $("#recentResourcesTable").on("click", "td.lifestyleItem", (e) ->
+#    data = JSON.parse(e.currentTarget.querySelector("input").value)
+#    fn = window["load_lifestyle_"+data.lifestyle_type_name];
+#    if typeof fn == 'function'
+#      fn('#lifestyle_forms .lifestyle_'+data.lifestyle_type_name+"-create-form", data)
+#  )
+
   $("#recentResourcesTable").on("click", "td.lifestyleItem", (e) ->
     data = JSON.parse(e.currentTarget.querySelector("input").value)
-    fn = window["load_lifestyle_"+data.lifestyle_type_name];
-    if typeof fn == 'function'
-      fn('#lifestyle_forms .lifestyle_'+data.lifestyle_type_name+"-create-form", data)
+    if data.lifestyle_category=='illness'
+      load_lifestyle_illness("#lifestyle_forms .wellbeing_illness", data)
+    else if data.lifestyle_category=='pain'
+      load_lifestyle_pain("#lifestyle_forms .wellbeing_pain", data)
+    else if data.lifestyle_category=='sleep'
+      load_lifestyle_sleep("#lifestyle_forms .wellbeing_sleep", data)
+    else if data.lifestyle_category=='stress'
+      load_lifestyle_stress("#lifestyle_forms .wellbeing_stress", data)
   )
 
   $("#recentResourcesTable").on("ajax:success", (e, data, status, xhr) ->
@@ -361,30 +373,17 @@
   return ret
 
 @load_lifestyle_sleep = (sel, data) ->
-  console.log "load sleep "+sel
-  console.log data
-  lifestyle = data['lifestyle']
-  $(sel+" .sleep_scale").slider({value: lifestyle.amount})
-  $(sel+" .sleep_percent").html(sleepList[lifestyle.amount])
-  $(sel+" input[name='lifestyle[start_time]']").val(new moment().format(moment_fmt))
-  $(sel+" input[name='lifestyle[end_time]']").val(new moment().format(moment_fmt))
+  console.log "load sleep "+sel+", ignored"
 
 @load_lifestyle_stress = (sel, data) ->
   console.log "load stress"+sel+", ignored"
-  $(sel+" input[name='lifestyle[start_time]']").val(new moment().format(moment_datefmt))
-# doesn't make sense to load this from history
-#  console.log data
-#  lifestyle = data['lifestyle']
-#  $(sel+" .stress_scale").slider({value: lifestyle.amount})
-#  $(sel+" .stress_percent").html(stressList[lifestyle.amount])
-#  $(sel+" input[name='lifestyle[start_time]']").val(fixdate(lifestyle.start_time))
 
 @load_lifestyle_illness = (sel, data) ->
   console.log "load illness"+sel
   console.log data
   lifestyle = data['lifestyle']
-  $(sel+" .illness_name").val(lifestyle.name)
-  $(sel+" .illness_type_id").val(lifestyle.lifestyle_type_name)
+  $(sel+" .illness_name").val(get_lifestyle_label(data['lifestyle_name']))
+  $(sel+" .illness_type_id").val(data['lifestyle_name'])
   $(sel+" .illness_scale").slider({value: lifestyle.amount})
   $(sel+" .illness_percent").html(illnessList[lifestyle.amount])
   $(sel+" .illness_details").val(lifestyle.details)
@@ -395,8 +394,8 @@
   console.log "load pain"+sel
   console.log data
   lifestyle = data['lifestyle']
-  $(sel+" .pain_type_name").val(lifestyle.name)
-  $(sel+" .pain_type_id").val(lifestyle.lifestyle_type_name)
+  $(sel+" .pain_type_name").val(get_lifestyle_label(data['lifestyle_name']))
+  $(sel+" .pain_type_id").val(data['lifestyle_name'])
   $(sel+" .pain_scale").slider({value: lifestyle.amount})
   $(sel+" .pain_percent").html(painList[lifestyle.amount])
   $(sel+" .pain_details").val(lifestyle.details)
@@ -407,3 +406,26 @@
 @load_lifestyle_period = (sel, data) ->
   console.log "load period"+sel+", ignored"
 
+@get_lifestyle_label = (key) ->
+  user_lang = $("#user-lang")[0].value
+  arr = ['sd_illness_', 'sd_pains_']
+
+  value = null
+  console.log "get_label "+key
+
+  arr.forEach((item) ->
+    if user_lang
+      life_db = item+user_lang
+    else
+      life_db = item+'hu'
+
+    if getStored(life_db)!=undefined && getStored(life_db).length!=0
+      tmp = getStored(life_db).filter((d) ->
+        return d.id==key;
+      )
+      if tmp.length!=0
+        value = tmp[0].label
+  )
+  if value==null
+    value = 'Unknown'
+  return value

@@ -5,7 +5,16 @@ class ApplicationController < ActionController::Base
   before_action :require_login
   before_action :set_default_variables
 
+  rescue_from Exception, :with => :general_error_handler
+
   include RequestHelper
+  include AuthHelper
+
+  def general_error_handler(ex)
+    logger.error ex.message
+    logger.error ex.backtrace.join("\n")
+    render 'shared/error'
+  end
 
   private
 
@@ -57,19 +66,10 @@ class ApplicationController < ActionController::Base
     return last_sync_date
   end
 
-#
-  def check_auth()
-    logger.info("owner: #{owner?} doctor: #{doctor?}")
-    if not owner?() and not doctor?()
-      send_error_json(params[:id], "Unauthorized", 403)
-      return false
-    end
-    return true
-  end
 
   include SaveClickRecord
   include ResponseHelper
-  include AuthHelper
+
 
 end
 

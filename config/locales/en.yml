@@ -47,6 +47,8 @@ en:
   menu_patients: "Patient"
   menu_patient_groups: "Patient Groups"
   menu_custom_full: "Custom Forms"
+  menu_faq: "F.A.Q"
+  menu_guide: "Guide"
 
   title_profile: "Profile"
   title_connections: "Connected devices"
@@ -373,6 +375,11 @@ en:
   daily_timeline: "Daily timeline"
   heart_trend: "Heart trend"
   activity_trend: "Activity trend"
+
+# FAQ
+  faq_title_1: SmartDiab FAQ
+  faq_title_2: Frequently Asked Questions
+  faq_subtitle: This section contains information related to SmartDiab and about diabetes related health conditions. If you cannot find an answer to your question, make sure to contact us.
 
 # custom
   add_custom_form: "Add Custom Form"

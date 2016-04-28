@@ -15,9 +15,14 @@
  *= require_self
  */
 
-@import "font-awesome-sprockets";
-@import "font-awesome";
+@import 'font-awesome-sprockets';
+@import 'font-awesome';
 @import 'jquery-ui.min';
 @import 'jquery.datetimepicker';
 @import 'jquery.qtip.min';
 @import 'jquery.dataTables';
+@import 'bootstrap-sprockets';
+
+$baseFontFamily: Arial !default;
+$baseFontSize: 11px !default;
+@import 'bootstrap';

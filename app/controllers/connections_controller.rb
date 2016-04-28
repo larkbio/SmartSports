@@ -1,20 +1,12 @@
 
 class ConnectionsController < ActionController::Base
+  before_action :check_owner
 
   def index
-    if !owner?()
-      send_error_json(params[:id], "Unauthorized", 403)
-      return
-    end
-
     @connections = current_user.connections.all
   end
 
   def destroy
-    if !owner?()
-      send_error_json(params[:id], "Unauthorized", 403)
-      return
-    end
     @conn = Connection.find_by_id(params[:id])
     if @conn.destroy
       send_success_json(@conn.id, { name: @conn.name})
@@ -25,10 +17,7 @@ class ConnectionsController < ActionController::Base
 
   def update
     logger.info("connection update called")
-    if !owner?()
-      send_error_json(params[:id], "Unauthorized", 403)
-      return
-    end
+
     @conn = current_user.connections.where(id: params[:id]).first
     if @conn.nil? || !params[:sync]
       send_error_json(params[:id], "Failed to sync", 400)

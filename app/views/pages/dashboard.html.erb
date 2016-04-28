@@ -6,7 +6,7 @@
 <%= render partial: 'static_data' %>
 
 <div class="topcolor">
-  <div class="historyContainer" style="">
+  <div class="historyContainer" >
     <div class="title">
       <!--<%=t 'today'%>-->
     </div>
@@ -23,17 +23,17 @@
   <% if @show_bg %>
     <div class="dashboardT">
       <div class="tileTitle">
-        <div style="height: 40px">
+        <div class="tileImage">
           <div class="historyItem bgc3 titleIcon">
             <div class="inner blood_sugar"></div>
           </div>
         </div>
-        <div class="" style="padding-top: 10px;">
+        <span class="tileText">
           <%=t 'blood_glucose_today_html'%>
-        </div>
+        </span>
       </div>
       <% if @show_day_bg %>
-          <div>
+          <div class="tileBody">
             <span class="tileContent <%=@day_bg_status%>"><%=@day_bg_min%>/<%=@day_bg_avg%>/<%=@day_bg_max%></span><br/><span class="tileUnit">mmol/L</span>
           </div>
       <%else%>
@@ -47,23 +47,23 @@
     <% if @show_bw %>
         <div class="dashboardT">
           <div class="tileTitle">
-            <div style="height: 40px">
+            <div class="tileImage">
               <div class="historyItem bgc3 titleIcon">
                 <div class="inner weight"></div>
               </div>
             </div>
-            <div class="" style="padding-top: 10px;">
+            <span class="tileTitle">
               <%=t 'body_weight'%>
-            </div>
+            </span>
           </div>
-          <div>
+          <div class="tileBody">
             <% if @bw_today >0 %>
             <span class="tileContent">&nbsp;<%=@bw_today%></span><span class="tileUnit">kg</span>
             <% else %>
                 <span class="tileContent">&nbsp;<%=@bw_last%></span><span class="tileUnit">kg</span>
             <% end %>
           </div>
-          <div>
+          <div class="tileBody">
               <% if @show_bw_diff %>
                   <span class="tileUnit"><%= @bw_diff %> kg (<i class="fa fa-arrow-<%=@bw_arrow%>"></i><%= @bw_diff_percent%>%)</span>
             <% else %>
@@ -75,20 +75,20 @@
 
     <div class="dashboardT">
       <div class="tileTitle">
-        <div style="height: 40px">
+        <div class="tileImage">
           <div class="historyItem bgc1 titleIcon">
             <div class="inner food"></div>
           </div>
         </div>
-        <div class="" style="padding-top: 10px;">
+        <span class="tileText" >
           <%=t 'calories_taken'%>
-        </div>
+        </span>
       </div>
       <% if @calories_taken > 0 %>
-          <div>
+          <div class="tileBody">
             <span class="tileContent">&nbsp;<%=@calories_taken%></span><span class="tileUnit">kcal</span>
           </div>
-          <div>
+          <div class="tileBody">
             <% if @calories_diff_show %>
                 <span class="tileUnit <%= @calories_status %>"><%= @calories_diff %> kcal (<i class="fa fa-arrow-<%=@calories_arrow%>"></i><%= @calories_diff_percent%>)</span>
             <% end %>
@@ -103,20 +103,20 @@
 
     <div class="dashboardT">
       <div class="tileTitle">
-        <div style="height: 40px">
+        <div class="tileImage">
           <div class="historyItem bgc2 titleIcon">
             <div class="inner exercise"></div>
           </div>
         </div>
-        <div class="" style="padding-top: 10px;">
+        <span class="tileText">
           <%=t 'exercise_calories'%>
-        </div>
+        </span>
       </div>
       <% if @calories_burned > 0 %>
-          <div>
+          <div class="tileBody">
             <span class="tileContent">&nbsp;<%=@calories_burned%></span><span class="tileUnit">kcal</span>
           </div>
-          <div>
+          <div class="tileBody">
             <% if @calories_burned_diff_show %>
                 <span class="tileUnit <%= @calories_burned_status %>"><%= @calories_burned_diff %> kcal (<i class="fa fa-arrow-<%=@calories_burned_arrow%>"></i><%= @calories_burned_diff_percent%>)</span>
             <% end %>
@@ -131,16 +131,16 @@
     <% if @day_exercise_time > 0 %>
         <div class="dashboardT">
           <div class="tileTitle">
-            <div style="height: 40px">
+            <div class="tileImage">
               <div class="historyItem bgc2 titleIcon">
                 <div class="inner exercise"></div>
               </div>
             </div>
-            <div class="" style="padding-top: 10px;">
+            <div class="tileText">
               <%=t 'exercise_time'%>
             </div>
           </div>
-          <div>
+          <div class="tileBody">
             <span class="tileContent">&nbsp;<%=@day_exercise_time%></span><span class="tileUnit">min</span>
           </div>
         </div>
@@ -149,16 +149,16 @@
     <% if @show_sleep %>
     <div class="dashboardT">
       <div class="tileTitle">
-        <div style="height: 40px">
+        <div class="tileImage">
           <div class="historyItem bgc3 titleIcon">
             <div class="inner weight"></div>
           </div>
         </div>
-        <div class="" style="padding-top: 10px;">
+        <div class=tileText"">
           <%=t 'sleep_amount_today'%>
         </div>
       </div>
-      <div>
+      <div class="tileBody">
         <span class="tileContent"><%=@sleep_amount%></span>
       </div>
     </div>
@@ -167,16 +167,16 @@
     <% if @show_walk_today %>
     <div class="dashboardT">
       <div class="tileTitle">
-        <div style="height: 40px">
+        <div class="tileImage">
           <div class="historyItem bgc3 titleIcon">
             <div class="inner steps"></div>
           </div>
         </div>
-        <div class="" style="padding-top: 10px;">
+        <div class="tileText">
           <%=t 'walking_today'%>
         </div>
       </div>
-      <div>
+      <div class="tileBody">
         <span class="tileContent"><%=@walk_today_value%></span><span class="tileUnit"><%=@walk_today_unit%></span>
       </div>
     </div>
@@ -185,16 +185,16 @@
     <% if @show_cycle_today %>
     <div class="dashboardT">
       <div class="tileTitle">
-        <div style="height: 40px">
+        <div class="tileImage">
           <div class="historyItem bgc3 titleIcon">
             <div class="inner steps"></div>
           </div>
         </div>
-        <div class="" style="padding-top: 10px;">
+        <div class="tileText">
           <%=t 'cycling_today'%>
         </div>
       </div>
-      <div>
+      <div class="tileBody">
         <span class="tileContent"><%=@cycle_today_value%></span><span class="tileUnit"><%=@cycle_today_unit%></span>
       </div>
     </div>
@@ -203,16 +203,16 @@
     <% if @connected_devices && @connected_devices.size > 0 %>
       <div class="dashboardT">
         <div class="tileTitle">
-          <div style="height: 40px">
+          <div class="tileImage">
             <div class="historyItem bgc3 titleIcon">
               <div class="inner devices"></div>
             </div>
           </div>
-          <div class="" style="padding-top: 10px;">
+          <div class="tileText">
             <%=t 'connected_devices'%>
           </div>
         </div>
-        <div>
+        <div class="tileBody">
           <% for a in @connected_devices %>
             <%= image_tag "menu/#{a.name}60.png", class: "connIcon" %>
           <%end%>

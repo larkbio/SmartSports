@@ -27,6 +27,7 @@ Rails.application.routes.draw do
       resources :lifestyle_types
       resources :labresult_types
       resources :genetics_record_types
+      resources :faqs
       get 'profile' => 'profile#show'
       put 'profile' => 'profile#update'
       post 'profile_image' => 'profile#profile_image'
@@ -90,6 +91,8 @@ Rails.application.routes.draw do
     get 'pages/medication'
     get 'pages/lifestyle'
     get 'pages/genetics'
+    get 'pages/faq'
+    get 'pages/guide'
     get 'pages/customforms'
     get 'pages/analytics'
     get 'pages/profile'

@@ -11,8 +11,9 @@
   <td class="historyTitle padded lifestyleItem">
     <input id="lifestyle_data_<%=lifestyle_item.id%>" type="hidden" value="<%=
         d = {'lifestyle' => lifestyle_item.as_json }
-        if lifestyle_item.lifestyle_type && lifestyle_item.lifestyle_type.category=='illness'
-          d['illness_name']=lifestyle_item.lifestyle_type.name
+        if lifestyle_item.lifestyle_type
+          d.merge!({'lifestyle_name' => lifestyle_item.lifestyle_type.name})
+          d.merge!({'lifestyle_category' => lifestyle_item.lifestyle_type.category})
         end
         JSON.dump(d)
     %>">

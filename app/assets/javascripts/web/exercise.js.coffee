@@ -20,6 +20,7 @@
 
     $("#"+form_id+" input.dataFormField").val("")
 
+    $('.activity_exercise_scale').slider({value: 1})
     $('.activity_exercise_start_datepicker').val(moment().subtract(30,'minutes').format(moment_fmt))
     $('.activity_exercise_end_datepicker').val(moment().format(moment_fmt))
     $('#activity_type_id').val(null)
@@ -210,7 +211,7 @@
           cnt += 1
       response(result)
     select: (event, ui) ->
-      $(".activity_exercise_name").val(ui.item.id)
+      $(".activity_exercise_key").val(ui.item.id)
       $(".activity_exercise_scale" ).slider({
         value: "1"
       })
@@ -313,12 +314,14 @@
     )
   return ret
 
+
+
 @load_activity_exercise = (sel, data) ->
   console.log "load activity, sel="+sel
   console.log(data)
   activity = data['activity']
-  $(sel+" input[name='activity[activity]']").val(activity.activity)
-  $(sel+" input[name='activity[activity_type_name]']").val(activity.activity_type_name)
+  $(sel+" .activity_exercise_key").val(data['activity_name'])
+  $(sel+" .activity_exercise_name").val(get_label(data['activity_name']))
   $(sel+" input[name='activity[intensity]']").val(activity.intensity)
   $(sel+" .activity_exercise_percent").html(@intensities[activity.intensity])
   $(sel+" .activity_exercise_scale").slider({value: activity.intensity})

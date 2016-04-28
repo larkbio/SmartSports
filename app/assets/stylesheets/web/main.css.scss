@@ -1,0 +1,82 @@
+.topBanner {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 60px;
+  background: #ffffff; /*rgba(255, 255, 255, 0.3);*/
+
+  z-index: 90;
+}
+
+.topBannerBg {
+
+  background: #ffffff;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 60px;
+
+  z-index: 80;
+}
+
+.topBanner .left {
+  padding-left: 20px;
+  float: left;
+  height: 60px;
+  padding-top: 0;
+  padding-bottom: 10px;
+
+}
+
+.topBanner .logoTitle {
+  padding-left: 20px;
+  float: left;
+  height: 60px;
+  padding-top: 0;
+  padding-bottom: 10px;
+}
+
+.topBanner .logoTitle {
+  color: #3d3d3d;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 20px;
+  line-height: 60px;
+}
+
+.topBanner .right {
+  padding-right: 20px;
+  float: right;
+  height: 60px;
+  padding-top: 10px;
+}
+
+.mainContainer {
+  margin-left: 220px;
+  margin-top: 60px;
+  margin-right: 80px;
+}
+
+.mainContent {
+  position: relative;
+  z-index: 3;
+  padding-left: 36px;
+  padding-top: 20px;
+}
+
+.sectionTitle {
+  height: 60px;
+  padding-left: 70px;
+  line-height: 60px;
+  font-variant: small-caps;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 300;
+  font-size: 30px;
+}
+
+.contentBg {
+  background: rgba(255, 255, 255, 1);
+  color: #c8c9c3;
+  width: 100%;
+}

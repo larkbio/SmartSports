@@ -26,6 +26,8 @@ hu:
   menu_patients: "Betegek"
   menu_patient_groups: "Beteg Csoportok"
   menu_custom_full: "Saját Kérdőívek"
+  menu_faq: "Gy.I.K."
+  menu_guide: "Segítség"
 
   title_profile: "Profil"
   title_connections: "Csatlakoztatott eszközök"
@@ -355,6 +357,10 @@ hu:
   heart_trend: "Szív adatok"
   activity_trend: "Mozgás adatok"
 
+# FAQ
+  faq_title_1: SmartDiab Gy.I.K.
+  faq_title_2: Gyakori Kérdések
+  faq_subtitle: Ez az oldal a SmartDiabbal és a cukorbetegséggel kapcsolatos információkat tartalmaz. Ha itt nem talál választ a kérdésére, forduljon hozzánk.
 # custom
   add_custom_form: "Egyedi kérdőív hozzáadása"
   add_custom_form_info: "Itt összeállíthatja saját kérdőíveit a leggyakrabban használt elemekkel és alapértelmezett értékekkel."

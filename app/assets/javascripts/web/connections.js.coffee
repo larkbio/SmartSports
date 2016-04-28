@@ -64,7 +64,8 @@
   $("#recentResourcesTable").append(addConnRow)
   $("#recentResourcesTable select").attr("id", "connectionToAdd")
   connected = $.map($("#recentResourcesTable [data-conn]"), (d) -> d.dataset.conn)
-  remaining = new Set(['withings', 'moves', 'fitbit', 'google', 'misfit'])
+  remaining = new Set();
+  remaining.add(['withings', 'moves', 'fitbit', 'google', 'misfit'])
   connected.forEach( (c) -> remaining.delete(c))
   remaining.forEach( (c) -> $("#connectionToAdd").append("<option>"+c+"</option>"))
   links = {

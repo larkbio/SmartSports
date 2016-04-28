@@ -2,6 +2,8 @@ body.nobgAnimation {
     /*  background: #9DCFFE; */
     background: #F2F3F8;
     font-family: Arial;
+    font-size: 14px;
+    line-height: normal;
     padding: 0;
     margin: 0;
 }
@@ -10,59 +12,7 @@ body.nobgAnimation {
 
 }
 
-.topBanner {
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 60px;
-  background: #ffffff; /*rgba(255, 255, 255, 0.3);*/
 
-  z-index: 90;
-}
-
-.topBannerBg {
-
-  background: #ffffff;
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 60px;
-
-  z-index: 80;
-}
-
-.topBanner .left {
-    padding-left: 20px;
-    float: left;
-    height: 60px;
-    padding-top: 0px;
-    padding-bottom: 10px;
-
-}
-
-.topBanner .logoTitle {
-  padding-left: 20px;
-  float: left;
-  height: 60px;
-  padding-top: 0px;
-  padding-bottom: 10px;
-}
-
-.topBanner .logoTitle {
-  color: #3d3d3d;
-  font-family: 'Open Sans', sans-serif;
-  font-size: 20px;
-  line-height: 60px;
-}
-
-.topBanner .right {
-  padding-right: 20px;
-  float: right;
-  height: 60px;
-  padding-top: 10px;
-}
 
 .dashboardButton {
     width: 160px;
@@ -277,7 +227,7 @@ button.dataFormField {
 }
 
 .c7, .labresultColor {
-  color: #EBAAAB !important;;
+  color: #EBAAAB !important;
 }
 
 .labresultStyle .dataFormField {
@@ -330,6 +280,27 @@ button.dataFormField {
 .custom-block {
 
 }
+
+.faqColor {
+  color: #BAEBE6 !important;
+}
+
+.faqTitleColor {
+  color: white !important;
+  background-color: #BAEBE6 !important;
+}
+
+.guideColor {
+  color: #98CC00 !important;
+}
+
+.guideTitleColor {
+  color: white !important;
+  background-color: #BAEBE6 !important;
+}
+
+
+
 .forgottenDiv {
     padding: 20px;
     position: absolute;
@@ -388,7 +359,7 @@ button.deleteForm {
 
 .app2Menu .inner .menuitem {
   border-bottom: solid 2px #2D3644 !important;
-  width: 196px;
+  width: 200px;
   height: 50px;
   float: left;
   font-size: 20px;
@@ -399,7 +370,7 @@ button.deleteForm {
 .menulink {
   text-decoration: none;
   display: block;
-  width: 146px;
+  width: 200px;
   //  height: 20px;
   padding-left: 56px;
   //text-align: center;
@@ -477,6 +448,16 @@ button.deleteForm {
 
 .app2Menu .customIcon {
   background: image-url("custom/img_myForms.png") no-repeat 5px 5px;
+  background-size: 40px 40px;
+}
+
+.app2Menu .faqIcon {
+  background: image-url("qm40.png") no-repeat 5px 5px;
+  background-size: 40px 40px;
+}
+
+.app2Menu .guideIcon {
+  background: image-url("guide40.png") no-repeat 5px 5px;
   background-size: 40px 40px;
 }
 // -----------------------------------------
@@ -596,9 +577,12 @@ div.dialogFormContainer {
     line-height: 40px;
     text-align: center;
     text-transform: uppercase;
-
 }
-
+.dataFormTitle span{
+  margin-top: 10px;
+  font-size: 20px;
+  display: block;
+}
 .dataFormProperty {
   height: 20px;
   line-height: 30px;
@@ -869,25 +853,6 @@ div.egfr {
 
 // ====================
 
-.sectionTitle {
-  margin-top: 40px;
-  /*background-color: rgba(0, 0, 0, 0.1);*/
-  height: 60px;
-  padding-left: 70px;
-  line-height: 60px;
-  font-variant: small-caps;
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 300;
-  font-size: 30px;
-}
-
-.contentBg {
-  background: rgba(255, 255, 255, 1);
-  color: #c8c9c3;
-  width: 100%;
-}
-
-
 .dataCaptured {
   width: 400px;
   height: 310px;
@@ -933,16 +898,13 @@ div.egfr {
 
 
 .historyContainer {
-  padding: 20px;
-  position: relative;
+  padding-top: 30px;
   margin-left: 20px;
   margin-right: 30px;
   margin-top: 60px;
-  /*background: #F2F3F8;*/
-  /*background: RGBA(45, 54, 67, .8);*/
   height: 100px;
-  /*background: red;*/
-  /*border-radius: 30px;*/
+  box-sizing: content-box;
+  margin-bottom: 20px;
 }
 
 .historyLine {
@@ -1075,6 +1037,8 @@ div.egfr {
   /*background: image-url("../images/dashboard_bg8.jpg");*/
   background-position-y: bottom;
   padding-bottom: 20px;
+  padding-left: 36px;
+
 }
 
 .dashboardT {
@@ -1084,6 +1048,8 @@ div.egfr {
   margin: 2px;
   background: RGBA(255, 255, 255, 0.36);
   float: left;
+  box-sizing: initial;
+  font-size: 20px;
 }
 
 @media screen and (max-width: 2000px) {
@@ -1107,6 +1073,7 @@ div.egfr {
   position:relative;
   margin-left: 20px;
   margin-right: 30px;
+
 }
 
 .tileTitle {
@@ -1126,6 +1093,17 @@ div.egfr {
   padding-left: 4px;
 }
 
+.tileImage {
+  height: 40px;
+}
+.tileText {
+  font-size: 20px;
+  display: block;
+}
+.tileBody {
+  font-size: 20px;
+  display: block;
+}
 .improve {
   color: green;
 }

@@ -9,6 +9,7 @@ module Api::V1
     include RequestHelper
     include ResponseHelper
     include SaveClickRecord
+    include ResourceAuthHelper
 
     def current_resource_owner
       User.find(doorkeeper_token.resource_owner_id) if doorkeeper_token
@@ -30,41 +31,5 @@ module Api::V1
       end
 
     end
-
-  #
-
-    def check_auth()
-      if !owner?() && !doctor?()
-        send_error_json(params[:id], "Unauthorized", 403)
-        return false
-      end
-      return true
-    end
-
-    def check_doctor()
-      if self.try(:current_resource_owner).try(:doctor?)
-        return true
-      end
-      return false
-    end
-    alias_method :doctor?, :check_doctor
-
-    def check_admin()
-      if self.try(:current_resource_owner).try(:admin?)
-        return true
-      end
-      return false
-    end
-    alias_method :admin?, :check_admin
-
-    def check_owner()
-      user_id = params[:user_id].to_i
-      if self.try(:current_resource_owner).try(:id) == user_id
-        return true
-      end
-      return false
-    end
-    alias_method :owner?, :check_owner
-
   end
 end

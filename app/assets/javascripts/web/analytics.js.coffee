@@ -49,7 +49,7 @@
   data['blood_glucose'] = $.map(jsondata, (d) ->
     return {date: d.date, value: d.blood_sugar, group: grp_map[d.blood_sugar_time]}
   )
-  console.log(new Set($.map(jsondata, (d) -> return d.blood_sugar_time)))
+
   chartParams = {
     rightLabel: "mmol/L"
   }

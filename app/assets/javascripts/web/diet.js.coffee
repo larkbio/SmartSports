@@ -41,13 +41,13 @@
   $("#recentResourcesTable").on("click", "td.dietItem", (e) ->
     data = JSON.parse(e.currentTarget.querySelector("input").value)
     diet = data['diet']
-    if diet.diet_type=='Food'
+    if data.diet_category=='Food'
       load_diet_food("#diet_forms .diet_food", data)
-    else if diet.diet_type=='Drink'
+    else if data.diet_category=='Drink'
       load_diet_drink("#diet_forms .diet_drink", data)
-    else if diet.diet_type=='Smoke'
+    else if data.diet_category=='Smoke'
       load_diet_smoke("#diet_forms .diet_smoke", data)
-    else if diet.diet_type=='Calory'
+    else if data.diet_category=='Calory'
       load_diet_quick_calories("#diet_forms .diet_quick_calories", data)
   )
 
@@ -367,24 +367,24 @@
   amount_values = $("#amount_values").val().split(",")
   diet = data['diet']
   console.log "load diet food to:"+sel+" diet: "+diet.name
-  console.log diet
-  $(sel+" input[name='diet[name]']").val(diet.name)
-  #$(sel+" input[name='diet[food_type_id]']").val(diet.food_type_id)
+  $(sel+" input[name='diet[name]']").val(data['diet_name'])
+  $(sel+" .diet_food_name").val(get_food_label(data['diet_name']))
   $(sel+" .diet_food_unit").html(amount_values[diet.amount])
   $(sel+" .diet_food_scale").slider({value: diet.amount})
   $(sel+" input[name='diet[date]']").val(moment().format(moment_fmt))
 
 @load_diet_drink =  (sel, data) ->
   diet = data['diet']
-  $(sel+" input[name='diet[name]']").val(diet.name)
-  #$(sel+" input[name='diet[food_type_id]']").val(diet.food_type_id)
+  $(sel+" input[name='diet[name]']").val(data['diet_name'])
+  $(sel+" .diet_drink_name").val(get_food_label(data['diet_name']))
   $(sel+" .diet_drink_unit").html(diet.amount+" dl")
   $(sel+" .diet_drink_scale").slider({value: diet.amount})
   $(sel+" input[name='diet[date]']").val(moment().format(moment_fmt))
 
 @load_diet_smoke = (sel, data) ->
   diet = data['diet']
-  $(sel+" input[name='diet[name]']").val(diet.name)
+  $(sel+" input[name='diet[name]']").val(data['diet_name'])
+  $(sel+" .diet_smoke_type").val(get_food_label(data['diet_name']))
   $(sel+" input[name='diet[date]']").val(moment().format(moment_fmt))
 
 @load_diet_quick_calories = (sel, data) ->

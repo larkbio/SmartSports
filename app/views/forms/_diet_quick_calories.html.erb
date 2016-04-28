@@ -1,6 +1,6 @@
 <div class="dataForm diet_quick_calories diet <% if local_assigns.fetch(:locals, {})[:defaultHidden] %>hidden<% end %>">
   <input type="hidden" name="diet[source]" value="<%= @default_source %>">
-  <input type="hidden" name="diet[name]" value="calory">
+  <input class="diet_calory_type" name="diet[name]" value="calory" type="hidden">
 
   <input id="diet_calories" type="text" name="diet[calories]" class="dataFormField" placeholder="<%=t 'quick_calories_placeholder' %>"/>
   <div class="dataFormFieldUnit">kCal</div>

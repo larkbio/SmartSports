@@ -1,5 +1,6 @@
 module CustomFormsCommon
 
+
   def index
     if params[:user_id]
       @user_id = params[:user_id].to_i
@@ -75,10 +76,7 @@ module CustomFormsCommon
   def destroy
     @user_id = params[:user_id].to_i
     user = User.find(@user_id)
-    if !check_owner()
-      send_error_json(@user_id, "Unauthorized", 403)
-      return
-    end
+
     cf = user.custom_forms.where(id: params[:id].to_i).try(:first)
     if cf.nil?
       send_error_json(params[:id].to_i, "custom_form_not_found", 400)

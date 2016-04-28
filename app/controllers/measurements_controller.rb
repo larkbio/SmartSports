@@ -1,7 +1,7 @@
 require 'csv'
 class MeasurementsController < ApplicationController
   before_action :set_measurement, only: [:show, :edit, :update, :destroy]
-
+  before_action :check_owner_or_doctor
   include MeasurementsCommon
 
   def new

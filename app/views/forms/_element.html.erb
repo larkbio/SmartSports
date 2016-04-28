@@ -34,8 +34,8 @@
 
 <div class="dataFormContainer formElement <%= style %> <% if defaultHidden%>hidden<%end%> <%= elementName+'_elem'%>">
   <div class="dataFormTitle">
-    <%= image_tag img %><br/>
-    <%=t title %>
+    <%= image_tag img %>
+    <span><%=t title %></span>
   </div>
   <div class="clearBoth"></div>
   <%= form_tag( root_path+"users/#{current_user.id}/#{elNamePl}", remote: true, class: "resource-create-form #{elName}-form "+elementName+"-create-form "+cfe, id: elementId) do %>

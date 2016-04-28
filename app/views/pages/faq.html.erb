@@ -1,0 +1,37 @@
+<div class="mainContent">
+
+  <div class="faqContent">
+  <div class="page-header">
+    <h1><%=t :faq_title_1 %> <small><%=t :faq_title_2 %></small></h1>
+  </div>
+
+  <!-- Bootstrap FAQ - START -->
+    <div class="container">
+        <br />
+
+        <div class="alert alert-warning alert-dismissible" role="alert">
+          <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+          <%= t :faq_subtitle %>
+        </div>
+
+        <br />
+        <div class="panel-group" id="accordion">
+          <%= render partial: 'shared/faq_item', collection: @faqs %>
+        </div>
+    </div>
+  </div>
+</div>
+
+<!-- Bootstrap FAQ - END -->
+
+<script>
+
+//    pages_menu();
+//    diet_loaded();
+</script>
+<% content_for :menu do %>
+    <%= render "menu" %>
+<% end %>
+<% content_for :title_text do %>
+    <%=t :menu_faq %> | <%= t :project_name %>
+<% end %>

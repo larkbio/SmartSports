@@ -1,5 +1,5 @@
 class CustomFormsController < ApplicationController
-
+  before_action :check_owner_or_doctor
   include CustomFormsCommon
 
   def show

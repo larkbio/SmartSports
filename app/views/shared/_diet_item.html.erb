@@ -10,10 +10,9 @@
   <td id="diet_item_<%= diet_item.id %>" class="historyTitle padded dietItem">
     <input id="diet_data_<%= diet_item.id %>" type="hidden" value="<%=
         d = {'diet' => diet_item.as_json}
-        if diet_item.food_type && diet_item.food_type.name.nil? && diet_item.food_type.category!= "Smoke" && diet_item.food_type.category!= "Calory"
-          d.merge!({'diet_name' => diet_item.food_type_name})
-        else
-          d.merge!({'diet_name' => diet_item.name})
+        if diet_item.food_type || (!diet_item.food_type && diet_item.calories)
+          d.merge!({'diet_name' => diet_item.food_type.name})
+          d.merge!({'diet_category' => diet_item.food_type.category})
         end
         JSON.dump(d)
     %>">

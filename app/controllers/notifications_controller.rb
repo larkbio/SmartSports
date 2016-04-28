@@ -1,6 +1,6 @@
 class NotificationsController < ApplicationController
   before_action :set_notification, only: [:show, :edit, :update, :destroy]
-  before_action :check_auth, only: [:index, :show, :edit, :create, :update, :destroy]
+  before_action :check_owner_or_doctor, only: [:index, :show, :edit, :create, :update, :destroy]
 
   include NotificationsCommon
   include NotificationsHelper

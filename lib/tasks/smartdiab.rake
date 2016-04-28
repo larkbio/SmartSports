@@ -37,6 +37,19 @@ namespace :smartdiab do
     puts 'MedicationTypes loaded'
   end
 
+  task init_faq: :environment do
+    if Faq.all.size != 0
+      Faq.all.delete_all
+    end
+
+    dirName = File.dirname(__FILE__)
+    csv_text = dirName + "/smartdiab_faq.csv"
+    ret = SmarterCSV.process(csv_text, headers: true, col_sep: ",", chunk_size: 100) do |chunk|
+      Faq.create!(chunk)
+    end
+    puts 'Faqs loaded'
+  end
+
   task init_activity: :environment do
     if ActivityType.all.size != 0
       ActivityType.all.delete_all

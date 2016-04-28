@@ -116,6 +116,18 @@ class PagesController < ApplicationController
     save_click_record(:success, nil, nil)
   end
 
+  def faq
+    faqLang = I18n.locale
+    faqLang ||= 'en'
+    @faqs = Faq.where(lang: faqLang)
+    puts @faqs
+    # save_click_record(:success, nil, nil)
+  end
+
+  def guide
+    save_click_record(:success, nil, nil)
+  end
+
   def analytics
     save_click_record(:success, nil, nil)
     if params[:user_id] && current_user.admin?

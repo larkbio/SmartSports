@@ -233,7 +233,7 @@ validate_medication_common = (sel) ->
   medication = data['medication']
 
   $(sel+" input[name='medication[name]']").val(data.medication_name)
-  $(sel+" input[name='medication[medication_type_id]']").val(medication.medication_type_id)
+  $(sel+" input[name='medication[medication_name]']").val(get_medication_label(data.medication_name))
   $(sel+" input[name='medication[amount]']").val(medication.amount)
   $(sel+" input[name='medication[date]']").val(moment().format(moment_fmt))
 
@@ -242,6 +242,29 @@ validate_medication_common = (sel) ->
   medication = data['medication']
 
   $(sel+" input[name='medication[name]']").val(data.medication_name)
-  $(sel+" input[name='medication[medication_type_id]']").val(medication.medication_type_id)
+  $(sel+" input[name='medication[medication_name]']").val(get_medication_label(data.medication_name))
   $(sel+" input[name='medication[amount]']").val(medication.amount)
   $(sel+" input[name='medication[date]']").val(moment().format(moment_fmt))
+
+@get_medication_label = (key) ->
+  user_lang = $("#user-lang")[0].value
+  arr = ['sd_pills_', 'sd_insulin_']
+  value = null
+  console.log "get_label "+key
+
+  arr.forEach((item) ->
+    if user_lang
+      med_db = item+user_lang
+    else
+      med_db = item+'hu'
+
+    if getStored(med_db)!=undefined && getStored(med_db).length!=0
+      tmp = getStored(med_db).filter((d) ->
+        return d.id==key;
+      )
+      if tmp.length!=0
+        value = tmp[0].label
+  )
+  if value==null
+    value = 'Unknown'
+  return value
