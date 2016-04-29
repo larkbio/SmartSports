@@ -6,11 +6,6 @@ module Api::V1
 
     def index
       user_id = params[:user_id]
-      if current_resource_owner.id != user_id.to_i
-        render json: nil, status: 403
-        return
-      end
-
       user = User.find(user_id)
       @measurements = user.measurements
       if(params[:source])

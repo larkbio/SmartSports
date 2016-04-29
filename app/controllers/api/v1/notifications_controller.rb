@@ -1,16 +1,10 @@
 module Api::V1
   class NotificationsController < ApiController
-
+    before_action :check_owner_or_doctor
     include NotificationsCommon
 
     def index
       user_id = params[:user_id].to_i
-
-      if current_resource_owner.id != user_id.to_i
-        render json: nil, status: 403
-        return
-      end
-
       user = User.find(user_id)
       notif = user.notifications
 

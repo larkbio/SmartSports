@@ -33,7 +33,7 @@ class Lifestyle < ActiveRecord::Base
   def subtitle
     result = "Unknown"
     if self.lifestyle_type
-      case self.lifestyle_type.category
+      case self.lifestyle_type.categoryqn
         when "sleep"
           result = t(:sleepList)[self.amount] if self.amount
         when "stress"
@@ -53,7 +53,7 @@ class Lifestyle < ActiveRecord::Base
     result = "Unknown"
     if self.lifestyle_type
       result = self.lifestyle_type.category
-      if self.self.lifestyle_type.category=='sleep'
+      if self.lifestyle_type.category=='sleep'
         result = "Sleep, #{ t(:sleepList)[self.amount] if self.amount}"
       end
     end
