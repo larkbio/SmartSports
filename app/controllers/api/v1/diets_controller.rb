@@ -1,7 +1,9 @@
 module Api::V1
   class DietsController < ApiController
     before_action :set_diet, only: [:update, :destroy]
-    before_action :check_owner_or_doctor
+    before_action :check_owner_or_doctor, only: [:index]
+    before_action :check_owner, except: [:index]
+
 
     include DietsCommon
 

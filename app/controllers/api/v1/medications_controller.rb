@@ -1,6 +1,8 @@
 module Api::V1
   class MedicationsController < ApiController
-    before_action :check_owner_or_doctor
+    before_action :check_owner_or_doctor, only: [:index]
+    before_action :check_owner, except: [:index]
+
     include MedicationsCommon
 
     def index

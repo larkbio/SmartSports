@@ -31,11 +31,6 @@ module MedicationsCommon
       return
     end
 
-    if !check_owner()
-      send_error_json(@medication.id, "Unauthorized", 403)
-      return
-    end
-
     fav = true
     if params['medication'].nil? || params['medication']['favourite'].nil? || params['medication']['favourite']=='false'
       fav = false
@@ -70,11 +65,6 @@ module MedicationsCommon
     @user_id = @medication.user_id
     if @medication.nil?
       send_error_json(nil, "Delete error", 400)
-      return
-    end
-
-    if !check_owner()
-      send_error_json(@medication.id, "Unauthorized", 403)
       return
     end
 

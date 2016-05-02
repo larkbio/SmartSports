@@ -1,0 +1,17 @@
+one:
+  id: 1
+  user_id: 1
+  category: hba1c
+  hba1c: 1
+  ldl_chol: nil
+  egfr_epi: nil
+  ketone: nil
+
+two:
+  id: 2
+  user_id: 1
+  category: ldl_chol
+  hba1c: nil
+  ldl_chol: 2
+  egfr_epi: nil
+  ketone: nil

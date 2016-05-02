@@ -7,7 +7,7 @@ module Api::V1
 
     def setupAdmin
       @one = faqs(:one)
-      @user = users(:one)
+      @user = users(:four)
       token = mock()
       token.expects(:acceptable?).at_least_once.returns(true)
       token.stubs(:resource_owner_id).returns(@user.id)

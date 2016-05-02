@@ -8,7 +8,8 @@ one:
   salt: <%= salt = "asdasdastr4325234324sdfds" %>
   crypted_password: <%= Sorcery::CryptoProviders::BCrypt.encrypt("testpw", salt) %>
   reset_password_token: resetpwtok
-  admin: true
+  admin: false
+  doctor: false
 
 two:
   id: 2
@@ -18,3 +19,24 @@ two:
   salt: <%= salt = "asdasdastr4325234324sdfds" %>
   crypted_password: <%= Sorcery::CryptoProviders::BCrypt.encrypt("mypw", salt) %>
   admin: false
+  doctor: true
+
+three:
+  id: 3
+  username: unknown
+  email: johndoe@abc.de
+  name: jd
+  salt: <%= salt = "asdasdastr4325234324sdfds" %>
+  crypted_password: <%= Sorcery::CryptoProviders::BCrypt.encrypt("mypw", salt) %>
+  admin: false
+  doctor: false
+
+four:
+  id: 4
+  username: adm
+  email: admin@abc.de
+  name: sysop
+  salt: <%= salt = "asdasdastr4325234324sdfds" %>
+  crypted_password: <%= Sorcery::CryptoProviders::BCrypt.encrypt("mypw", salt) %>
+  admin: true
+  doctor: false

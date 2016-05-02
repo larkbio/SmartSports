@@ -1,30 +1,31 @@
 require 'test_helper'
 
 class UsersControllerTest < ActionController::TestCase
-  setup do
+
+  def init_user
     @user = users(:one)
+    login_user
+  end
+  def init_admin
+    @user = users(:four)
     login_user
   end
 
   test "should get index if admin" do
+    init_admin
     get :index
     assert_response :success
     assert_not_nil assigns(:users)
   end
 
   test "should NOT get index if NOT admin" do
-    @user = users(:two)
-    login_user
+    init_user
     get :index, format: :json
     assert_response 403
   end
 
-  test "should get new" do
-    get :new
-    assert_response :success
-  end
-
   test "should create user" do
+    init_admin
     assert_difference('User.count') do
       post :create, user: {
           email: "xxx@ab.cd",
@@ -38,16 +39,14 @@ class UsersControllerTest < ActionController::TestCase
   end
 
   test "should show user" do
+    init_user
     get :show, id: @user
     assert_response :success
   end
 
-  test "should get edit" do
-    get :edit, id: @user
-    assert_response :success
-  end
 
   test "should update user" do
+    init_user
     patch :update, id: @user.id, user: {
         name: "newname",
         password: "pwx1",
@@ -58,6 +57,7 @@ class UsersControllerTest < ActionController::TestCase
   end
 
   test "should update user if pw len >= 4" do
+    init_user
     I18n.locale = 'en'
     patch :update, id: @user.id, user: {
                      name: "newname",
@@ -71,6 +71,7 @@ class UsersControllerTest < ActionController::TestCase
   end
 
   test "should destroy user" do
+    init_admin
     user2 = users(:two)
     assert_difference('User.count', -1) do
       delete :destroy, id: user2, format: :json
@@ -81,6 +82,7 @@ class UsersControllerTest < ActionController::TestCase
   end
 
   test "should accept doctor flag" do
+    init_admin
     assert_difference('User.count', 1) do
       post :create, user: {
                       email: "xxx@ab.cd",
@@ -96,8 +98,8 @@ class UsersControllerTest < ActionController::TestCase
   end
 
   test "should reject doctor flag if not admin" do
-    @user = users(:two)
-    login_user
+    init_user
+
     assert_difference('User.count', 0) do
       post :create, user: {
                       email: "xxx@ab.cd",

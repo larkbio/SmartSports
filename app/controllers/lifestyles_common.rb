@@ -1,6 +1,4 @@
 module LifestylesCommon
-
-
   # POST /lifestyles
   # POST /lifestyles.json
   def create
@@ -66,7 +64,6 @@ module LifestylesCommon
   # DELETE /lifestyles/1
   # DELETE /lifestyles/1.json
   def destroy
-    user = @lifestyle.user
     if @lifestyle.destroy
       send_success_json(@lifestyle.id, {:msg => "Deleted successfully"})
     else

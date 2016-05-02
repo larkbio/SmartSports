@@ -42,11 +42,6 @@ module LabresultsCommon
       return
     end
 
-    if !check_owner()
-      send_error_json(@labresult.id, "Unauthorized", 403)
-      return
-    end
-
     if params['labresult'] && params['labresult']['labresult_type_name']
       lt = LabresultType.where(name: params['labresult']['labresult_type_name']).first
       if lt != nil
@@ -83,11 +78,6 @@ module LabresultsCommon
     @labresult = Labresult.find(params[:id])
     if @labresult.nil?
       send_error_json(nil, "Delete error", 400)
-      return
-    end
-
-    if !check_owner()
-      send_error_json(@labresult.id, "Unauthorized", 403)
       return
     end
 

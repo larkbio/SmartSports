@@ -86,11 +86,6 @@ module DietsCommon
       return
     end
 
-    if !check_owner()
-      send_error_json(@diet.id,  "Unauthorized", 403)
-      return
-    end
-
     if @diet.destroy
       send_success_json(@diet.id, { diet_name: @diet.diet_name})
     else

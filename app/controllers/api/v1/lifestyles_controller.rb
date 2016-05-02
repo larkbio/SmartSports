@@ -1,7 +1,8 @@
 module Api::V1
   class LifestylesController < ApiController
     before_action :set_lifestyle, only: [ :update, :destroy]
-    before_action :check_valid_user, only: [:index]
+    before_action :check_owner_or_doctor, only: [:index]
+    before_action :check_owner, except: [:index]
 
     include LifestylesCommon
 
