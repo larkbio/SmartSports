@@ -9,8 +9,10 @@ sortcode,lang,title,detail
 <li>Cuts and wounds take longer to heal.</li>
 <li>Blurred vision.</li>
 </ul>"
+,,Can diabetes be cured?,"No. A cure for diabetes has not yet been found. However, diabetes can be treated and controlled. Most people with diabetes manage their disease and lead normal lives."
 2,en,"What should my blood sugar be when I wake up, before and after meals? ","Fasting or before-meals blood glucose (or blood sugar) goal of 70–130 mg/dl. <br/>
 One to two hours after eating at or under 180 mg/dl is recommended."
+,,What are the symptoms of low blood sugar?,
 3,en,Will insulin make me gain weight?,"The reason we need insulin is to push glucose into cells for energy. For this reason, it can—but doesn’t have to—cause weight gain. To prevent weight gain: 
 <ul>
 <li>Practice portion control. </li>
@@ -24,28 +26,31 @@ For people who take insulin or another blood glucose-lowering medication that ca
 During perimenopause, hormons fluctuate and that leads to glucose swings. An early sign of perimenopause for women who take insulin is hypoglycemia due to dropping progesterone."
 7,en,What to eat before and after exercising?,"Foods that contain carbohydrate are quick and easy to digest for energy. Eat foods like bread, crackers, pretzels, dry cereal, 100 percent fruit juice, or sports drink with calories. But if weight loss is a goal and you aren’t at risk of hypoglycemia, just drink water. Unless your workout was particularly exhausting or lasted several hours, you don’t need food. <br/>
 People who take insulin and are physically active should consult their health care provider about how to adjust insulin dosages."
-1,hu,What if I’m not sure I have diabetes?,"The symptoms of diabetes can be very diverse. If you experience more of these you might be suspicious and better go to see a doctor: 
+,,When should I replace my meter?,"The only reason to replace your meter if not working correctly with its strips. To check, use the control solution that comes with your meter. To use control solution, put a drop (similar to the amount of blood you need) on a strip and do a test. Your vial of strips gives you a glucose range in which the result should fall. If it's in the range, your meter and strips are working correctly. If not, contact the manufacturer, which will offer advice and possibly a free replacement meter. Use control solution each time you open a new box of strips or any time you suspect your meter or strips aren’t working together. It is suggested to clean and disinfect your meter at least once a week when blood is on the meter and before allowing anyone else to use it. Consider upgrading your meter every five or so years."
+,,,
+1,hu,"Mit tegyek, ha nem vagyok biztos abban, hogy cukorbeteg vagyok-e? / Honnan tudom, hogy cukorbeteg vagyok-e? ","A cukorbetegség tünetei egészen sokfélék lehetnek. Ha az alábbi tünetek közül többet is megfigyeltél magadon és kétségeid vannak, keresd fel a háziorvosod: 
 <ul>
-<li>Going to the toilet a lot, especially at night.</li>
-<li>Being really thirsty.</li>
-<li>Feeling sick or more tired than usual.</li>
-<li>Losing weight without trying to.</li>
-<li>Genital itching or thrush.</li>
-<li>Cuts and wounds take longer to heal.</li>
-<li>Blurred vision.</li>
+<li>Gyakori vizelési inger, főként éjszaka.</li>
+<li>Nagyon erős szomjúság érzés.</li>
+<li>Rosszullét, hányinger, fáradtság, levertség érzése.</li>
+<li>Testtömeg csökkenése anélkül, hogy diétáznál.</li>
+<li>Szeméremtest viszketése, gombásodása, bőrgombásodás.</li>
+<li>Nehezen gyógyuló sebek, sérülések.</li>
+<li>Látás romlása, homályos látás.</li>
 </ul>"
-2,hu,"What should my blood sugar be when I wake up, before and after meals? ","Fasting or before-meals blood glucose (or blood sugar) goal of 70–130 mg/dl. <br/>
-One to two hours after eating at or under 180 mg/dl is recommended."
-3,hu,Will insulin make me gain weight?,"The reason we need insulin is to push glucose into cells for energy. For this reason, it can—but doesn’t have to—cause weight gain. To prevent weight gain: 
+2,hu,"Mi a vércukor szint normális értéke reggel ébredés után, illetve étkezések előtt és után?  ","Az éhgyomri, illetve étkezés előtti vércukor szint (glükóz) normális értéke 70–130 mg/dl. <br/>
+Étkezés után egy-két órával 180 mg/dl, illetve annál kisebb értékek számítanak normálisnak."
+3,hu,Az inzulintól hízni fogok?,"Az inzulin hatásának alapja, hogy glükózt, ezáltal energiát juttat a sejtekbe, amelyekbe különben nem juthatna be. Ezért játszhat szerepet az inzulin az elhízásban, de ennek nem feltétlenül kell így lennie. Az elhízás megelőzhető: 
 <ul>
-<li>Practice portion control. </li>
-<li>Burn extra calories with exercise. </li>
-<li>If you experience hypoglycemia (low blood sugar), treat it with just 15 grams of carb.</li>
+<li>Normál/kis adag ételek fogyasztásával. </li>
+<li>Sportolás útján az extra kalória elégetésével. </li>
+<li>Hipoglikémiás állapotban (alacsony vércukorszint) csak 15 gramm szénhidrát fogyasztása javasolt.</li>
 </ul>"
-4,hu,What if my legs hurt when I start walking?,"You have signs of peripheral arterial disease. The pain may occur while you walk because muscles need increased blood flow and stops when you sit because your muscles then require less blood flow. PAD increases the risk of heart attacks, strokes, and foot ulcers. "
-5,hu,Can I drink alcohol?,"Yes, adults with diabetes can drink alcohol and should follow the same guidelines as the general public—an average of up to one drink per day for women and up to two drinks per day for men, with no more than three or four drinks in any single day for women and men, respectively. Alcohol is the only nutrient that doesn’t require insulin to be broken down for energy; carbohydrate, protein, and fat do. However, drinking more than three drinks per day over time has been shown to make glucose control a challenge.<br/>
-For people who take insulin or another blood glucose-lowering medication that can cause hypoglycemia, eat some food when drinking alcohol. A Significant alcohol intake can cause hypoglycemia a number of hours later, so regularly check blood sugar levels when you drink."
-6,hu,What if I have my menstrual cycle or go through menopause?,"It’s common for women to have hormone fluctuations the week before their period, and those can affect glucose control. Women become in this period more sensitive to insulin causing hypoglycemia. 
-During perimenopause, hormons fluctuate and that leads to glucose swings. An early sign of perimenopause for women who take insulin is hypoglycemia due to dropping progesterone."
-7,hu,What to eat before and after exercising?,"Foods that contain carbohydrate are quick and easy to digest for energy. Eat foods like bread, crackers, pretzels, dry cereal, 100 percent fruit juice, or sports drink with calories. But if weight loss is a goal and you aren’t at risk of hypoglycemia, just drink water. Unless your workout was particularly exhausting or lasted several hours, you don’t need food. <br/>
+4,hu,"Miért fáj, zsibbad a lábam járás közben?","Valószínűleg a perifériás artériás betegség (PAD) tüneteit észleled magadon. Leggyakrabban gyaloglás közben jelentkezik a fájdalom, mivel mozgás közben az izmoknak nagyobb vérellátásra lenne szükségük és a beszűkült artériák csökkentik a végtagok vérellátását. A fájdalom általában megszűnik amikor leülsz, ekkor az izmoknak kevesebb vérellátás is elegendő. Következményeként a lábon nem gyógyuló sebek, fekélyek alakulhatnak ki. A PAD növeli a szívinfarktus és a sztroke esélyét is.  
+"
+5,hu,Ihatok alkoholt?,"Igen, a felnőtt cukorbetegek az általános, mindenkire vonatkozó szabályok betartásával ihatnak alkoholt: eszerint átlagosan a nők napi max. egy italt, míg a férfiak napi max. két italt fogyaszthatnak, azonban egy nap 3-4 pohárnál többet nem ihatnak meg (nők és férfiak egyaránt). Az alkohol az egyetlen olyan tápanyag, aminek a lebontásához nem szükséges inzulin; míg a szénhidrátok, zsírok és fehérjék lebontásához szükséges. Ettől függetlenül, ha hosszú időn keresztül napi 3 italnál többet fogyasztunk, a vércukor érték beállítása problémás lehet.<br/>
+Ha inzulint, vagy más egyéb vércukor csökkentő gyógyszert (amik hipoglikémiát okozhatnak) használsz, javaslat szerint egyél valamit amikor alkoholos italt iszol. Nagyobb mennyiségű alkohol ugyanis órákkal később okozhat hipoglikémiát, ezért sűrűn ellenőrizd a vércukor szinted ha alkoholt iszol. "
+6,hu,"Mire kell figyelnem a menstruációs ciklusom alatt, vagy ha menopauza életszakaszban vagyok?","A nőknél sokszor előfordul a menstruáció előtti héten hormonszint igadozás, ami befolyásolhatja a glükóz anyagcsere szabályozását. Ezekben az időszakokban a nők jóval érzékenyebbek az inzulin álzal okozott hipoglikémiás (alacsony vércukorszint) állapotra. 
+A menopauza előtti időszakban a hormonok erőteljes ingadozása tapasztalható, ami a vér glükóz szintjének nagyobb kilengését okozhatja. Az inzulint használó hölgyeknél a menopauzát megelőző változó időszak korai jele a hipoglikémia, amit a progeszteron hormon csökkenése okoz."
+7,hu,Mit egyek sportolás előtt és után?,"A szénhidrátot tartalmazó ételek emésztéséből könnyen és gyorsan nyerhető energia. Foods that contain carbohydrate are quick and easy to digest for energy. Eat foods like bread, crackers, pretzels, dry cereal, 100 percent fruit juice, or sports drink with calories. But if weight loss is a goal and you aren’t at risk of hypoglycemia, just drink water. Unless your workout was particularly exhausting or lasted several hours, you don’t need food. <br/>
 People who take insulin and are physically active should consult their health care provider about how to adjust insulin dosages."
