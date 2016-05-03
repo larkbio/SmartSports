@@ -5,16 +5,15 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    if !current_user.admin? && !current_user.doctor?
-      respond_to do |format|
-        format.html { redirect_to errors_unauthorized_path }
-        format.json { render json: { :status => 'NOK', :msg => 'error_unauthorized' }, status: 403  }
-      end
+    unless current_user.admin? || current_user.doctor?
+      send_error_json(nil, "not authorized", 403)
       return
     end
     @users = User.all
-    if(params[:doctor])
+    if(params[:doctors])
       @users = @users.where(doctor: true)
+    else
+      @users = @users.where(doctor: false)
     end
   end
 
