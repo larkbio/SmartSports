@@ -172,12 +172,12 @@ class AnalysisDataController < ApplicationController
             amount: lifestyle.amount,
             source: 'SmartDiab'
         }
-        if lifestyle.lifestyle_type.category=='stress'
-          ret['lf_group']= [lifestyle.group, "Stress"]
-        elsif lifestyle.lifestyle_type.category=='illness'
-          ret['lf_group']= [lifestyle.lifestyle_type.category, lifestyle.name]
-        elsif lifestyle.lifestyle_type.category=='pain'
-          ret['lf_group']= [lifestyle.lifestyle_type.category, lifestyle.name+"(pain)"]
+        if lifestyle.lifestyle_type.try(:category)=='stress'
+          ret['lf_group']= ['stress', "Stress"]
+        elsif lifestyle.lifestyle_type.try(:category)=='illness'
+          ret['lf_group']= ['illness', lifestyle.name]
+        elsif lifestyle.lifestyle_type.try(:category)=='pain'
+          ret['lf_group']= ['pain', lifestyle.name+"(pain)"]
         end
         ret
       end
@@ -346,21 +346,15 @@ class AnalysisDataController < ApplicationController
       ret = {
           start: lifestyle.start_time,
           evt_type: 'lifestyle',
-          group: lifestyle.group,
+          group: lifestyle.lifestyle_type.try(:category),
           value1: lifestyle.amount
       }
-      if lifestyle.lifestyle_type_name != 'stress'
+      if lifestyle.lifestyle_type.try(:category) != 'stress'
         ret['end'] = lifestyle.end_time
       else
         ret['end'] = lifestyle.start_time+1.day
       end
-      if lifestyle.lifestyle_type_name=='illness'
-        ret['value2']= lifestyle.lifestyle_type_name
-      elsif lifestyle.group=='pain'
-        ret['value2']= lifestyle.lifestyle_type_name
-      else
-        ret['value2']= nil
-      end
+      ret['value2']= lifestyle.lifestyle_type.try(:category)
       ret
     end
     )
