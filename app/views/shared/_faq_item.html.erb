@@ -1,7 +1,7 @@
 <div class="panel panel-default">
   <div class="panel-heading">
     <h4 class="panel-title">
-      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse<%=faq_item_counter%>"><%= faq_item.title %></a>
+      <a class="accordion-toggle <% if faq_item_counter!=0%>collapsed<%end%>" data-toggle="collapse" data-parent="#accordion" href="#collapse<%=faq_item_counter%>"><%= faq_item.title %></a>
     </h4>
   </div>
   <div id="collapse<%=faq_item_counter%>" class="panel-collapse collapse <% if faq_item_counter==0%>in<%end%>">

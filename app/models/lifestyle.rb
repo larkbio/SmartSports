@@ -35,15 +35,15 @@ class Lifestyle < ActiveRecord::Base
     if self.lifestyle_type
       case self.lifestyle_type.categoryqn
         when "sleep"
-          result = t(:sleepList)[self.amount] if self.amount
+          result = I18n.t(:sleepList)[self.amount] if self.amount
         when "stress"
-          result = t(:stressList)[self.amount] if self.amount
+          result = I18n.t(:stressList)[self.amount] if self.amount
         when "illness"
-          result = t(:illnessList)[self.amount] if self.amount
+          result = I18n.t(:illnessList)[self.amount] if self.amount
         when "pain"
-          result = t(:painList)[self.amount] if self.amount
+          result = I18n.t(:painList)[self.amount] if self.amount
         when "period"
-          result = "#{t(:periodPainList)[self.amount]}, #{t(:periodVolumeList)[self.period_volume]} volume" if self.amount
+          result = "#{I18n.t(:periodPainList)[self.amount]}, #{I18n.t(:periodVolumeList)[self.period_volume]} volume" if self.amount
       end
     end
     return result
@@ -54,7 +54,7 @@ class Lifestyle < ActiveRecord::Base
     if self.lifestyle_type
       result = self.lifestyle_type.category
       if self.lifestyle_type.category=='sleep'
-        result = "Sleep, #{ t(:sleepList)[self.amount] if self.amount}"
+        result = "Sleep, #{ I18n.t(:sleepList)[self.amount] if self.amount}"
       end
     end
     return result

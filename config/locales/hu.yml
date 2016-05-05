@@ -357,9 +357,9 @@ hu:
   activity_trend: "Mozgás adatok"
 
 # FAQ
-  faq_title_1: SmartDiab Gy.I.K.
-  faq_title_2: Gyakori Kérdések
-  faq_subtitle: Ez az oldal a SmartDiabbal és a cukorbetegséggel kapcsolatos információkat tartalmaz. Ha itt nem talál választ a kérdésére, forduljon hozzánk.
+  faq_title_1: OKTATÓFAL
+  faq_title_2:
+  faq_subtitle: Ez az oldal a cukorbetegséggel kapcsolatos információkat tartalmaz kérdés-felelet formában.
 # custom
   add_custom_form: "Egyedi kérdőív hozzáadása"
   add_custom_form_info: "Itt összeállíthatja saját kérdőíveit a leggyakrabban használt elemekkel és alapértelmezett értékekkel."
