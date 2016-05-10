@@ -1,0 +1,14 @@
+one:
+  id: 1
+  user_id: 1
+  time: 2016-05-01 12:00:11
+  effect_present: true
+  effect_detail: pain
+
+two:
+  id: 2
+  user_id: 1
+  time: 2016-05-01 12:00:11
+  effect_present: false
+  effect_detail:
+

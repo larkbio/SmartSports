@@ -10,6 +10,7 @@ Rails.application.routes.draw do
         resources :measurements
         resources :activities
         resources :diets
+        resources :adverses
         resources :medications
         resources :lifestyles
         resources :personal_records
@@ -67,6 +68,7 @@ Rails.application.routes.draw do
     resources :labresults
     resources :sensor_measurements
     resources :profile
+    resources :adverses
     resources :custom_forms do
       resources :custom_form_elements
     end
