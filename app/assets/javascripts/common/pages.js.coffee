@@ -319,12 +319,14 @@
     removeClassesExcept("#infoPopup", "dataCaptured")
     $("#infoPopup").addClass(cls)
     $("#infoPopup").removeClass("hidden");
+    $("#infoPopup button").focus();
 
   window.popup_error = (msg, cls='dietStyle') ->
     $("#errorPopup span.msg").html(msg)
     removeClassesExcept("#errorPopup", "dataCaptured")
     $("#errorPopup").addClass(cls)
     $("#errorPopup").removeClass("hidden");
+    $("#errorPopup button").focus();
 
   window.isempty = (sel) ->
     return $(sel).length==0 || $(sel).val()==""

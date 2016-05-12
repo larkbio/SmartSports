@@ -94,6 +94,7 @@ Rails.application.routes.draw do
     get 'pages/lifestyle'
     get 'pages/genetics'
     get 'pages/faq'
+    get 'pages/adverse'
     get 'pages/customforms'
     get 'pages/analytics'
     get 'pages/profile'
@@ -192,11 +193,11 @@ Rails.application.routes.draw do
   #     resources :products
   #   end
 
-  root :to => "pages#main"
+  root :to => "pages#adverse"
   #handles invalid locale
   #get '/*locale/*path', to: redirect("/#{I18n.default_locale}/%{path}")
   # handles /pages/... without locale
   get '/pages/:path', to: redirect("/#{I18n.default_locale}/pages/%{path}"), constraints: lambda { |req| !req.path.starts_with? "/#{I18n.default_locale}/" }
   # handles /
-  get '', to: redirect("/#{I18n.locale}/pages/dashboard")
+  get '', to: redirect("/#{I18n.locale}/pages/adverse")
 end

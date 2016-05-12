@@ -1,6 +1,6 @@
 hu:
-  project_name: "SmartDiab"
-  top_title: "SmartDiab - intelligent diabetes management"
+  project_name: "SmartAdverse"
+  top_title: "SmartAdverse - intelligent adverse effect management"
   all: "Összes"
   site_traffic: "A weblap forgalma"
   invite_doctor: "Orvos meghívása"
@@ -27,6 +27,7 @@ hu:
   menu_patient_groups: "Beteg Csoportok"
   menu_custom_full: "Saját Kérdőívek"
   menu_faq: "Oktatófal"
+  menu_adverse: "Mellékhatás"
 
   title_profile: "Profil"
   title_connections: "Csatlakoztatott eszközök"
@@ -279,6 +280,11 @@ hu:
   unit:                 "egység"
   amount:               "Mennyiség"
   unknown_med:          "Ismeretlen gyógyszer"
+
+# adverse effects
+  effect_present:       "Volt mellékhatás"
+  effect_detail:        "Részletek"
+  symptom:              "Szimptóma"
 
 # wellbeing
   lifestyle:          "Közérzet"

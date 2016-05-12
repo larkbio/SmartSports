@@ -1,0 +1,13 @@
+#adverse_forms button.yesnoButton {
+  width: 112px;
+}
+
+#adverse_forms button:disabled {
+   background-color: #A5A5A5 !important;
+   border-color: #A5A5A5 !important;
+ }
+
+#adverse_forms button.selected {
+  background-color: #6CC5CC !important;
+  border-color: #6CC5CC !important;
+}

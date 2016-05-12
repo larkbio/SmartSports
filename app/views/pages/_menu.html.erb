@@ -1,55 +1,12 @@
 <div class="app2Menu">
   <div class="inner ">
-    <div class="menuitem c0  b0">
-      <a id="dashboard-link" class="menulink" href="<%= url_for( :action => 'dashboard', :locale => I18n.locale ) %>">
-        <%=t 'menu_dashboard' %>
-      </a>
-    </div>
-    <div class="menuitem customColor customIcon">
-      <a id="customforms-link" class="menulink" href="<%= url_for( :action => 'customforms', :locale => I18n.locale ) %>">
-        <%=t 'menu_custom' %>
-      </a>
-    </div>
-    <div class="menuitem c1 b1">
-      <a id="diet-link" class="menulink" href="<%= url_for( :action => 'diet', :locale => I18n.locale ) %>">
-        <%=t 'menu_diet' %>
-      </a>
-    </div>
-    <div class="menuitem c2 b2">
-      <a id="exercise-link" class="menulink" href="<%= url_for( :action => 'exercise', :locale => I18n.locale ) %>">
-        <%=t 'menu_exercise' %>
-      </a>
-    </div>
-    <div class="menuitem c3 b3">
-      <a id="health-link" class="menulink" href="<%= url_for( :action => 'health', :locale => I18n.locale ) %>">
-        <%=t 'menu_health' %>
-      </a>
-    </div>
+
     <div class="menuitem c5 b5">
-      <a id="medication-link" class="menulink" href="<%= url_for( :action => 'medication', :locale => I18n.locale ) %>">
-        <%=t 'menu_medication' %>
-      </a>
-    </div>
-    <div class="menuitem c4 b4">
-      <a id="lifestyle-link" class="menulink" href="<%= url_for( :action => 'lifestyle', :locale => I18n.locale ) %>">
-        <%=t 'menu_wellbeing' %>
-      </a>
-    </div>
-    <div class="menuitem c6 b6">
-      <a id="genetics-link" class="menulink" href="<%= url_for( :action => 'genetics', :locale => I18n.locale ) %>">
-        <%=t 'menu_genetics' %>
-      </a>
-    </div>
-    <div class="menuitem c7 b7">
-      <a id="labresults-link" class="menulink" href="<%= url_for( :action => 'labresult', :locale => I18n.locale ) %>">
-        <%=t 'menu_labresults' %>
+      <a id="medication-link" class="menulink" href="<%= url_for( :action => 'adverse', :locale => I18n.locale ) %>">
+        <%=t 'menu_adverse' %>
       </a>
     </div>
 
-    <div class="menuitem faqColor faqIcon">
-      <a id="labresults-link" class="menulink" href="<%= url_for( :action => 'faq', :locale => I18n.locale ) %>">
-        <%=t 'menu_faq' %>
-      </a>
     </div>
 
     <div style="float: right;width: 50px;">

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160510095122) do
+ActiveRecord::Schema.define(version: 20160511130414) do
 
   create_table "activities", force: true do |t|
     t.integer  "user_id"
@@ -48,6 +48,8 @@ ActiveRecord::Schema.define(version: 20160510095122) do
     t.string   "effect_present"
     t.text     "effect_detail"
     t.datetime "time"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "adverses", ["user_id"], name: "index_adverses_on_user_id"

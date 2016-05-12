@@ -7,7 +7,7 @@ module Api::V1
 
     def index
       user_id = params[:user_id]
-      @adverses = Adverse.where(user_id: user_id)
+      @adverses = Adverse.where(user_id: user_id).order(time: :desc)
       render :template => '/adverses/index.json'
     end
 

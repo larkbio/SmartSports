@@ -1,0 +1,32 @@
+<tr class="bg">
+  <td style="width:40px;" class="padded">
+    <%= image_tag "oral40.png" %>
+  </td>
+
+  <td id="adverse_item_<%= adverse_item.id %>" class="historyTitle padded dietItem">
+    <input id="diet_data_<%= adverse_item.id %>" type="hidden" value="">
+      <span class="itemTitle">
+        Adverse effect
+      </span>
+        <%= adverse_item.effect_present %>
+    <div class="right">
+
+    </div>
+    <br>
+    <%= adverse_item.time.strftime("%F, %H:%M") if adverse_item.time %>
+    <span>
+          <%= adverse_item.effect_detail %>
+    </span>
+  </td>
+
+  <td class="iconColumn">
+  </td>
+
+  <td class="iconColumn deleteDiet">
+    <%= form_tag(root_path+"users/#{current_user.id}/adverses/#{adverse_item.id}", id: "delete_adverse_#{adverse_item.id}", remote: true, method: "delete", class: "resource-delete-form") do %>
+        <button class="tableControl">
+          <i class="fa fa-trash-o fa-2x iconTooltip" title="<%=t 'remove_item'%>"></i>
+        </button>
+    <% end %>
+  </td>
+</tr>

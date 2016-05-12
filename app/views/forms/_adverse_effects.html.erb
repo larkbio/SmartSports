@@ -1,0 +1,14 @@
+<div class="dataForm medication_drugs <% if local_assigns.fetch(:locals, {})[:defaultHidden] %>hidden<% end %>">
+
+  <div id="adverseBtnGroup" class="clearBoth">
+    <button id="yesButton" class="dataFormField yesnoButton">Yes</button><button id="noButton" class="dataFormField yesnoButton">No</button>
+  </div>
+  <br/>
+  <input type="hidden" name="adverse[effect_present]" value="no">
+  <input type="search" class="dataFormField hidden adverseDetailSearch" placeholder="<%=t 'effect_detail'%>"/>
+  <input type="hidden" name="adverse[effect_detail]" class="adverseDetail">
+  <br>
+  <input type="text"  name="adverse[time]" class="dataFormField adverse_effects_datepicker  hidden" value='<%= DateTime.current.strftime("%F %R") %>'>
+  <br>
+
+</div>

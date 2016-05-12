@@ -81,14 +81,14 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
-  app_config_fname = '/data/.smartdiab_app_config'
+  app_config_fname = '/data/.smartadverse_app_config'
   if not File.exists?(app_config_fname)
     raise "Smartdiab app configuration file "+app_config_fname+" does not exist."
   end
   APP_CONFIG = YAML.load_file(app_config_fname)[::Rails.env]
   APP_CONFIG['PAPERCLIP_PATH'] = ":rails_root/system/:class/:attachment/:id/:style/:basename.:extension"
 
-  connection_config_fname = "/data/.smartdiab_connection_config.yml"
+  connection_config_fname = "/data/.smartadverse_connection_config.yml"
   if not File.exists?(connection_config_fname)
     raise "Connections configuration file "+connection_config_fname+" does not exist."
   end
@@ -100,7 +100,7 @@ Rails.application.configure do
   end
   MAIL_CONFIG = YAML.load_file(mail_config_fname)[::Rails.env]
 
-  db_config_fname = '/data/.db.conf'
+  db_config_fname = '/data/.smartadverse_db.conf'
   if not File.exists?(db_config_fname)
     raise "Configuration file "+db_config_fname+" does not exist."
   end
@@ -110,7 +110,7 @@ Rails.application.configure do
   DB_HU_CONFIG=YAML.load_file(File.join(Rails.root, 'config', 'locales', 'databases.hu.yml'))['hu']
 
   config.action_mailer.default_url_options = {
-      :host => 'app.smartdiab.com'
+      :host => 'adverse.smartdiab.com'
   }
 
   config.action_mailer.perform_deliveries = true
@@ -129,7 +129,7 @@ Rails.application.configure do
 
   Paperclip.options[:command_path] = "/usr/bin/"
 
-  DATA_DIR =  File.path('/data/projects/SmartSports-local/hr_data')
+  DATA_DIR =  File.path('/data/projects/SmartAdverse-local/hr_data')
   if not File.exists?(DATA_DIR)
     raise "Data dir '#{DATA_DIR}' missing"
   end

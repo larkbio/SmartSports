@@ -1,0 +1,3 @@
+console.log("load adverse js called");
+$("#recentResourcesTable").html("");
+$("#recentResourcesTable").html("<%= escape_javascript(render :partial=> 'shared/adverse_item', :collection=> @adverses ) %>");

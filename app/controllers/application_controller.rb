@@ -55,6 +55,8 @@ class ApplicationController < ActionController::Base
     }
 
     @hidden_forms = false
+    
+    # request.variant = :tablet if request.user_agent =~ /iPhone/
   end
 
   def get_last_synced_date(user_id, source)

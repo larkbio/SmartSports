@@ -36,7 +36,7 @@ module AdversesCommon
       send_error_json(nil, "Not found", 404)
     else
       if adverse.destroy
-        send_success_json(id)
+        send_success_json(id, {msg: "delete_success"})
       else
         send_error_json(id, "Erorr", 500)
       end

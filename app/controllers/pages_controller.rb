@@ -47,6 +47,10 @@ class PagesController < ApplicationController
     end
   end
 
+  def adverse
+    @adverses = current_user.adverses.order(time: :desc)
+  end
+
   def dashboard
     @measurements = current_user.measurements.where(source: @default_source).order(date: :desc).limit(4)
     get_todays_summary()

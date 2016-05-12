@@ -11,6 +11,7 @@
     <link href='//fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
     <%= favicon_link_tag 'logo-login.png' %>
 
+    
 </head>
 <body class="nobgAnimation" id="pageTop">
     <input id="user-lang" value="<%=I18n.locale%>" type="hidden" />
@@ -18,7 +19,7 @@
     <input id="amount_values" value="<%=t :amount_values%>" type="hidden" />
     <%= render partial: 'shared/popups' %>
     <%= yield :background_style %>
-    <%= yield :menu %>
+    <!-- yield menu here if needed -->
 
     <div class="topBanner">
       <div class="left">

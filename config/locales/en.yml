@@ -20,8 +20,8 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  project_name: "SmartDiab"
-  top_title: "SmartDiab - intelligent diabetes management"
+  project_name: "SmartAdverse"
+  top_title: "SmartAdverse - intelligent adverse effect management"
   all: "All"
   site_traffic: "Site traffic"
   invite_doctor: "Invite doctor"
@@ -48,6 +48,7 @@ en:
   menu_patient_groups: "Patient Groups"
   menu_custom_full: "Custom Forms"
   menu_faq: "Eduboard"
+  menu_adverse: "Adverse Effect"
 
   title_profile: "Profile"
   title_connections: "Connected devices"
@@ -300,6 +301,12 @@ en:
   unit:                 "unit"
   amount:               "Amount"
   unknown_med:          "Unknown medication"
+
+# adverse effects
+  effect_present:       "Present"
+  effect_detail:        "Details"
+  symptom:              "Symptom"
+
 
 # wellbeing
   lifestyle:                "Lifestyle"
