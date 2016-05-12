@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>Login | <%= t :project_name %></title>
+  <script type="text/javascript">window.url_prefix = "<%= root_path %>";</script>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+  <%= favicon_link_tag 'logo-login.png' %>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/> <!--320-->
+</head>
+<body class="bodyBg bgAnimation">
+<input id="user-lang" value="<%=I18n.locale%>" type="hidden" />
+<%= render partial: 'shared/popups' %>
+<%= yield %>
+
+<script type="text/javascript">
+    pages_menu()
+</script>
+
+</body>
+</html>

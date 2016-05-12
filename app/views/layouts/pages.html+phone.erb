@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title><%= yield :title_text %></title>
+  <script type="text/javascript">window.url_prefix = "<%= root_path %>";</script>
+  <%= stylesheet_link_tag 'application_phone', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+
+  <%= csrf_meta_tags %>
+
+  <link href='//fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+  <%= favicon_link_tag 'logo-login.png' %>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/> <!--320-->
+
+</head>
+<body class="nobgAnimation" id="pageTop">
+<input id="user-lang" value="<%=I18n.locale%>" type="hidden" />
+<input id="db-version" value="<%=@dbversion%>" type="hidden" />
+<input id="amount_values" value="<%=t :amount_values%>" type="hidden" />
+<%= render partial: 'shared/popups' %>
+<%= yield :background_style %>
+<!-- yield menu here if needed -->
+
+<div class="topBanner">
+  <div class="left">
+    <%= link_to root_path do %>
+        <%= image_tag("logo-login.png", alt: "Dashboard", style: "margin-top: 10px; width: 40px; float: left;", id: "headerLoginLogo", class: "loginLogo") %>
+        <span class="logoTitle"><%= t :top_title %></span>
+    <% end %>
+  </div>
+  <div class="right">
+
+    <div class="headerItemRight topBannerControl" title="<%=t 'alt_sign_out'%>">
+      <%= form_tag logout_path, :method => :post, :id => 'logoutForm', :remote => true do %>
+          <input type="image" src="<%= image_url "menu/logout.png" %>"  style="width: 20px;padding-top: 15px;">
+      <% end %>
+    </div>
+
+    <!--<div id="langswitcher" class="langSwitcherTop topBannerControl" title="Change Language"><!%= @lang_label %></div>-->
+
+    <% if current_user.admin? %>
+        <div class="imgContainer headerItemIcon topBannerControl" title="Admin">
+          <%= link_to url_for( :action => 'admin', :locale => I18n.locale ) do %>
+              <i class="fa fa-gear fa-lg headerItemIconMod"></i>
+          <% end %>
+        </div>
+    <% end %>
+
+    <% if not SmartSports::SHOW_DOCTOR or not current_user.doctor? %>
+        <div class="imgContainer headerItemIcon topBannerControl" title="<%=t 'alt_data_explorer'%>">
+          <%= link_to url_for( :action => 'analytics', :locale => I18n.locale ) do %>
+              <i class="fa fa-line-chart fa-lg headerItemIconMod"></i>
+          <% end %>
+        </div>
+    <% end %>
+
+    <div class="topBannerRight topBannerControl" title="<%=t 'alt_profile_settings'%>">
+      <%= link_to url_for( :action => 'profile', :locale => I18n.locale ), :class => "titleIcon" do %>
+          <%= image_tag current_user.avatar.url(:medium), class: "headerItemAvatar" %>
+      <% end %>
+    </div>
+
+    <div class="topBannerRight topBannerControl" title="<%=t 'tooltip_user_info'%> <%=@user_info[0]%>">
+      <span class="headerItemName"><%= @display_name %></span>
+    </div>
+
+  </div>
+</div>
+
+<div class="mainContainer">
+
+  <input id="current-user-id" value="<%= current_user.id %>" type="hidden" >
+  <%= yield %>
+
+</div>
+
+</body>
+</html>
