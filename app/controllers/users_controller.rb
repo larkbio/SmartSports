@@ -121,7 +121,7 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1.json
   def update
     respond_to do |format|
-      par = params.require(:user).permit(:password, :password_confirmation, :name)
+      par = params.require(:user).permit(:password, :password_confirmation, :name, :web_token_ios)
       if @user.update(par)
         format.json { render json: {ok: true, status: 'OK', msg: "Updated successfully"} }
       else

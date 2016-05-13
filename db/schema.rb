@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160511130414) do
+ActiveRecord::Schema.define(version: 20160513130113) do
 
   create_table "activities", force: true do |t|
     t.integer  "user_id"
@@ -465,6 +465,7 @@ ActiveRecord::Schema.define(version: 20160511130414) do
     t.datetime "avatar_updated_at"
     t.boolean  "doctor"
     t.string   "dev_token"
+    t.string   "web_token_ios"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

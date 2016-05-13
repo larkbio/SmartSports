@@ -4,6 +4,10 @@ Rails.application.routes.draw do
 
   use_doorkeeper
 
+  post '/v1/pushPackages/web.com.smartdiab.adverse' => 'push_packages#download'
+  post '/push' => 'push_packages#push'
+  post '/v1/log' => 'push_packages#log'
+
   namespace :api do
     namespace :v1 do
       resources :users do

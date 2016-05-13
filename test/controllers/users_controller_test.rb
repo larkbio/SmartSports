@@ -45,7 +45,7 @@ class UsersControllerTest < ActionController::TestCase
   end
 
 
-  test "should update user" do
+  test "should update user name and password" do
     init_user
     patch :update, id: @user.id, user: {
         name: "newname",
@@ -54,6 +54,16 @@ class UsersControllerTest < ActionController::TestCase
       }, format: :json
     json_result = JSON.parse(response.body)
     assert_equal json_result["ok"], true
+  end
+
+  test "should update web_token_ios" do
+    init_user
+    patch :update, id: @user.id, user: {
+                     web_token_ios: "TOK",
+                 }, format: :json
+    json_result = JSON.parse(response.body)
+    u = User.find_by_id(@user.id)
+    assert_equal "TOK", u.web_token_ios
   end
 
   test "should update user if pw len >= 4" do

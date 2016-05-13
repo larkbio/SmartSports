@@ -1,7 +1,16 @@
 'use strict';
 
+
+
 var adverses_loaded = function() {
     console.log("adverses page showing");
+    console.log(window.safari)
+    if ('safari' in window && 'pushNotification' in window.safari) {
+        console.log("check push notif permisison")
+        var permissionData = window.safari.pushNotification.permission('web.com.smartdiab.adverse');
+        checkRemotePermission(permissionData);
+    }
+
     $(".adverse_effects_datepicker").datetimepicker(timepicker_defaults);
     resetAdverse();
     var popup_messages = JSON.parse($("#popup-messages").val());
@@ -79,11 +88,47 @@ function loadAdverse () {
             url: url,
             type: 'GET',
             error: function (jqXHR, textStatus, errorThrown) {
-                console.log( "load recent diets AJAX Error: #{textStatus}");
+                console.log( "load recent adverse AJAX Error: #{textStatus}");
             },
             success: function (data, textStatus, jqXHR) {
                 console.log("load adverse success");
                 $(".deleteDiet").removeClass("hidden");
             }
     });
-}
+};
+
+var checkRemotePermission = function (permissionData) {
+    if (permissionData.permission === 'default') {
+        // This is a new web service URL and its validity is unknown.
+        window.safari.pushNotification.requestPermission(
+            'https://adverse.smartdiab.com', // The web service URL.
+            'web.com.smartdiab.adverse',     // The Website Push ID.
+            {}, // Data that you choose to send to your server to help you identify the user.
+            checkRemotePermission         // The callback function.
+        );
+    }
+    else if (permissionData.permission === 'denied') {
+        console.log("user did not allow push notif");
+    }
+    else if (permissionData.permission === 'granted') {
+        // The web service URL is a valid push provider, and the user said yes.
+        // permissionData.deviceToken is now available to use.
+        console.log("deviceToken=");
+        console.log(permissionData.deviceToken);
+        var current_user = $("#current-user-id")[0].value;
+        var url = "/users/"+current_user
+        $.ajax({
+            url: url,
+            type: 'PUT',
+            data: {web_token_ios: permissionData.deviceToken},
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.log( "load recent diets AJAX Error: #{textStatus}");
+                alert("err: " + textStatus+" token="+permissionData.deviceToken);
+            },
+            success: function (data, textStatus, jqXHR) {
+                console.log("load adverse success");
+                alert("success: token = " + permissionData.deviceToken);
+            }
+        });
+    }
+};
