@@ -27,7 +27,7 @@ hu:
   menu_patient_groups: "Beteg Csoportok"
   menu_custom_full: "Saját Kérdőívek"
   menu_faq: "Oktatófal"
-  menu_adverse: "Mellékhatás"
+  menu_adverse: "Mellékhatás / Nemkívánatos esemény jelentése"
 
   title_profile: "Profil"
   title_connections: "Csatlakoztatott eszközök"
@@ -73,7 +73,7 @@ hu:
   remove_item: "Elem törlése"
 
 #login
-  sign_in: "Jelentkezzen be a SmartDiab fiókjába"
+  sign_in: "Bejelentkezés"
   login_button: "Belépés"
   username: "Felhasználónév"
   forgotten_password: "Elfelejtettem a jelszavam"
@@ -283,9 +283,9 @@ hu:
 
 # adverse effects
   effect_present:       "Volt mellékhatás"
-  effect_detail:        "Részletek"
-  symptom:              "Szimptóma"
-
+  effect_detail:        "Kérem válasszon a listából"
+  symptom:              "Jelentkezett Önnél az elmúlt héten valamilyen mellékhatás vagy nemkívánatos esemény?"
+  adverse_event:        "Mellékhatás"
 # wellbeing
   lifestyle:          "Közérzet"
   wellbeing:          "Közérzet"
@@ -389,6 +389,10 @@ hu:
   notification_form_to_fill: "Kitöltendő form"
   add_notification: "Értesítés hozzáadása"
   notofications: "Értesítések"
+
+#common
+  yes: "Igen"
+  no: "Nem"
 
   user_created_email: |
     A SmartDiab üdvözli Önt!

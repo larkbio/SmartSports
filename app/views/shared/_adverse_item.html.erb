@@ -6,9 +6,13 @@
   <td id="adverse_item_<%= adverse_item.id %>" class="historyTitle padded dietItem">
     <input id="diet_data_<%= adverse_item.id %>" type="hidden" value="">
       <span class="itemTitle">
-        Adverse effect
+        Mellékhatás
       </span>
-        <%= adverse_item.effect_present %>
+        <% if  adverse_item.effect_present=='yes' %>
+            Igen
+        <% else %>
+            Nem
+        <% end %>
     <div class="right">
 
     </div>

@@ -94,7 +94,7 @@ en:
   remove_item: "Remove item"
 
 #login
-  sign_in: "Sign in to SmartDiab"
+  sign_in: "Sign in"
   login_button: "Login"
   username: "User name"
   forgotten_password: "Forgotten password"
@@ -306,7 +306,7 @@ en:
   effect_present:       "Present"
   effect_detail:        "Details"
   symptom:              "Symptom"
-
+  adverse_event:        "Adverse Event"
 
 # wellbeing
   lifestyle:                "Lifestyle"
@@ -410,6 +410,11 @@ en:
   notification_form_to_fill: "Form to fill"
   add_notification: "Add Notification"
   notofications: "Notifications"
+
+#common
+  yes: "Yes"
+  no: "No"
+
 
   user_created_email: |
     Welcome to SmartDiab

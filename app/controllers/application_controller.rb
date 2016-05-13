@@ -22,11 +22,7 @@ class ApplicationController < ActionController::Base
     if params[:locale]
       I18n.locale = params[:locale]
     else
-      browser_lang = request.env['HTTP_ACCEPT_LANGUAGE']
-      if !browser_lang.nil?
-        browser_locale = browser_lang.scan(/^[a-z]{2}/).first
-        I18n.locale = browser_locale || I18n.default_locale
-      end
+      I18n.locale = "hu"
     end
 
     @lang_label = 'hu'
@@ -36,7 +32,7 @@ class ApplicationController < ActionController::Base
   end
 
   def not_authenticated
-     redirect_to "/#{I18n.locale}/pages/signin", alert: "Please login first"
+     redirect_to "/hu/pages/signin", alert: "Please login first"
   end
 
   def set_default_variables

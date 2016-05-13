@@ -199,5 +199,5 @@ Rails.application.routes.draw do
   # handles /pages/... without locale
   get '/pages/:path', to: redirect("/#{I18n.default_locale}/pages/%{path}"), constraints: lambda { |req| !req.path.starts_with? "/#{I18n.default_locale}/" }
   # handles /
-  get '', to: redirect("/#{I18n.locale}/pages/adverse")
+  get '', to: redirect("/hu/pages/adverse")
 end

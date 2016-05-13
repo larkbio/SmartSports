@@ -2,15 +2,16 @@
 
 <div class="diet-block mainContent">
   <input id="data-lang-diet" value="<%=I18n.locale%>" type="hidden" />
-  <div class="sectionTitle medicationBodyLogo medicationColor">
+  <div class="sectionTitleShort medicationBodyLogo medicationColor">
     <%=t 'menu_adverse' %>
   </div>
+
   <div class="contentBg" id="adverse_forms">
     <div class="p10">
       <%= render "forms/element", locals: {:showButton => true,
                                            :elementName => 'adverse_effects',
                                            :style => 'medicationStyle',
-                                           :title => 'symptoms',
+                                           :title => 'symptom',
                                            :img => 'oral40.png',
                                            :elementId => 'adverses_form',
                                            :buttonClass => 'adverseAddButton',

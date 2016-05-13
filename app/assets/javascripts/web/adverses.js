@@ -33,13 +33,11 @@ var adverses_loaded = function() {
 
     $("#yesButton").on("click", function(evt) {
         evt.preventDefault();
-        $("#yesButton").attr("disabled", true);
-        $("#yesButton").addClass("selected");
+        $("#yesButton").attr("disabled", true).addClass("selected");
         $("#noButton").attr("disabled", true);
-        $("input[name='adverse[effect_present]']").val("yes");
+        $("input[name='adverse[effect_present]']").val("yes").removeClass("hidden");
         $("button.adverseAddButton").removeClass("hidden");
         $(".adverseDetailSearch").removeClass("hidden");
-        $("input[name='adverse[effect_present]']").removeClass("hidden");
         $("input[name='adverse[time]']").removeClass("hidden");
     });
 
@@ -69,7 +67,7 @@ function resetAdverse() {
         .addClass("hidden")
         .val("");
     $(".adverseDetail").val("");
-    $("input[name='adverse[effect_present]']").attr("checked", false);
+    $("input[name='adverse[effect_present]']").val("no");
 }
 
 function loadAdverse () {

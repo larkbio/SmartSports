@@ -568,11 +568,13 @@ div.dialogFormContainer {
     line-height: 40px;
     text-align: center;
     text-transform: uppercase;
+    margin-bottom: 50px;
 }
 .dataFormTitle span{
   margin-top: 10px;
-  font-size: 20px;
+  //font-size: 20px;
   display: block;
+  line-height: 30px;
 }
 .dataFormProperty {
   height: 20px;

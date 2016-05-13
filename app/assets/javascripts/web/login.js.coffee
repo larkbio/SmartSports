@@ -125,7 +125,7 @@
     form_id = e.currentTarget.id
     console.log "success "+form_id
     #redir to main page
-    document.location = urlPrefix()
+    document.location = urlPrefix()+data.locale+"/pages/adverse"
   ).on("ajax:error", (e, xhr, status, error) ->
     console.log error
     popup_error(xhr.responseJSON["msg"])
